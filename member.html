@@ -2749,7 +2749,302 @@ function startPayment(){
 })();
 </script>
 
-<!-- ================= END PAYMENT HISTORY ================= -->  
+<!-- ================= END PAYMENT HISTORY ================= --> 
+<!-- ================= WALLET & WITHDRAW ================= -->
+
+<style>
+.wallet-section{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 18px 45px;
+    font-family:Arial,sans-serif;
+}
+
+.wallet-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:30px;
+    border-radius:24px;
+    margin-bottom:22px;
+}
+
+.wallet-header h2{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.wallet-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.wallet-summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:22px;
+}
+
+.wallet-card{
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.wallet-icon{
+    font-size:27px;
+    margin-bottom:12px;
+}
+
+.wallet-label{
+    color:#777;
+    font-size:13px;
+}
+
+.wallet-amount{
+    margin-top:7px;
+    font-size:25px;
+    font-weight:800;
+    color:#27204b;
+}
+
+.wallet-main{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.wallet-panel{
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:20px;
+    padding:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.wallet-panel h3{
+    margin:0 0 18px;
+    color:#27204b;
+}
+
+.withdraw-input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    margin-bottom:14px;
+}
+
+.withdraw-input:focus{
+    border-color:#6548ee;
+}
+
+.withdraw-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.withdraw-note{
+    margin-top:14px;
+    padding:13px;
+    border-radius:12px;
+    background:#fff8e7;
+    color:#806000;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.withdraw-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
+
+.withdraw-row:last-child{
+    border-bottom:0;
+}
+
+.withdraw-status{
+    padding:5px 10px;
+    border-radius:20px;
+    background:#fff7df;
+    color:#936d00;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.withdraw-empty{
+    text-align:center;
+    padding:30px 10px;
+    color:#888;
+    font-size:13px;
+}
+
+@media(max-width:750px){
+    .wallet-summary{
+        grid-template-columns:1fr;
+    }
+
+    .wallet-main{
+        grid-template-columns:1fr;
+    }
+
+    .wallet-header h2{
+        font-size:23px;
+    }
+}
+</style>
+
+<section id="wallet" class="wallet-section">
+
+    <div class="wallet-header">
+        <h2>💰 My Wallet</h2>
+        <p>Manage your available balance and withdrawal requests.</p>
+    </div>
+
+    <div class="wallet-summary">
+
+        <div class="wallet-card">
+            <div class="wallet-icon">💵</div>
+            <div class="wallet-label">Available Balance</div>
+            <div class="wallet-amount" id="availableBalance">
+                ₹0
+            </div>
+        </div>
+
+        <div class="wallet-card">
+            <div class="wallet-icon">⏳</div>
+            <div class="wallet-label">Pending Balance</div>
+            <div class="wallet-amount">
+                ₹0
+            </div>
+        </div>
+
+        <div class="wallet-card">
+            <div class="wallet-icon">📤</div>
+            <div class="wallet-label">Total Withdrawn</div>
+            <div class="wallet-amount">
+                ₹0
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="wallet-main">
+
+        <!-- WITHDRAW -->
+        <div class="wallet-panel">
+
+            <h3>📤 Request Withdrawal</h3>
+
+            <input
+                type="number"
+                id="withdrawAmount"
+                class="withdraw-input"
+                placeholder="Enter withdrawal amount"
+                min="1">
+
+            <button
+                class="withdraw-btn"
+                onclick="requestWithdrawal()">
+                Request Withdrawal
+            </button>
+
+            <div class="withdraw-note">
+                🔒 Withdrawal requests will be processed only after
+                the secure backend, account verification and admin
+                approval system are connected.
+            </div>
+
+        </div>
+
+
+        <!-- METHOD -->
+        <div class="wallet-panel">
+
+            <h3>🏦 Withdrawal Method</h3>
+
+            <div class="withdraw-row">
+                <span>Method</span>
+                <strong>Not Added</strong>
+            </div>
+
+            <div class="withdraw-row">
+                <span>Account Status</span>
+                <strong>Pending Setup</strong>
+            </div>
+
+            <div class="withdraw-row">
+                <span>Verification</span>
+                <strong>Required</strong>
+            </div>
+
+            <div class="withdraw-note">
+                Add and verify your bank/approved payout details
+                before requesting a real withdrawal.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY -->
+    <div class="wallet-panel" style="margin-top:20px;">
+
+        <h3>📋 Withdrawal History</h3>
+
+        <div id="withdrawHistory">
+
+            <div class="withdraw-empty">
+                No withdrawal requests yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function requestWithdrawal(){
+
+    const amount =
+        document.getElementById("withdrawAmount").value;
+
+    if(!amount || Number(amount) <= 0){
+
+        alert("Please enter a valid withdrawal amount.");
+
+        return;
+    }
+
+    alert(
+        "Withdrawal request received for ₹" +
+        Number(amount).toLocaleString("en-IN") +
+        ". Real withdrawals will be enabled after the secure backend and approval system are connected."
+    );
+
+}
+
+</script>
+
+<!-- ================= END WALLET & WITHDRAW ================= -->
 </body>
 </html>
 
