@@ -25,30 +25,30 @@ body{
 .login-box{
     width:100%;
     max-width:430px;
-    background:white;
+    background:#fff;
     padding:32px;
     border-radius:25px;
     box-shadow:0 15px 45px rgba(0,0,0,.10);
 }
 
 .logo{
-    width:65px;
-    height:65px;
+    width:70px;
+    height:70px;
     margin:0 auto 18px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:18px;
+    border-radius:20px;
     background:linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color:white;
-    font-size:30px;
+    color:#fff;
+    font-size:32px;
 }
 
 h1{
     text-align:center;
     margin:0 0 8px;
     color:#202040;
-    font-size:25px;
+    font-size:26px;
 }
 
 .subtitle{
@@ -60,30 +60,30 @@ h1{
 
 label{
     display:block;
-    margin:0 0 7px;
+    margin-bottom:7px;
+    color:#444;
     font-size:13px;
     font-weight:bold;
-    color:#444;
 }
 
-.input{
+input{
     width:100%;
     padding:14px;
     border:1px solid #ddd;
     border-radius:12px;
     outline:none;
     font-size:14px;
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
-.input:focus{
+input:focus{
     border-color:#6548ee;
 }
 
 .login-btn{
     width:100%;
-    border:0;
     padding:15px;
+    border:0;
     border-radius:13px;
     background:linear-gradient(135deg,#5b3df5,#8b5cf6);
     color:white;
@@ -94,6 +94,20 @@ label{
 
 .login-btn:hover{
     opacity:.9;
+}
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-size:12px;
+}
+
+.error{
+    background:#ffecec;
+    color:#c53030;
 }
 
 .security{
@@ -112,8 +126,8 @@ label{
     text-align:center;
     margin-top:20px;
     color:#5b3df5;
-    font-size:13px;
     text-decoration:none;
+    font-size:13px;
 }
 
 @media(max-width:480px){
@@ -138,7 +152,7 @@ label{
         NovaRise Academy Administration
     </div>
 
-    <form onsubmit="adminLogin(event)">
+    <form id="adminLoginForm">
 
         <label for="adminEmail">
             Admin Email
@@ -147,8 +161,8 @@ label{
         <input
             type="email"
             id="adminEmail"
-            class="input"
             placeholder="Enter admin email"
+            autocomplete="username"
             required
         >
 
@@ -159,8 +173,8 @@ label{
         <input
             type="password"
             id="adminPassword"
-            class="input"
             placeholder="Enter password"
+            autocomplete="current-password"
             required
         >
 
@@ -170,12 +184,16 @@ label{
             🔐 Sign In
         </button>
 
+        <div id="loginError" class="message error">
+            Invalid Admin Email or Password.
+        </div>
+
     </form>
 
     <div class="security">
-        🔒 Admin access is restricted.
-        Real authentication will be connected to the secure
-        backend before production use.
+        🔒 This is currently a prototype login.
+        Real production authentication must be handled securely
+        on a backend server.
     </div>
 
     <a href="member.html" class="back">
@@ -186,36 +204,47 @@ label{
 
 
 <script>
+const ADMIN_EMAIL = "admin@novariseacademy.com";
+const ADMIN_PASSWORD = "Admin@12345";
 
-function adminLogin(event){
+document
+.getElementById("adminLoginForm")
+.addEventListener("submit", function(event){
 
     event.preventDefault();
-const email = document.querySelector('input[type="email"]').value.trim();
-const password = document.querySelector('input[type="password"]').value;
 
-if (!email || !password) {
-    alert("Please enter Admin Email and Password.");
-    return;
-}
+    const email =
+        document.getElementById("adminEmail")
+        .value
+        .trim();
 
-if (email === "admin@novariseacademy.com" && password === "NovaRise@2026") {
-   
-}document.querySelector("form").addEventListener("submit", function(event) {
-    event.preventDefault();
+    const password =
+        document.getElementById("adminPassword")
+        .value;
 
-    const adminEmail = document.getElementById("adminEmail").value.trim();
-    const adminPassword = document.getElementById("adminPassword").value;
+    const error =
+        document.getElementById("loginError");
 
-    if (!adminEmail || !adminPassword) {
-        alert("Please enter Admin Email and Password.");
-        return;
+    if(
+        email === ADMIN_EMAIL &&
+        password === ADMIN_PASSWORD
+    ){
+
+        localStorage.setItem(
+            "novaAdminLoggedIn",
+            "true"
+        );
+
+        window.location.href =
+            "admin.html";
+
+    }else{
+
+        error.style.display = "block";
+
     }
 
-    localStorage.setItem("novaAdminLoggedIn", "true");
-
-    window.location.href = "admin-dashboard.html";
 });
-
 </script>
 
 </body>
