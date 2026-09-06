@@ -2319,6 +2319,226 @@ function selectPlan(planName){
 </script>
 
 <!-- ================= END MEMBERSHIP PLANS ================= -->
+    <!-- ================= PAYMENT PAGE ================= -->
+
+<style>
+.payment-section{
+    max-width:850px;
+    margin:30px auto;
+    padding:0 18px 50px;
+    font-family:Arial,sans-serif;
+}
+
+.payment-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:30px;
+    border-radius:24px;
+    margin-bottom:22px;
+}
+
+.payment-header h2{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.payment-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.payment-card{
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.order-title{
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.order-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+    color:#555;
+}
+
+.order-row strong{
+    color:#222;
+}
+
+.total{
+    font-size:20px;
+    font-weight:800;
+    color:#29204e;
+    border-bottom:0;
+}
+
+.member-info{
+    margin-top:20px;
+    padding:18px;
+    background:#f7f6ff;
+    border-radius:15px;
+}
+
+.member-info div{
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+    font-size:14px;
+}
+
+.member-info span{
+    color:#777;
+}
+
+.pay-now{
+    width:100%;
+    margin-top:22px;
+    padding:16px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.pay-now:hover{
+    opacity:.9;
+}
+
+.security{
+    text-align:center;
+    margin-top:17px;
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+}
+
+@media(max-width:600px){
+    .payment-header{
+        padding:22px;
+    }
+
+    .payment-header h2{
+        font-size:23px;
+    }
+
+    .payment-card{
+        padding:18px;
+    }
+}
+</style>
+
+<section id="payment" class="payment-section">
+
+    <div class="payment-header">
+        <h2>💳 Secure Payment</h2>
+        <p>Review your membership order before continuing.</p>
+    </div>
+
+    <div class="payment-card">
+
+        <div class="order-title">
+            🧾 Order Summary
+        </div>
+
+        <div class="order-row">
+            <span>Membership Plan</span>
+            <strong id="selectedPlan">
+                Not Selected
+            </strong>
+        </div>
+
+        <div class="order-row">
+            <span>Membership Status</span>
+            <strong>New Membership</strong>
+        </div>
+
+        <div class="order-row total">
+            <span>Total Amount</span>
+            <strong id="paymentAmount">
+                To Be Confirmed
+            </strong>
+        </div>
+
+        <div class="member-info">
+
+            <div>
+                <span>Member ID</span>
+                <strong id="paymentMember">
+                    Member
+                </strong>
+            </div>
+
+            <div>
+                <span>Payment Status</span>
+                <strong>Pending</strong>
+            </div>
+
+        </div>
+
+        <button
+            class="pay-now"
+            onclick="startPayment()">
+            🔒 Continue to Secure Payment
+        </button>
+
+        <div class="security">
+            🛡️ Your payment will be processed through a secure
+            payment gateway once the payment integration is connected.
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+(function(){
+
+    const plan =
+        localStorage.getItem("selectedMembershipPlan")
+        || "Not Selected";
+
+    const member =
+        localStorage.getItem("novaMember")
+        || "Member";
+
+    const planElement =
+        document.getElementById("selectedPlan");
+
+    const memberElement =
+        document.getElementById("paymentMember");
+
+    if(planElement){
+        planElement.textContent = plan;
+    }
+
+    if(memberElement){
+        memberElement.textContent = member;
+    }
+
+})();
+
+function startPayment(){
+
+    alert(
+        "Secure payment gateway is being prepared. " +
+        "Cashfree integration will be connected after the payment backend is ready."
+    );
+
+}
+</script>
+
+<!-- ================= END PAYMENT PAGE ================= -->
 </body>
 </html>
 
