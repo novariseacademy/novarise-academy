@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | NovaRise Academy</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#eef0ff,#f8f7ff);
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:32px;
+    border-radius:25px;
+    box-shadow:0 15px 45px rgba(0,0,0,.10);
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    margin:0 auto 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-size:30px;
+}
+
+h1{
+    text-align:center;
+    margin:0 0 8px;
+    color:#202040;
+    font-size:25px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#888;
+    font-size:13px;
+    margin-bottom:28px;
+}
+
+label{
+    display:block;
+    margin:0 0 7px;
+    font-size:13px;
+    font-weight:bold;
+    color:#444;
+}
+
+.input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:14px;
+    margin-bottom:17px;
+}
+
+.input:focus{
+    border-color:#6548ee;
+}
+
+.login-btn{
+    width:100%;
+    border:0;
+    padding:15px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn:hover{
+    opacity:.9;
+}
+
+.security{
+    margin-top:20px;
+    padding:13px;
+    border-radius:12px;
+    background:#f5f3ff;
+    color:#5945ae;
+    font-size:11px;
+    line-height:1.5;
+    text-align:center;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#5b3df5;
+    font-size:13px;
+    text-decoration:none;
+}
+
+@media(max-width:480px){
+    .login-box{
+        padding:25px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+        🛡️
+    </div>
+
+    <h1>Admin Login</h1>
+
+    <div class="subtitle">
+        NovaRise Academy Administration
+    </div>
+
+    <form onsubmit="adminLogin(event)">
+
+        <label for="adminEmail">
+            Admin Email
+        </label>
+
+        <input
+            type="email"
+            id="adminEmail"
+            class="input"
+            placeholder="Enter admin email"
+            required
+        >
+
+        <label for="adminPassword">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="adminPassword"
+            class="input"
+            placeholder="Enter password"
+            required
+        >
+
+        <button
+            type="submit"
+            class="login-btn">
+            🔐 Sign In
+        </button>
+
+    </form>
+
+    <div class="security">
+        🔒 Admin access is restricted.
+        Real authentication will be connected to the secure
+        backend before production use.
+    </div>
+
+    <a href="member.html" class="back">
+        ← Back to Member Portal
+    </a>
+
+</div>
+
+
+<script>
+
+function adminLogin(event){
+
+    event.preventDefault();
+
+    /*
+       DEMO ONLY
+
+       Do NOT use real passwords here.
+       This frontend login is only for testing the page.
+    */
+
+    alert(
+        "Admin authentication is not connected yet. " +
+        "The secure backend login will be added next."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
