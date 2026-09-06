@@ -1665,6 +1665,368 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <!-- ================= END MY PROFILE ================= -->
+  <!-- ================= MEMBERSHIP SECTION ================= -->
+
+<style>
+.membership-section {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 18px 40px;
+    font-family: Arial, sans-serif;
+}
+
+.membership-header {
+    background: linear-gradient(135deg, #171d43, #5b3df5, #8b5cf6);
+    color: white;
+    padding: 30px;
+    border-radius: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 30px rgba(70,50,180,.18);
+}
+
+.membership-header h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.membership-header p {
+    margin: 0;
+    opacity: .9;
+}
+
+.membership-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 20px;
+}
+
+.membership-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+}
+
+.plan-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #eeeaff;
+    color: #5b3df5;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.plan-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.plan-description {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.member-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #16843b;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+.membership-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.detail-box {
+    background: #f7f7fb;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+.detail-box span {
+    display: block;
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.detail-box strong {
+    color: #222;
+    font-size: 14px;
+}
+
+.benefits-title {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #222;
+}
+
+.benefit {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    color: #555;
+    font-size: 14px;
+}
+
+.benefit-icon {
+    color: #5b3df5;
+    font-weight: bold;
+}
+
+.upgrade-box {
+    margin-top: 22px;
+    background: linear-gradient(135deg,#f5f1ff,#faf8ff);
+    border: 1px solid #e5ddff;
+    padding: 20px;
+    border-radius: 17px;
+}
+
+.upgrade-box h3 {
+    margin: 0 0 7px;
+    color: #332277;
+}
+
+.upgrade-box p {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.upgrade-btn {
+    width: 100%;
+    border: 0;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.upgrade-btn:hover {
+    opacity: .9;
+}
+
+.membership-note {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 13px;
+    background: #fff8e7;
+    color: #806000;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media(max-width:750px) {
+    .membership-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .membership-header h2 {
+        font-size: 23px;
+    }
+
+    .membership-details {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<section id="membership" class="membership-section">
+
+    <div class="membership-header">
+        <h2>⭐ Membership Center</h2>
+        <p>View your membership plan, benefits and account status.</p>
+    </div>
+
+    <div class="membership-grid">
+
+        <!-- CURRENT PLAN -->
+        <div class="membership-card">
+
+            <span class="plan-badge">
+                CURRENT PLAN
+            </span>
+
+            <div class="plan-name">
+                NovaRise Member
+            </div>
+
+            <div class="plan-description">
+                Your current member account and available membership benefits.
+            </div>
+
+            <div class="member-status">
+                <span class="status-dot"></span>
+                Active Membership
+            </div>
+
+            <div class="membership-details">
+
+                <div class="detail-box">
+                    <span>Member ID</span>
+                    <strong id="membershipMemberId">
+                        Member
+                    </strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Membership Status</span>
+                    <strong>Active</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Joining Date</span>
+                    <strong id="membershipJoinDate">
+                        Not available
+                    </strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Expiry</span>
+                    <strong id="membershipExpiry">
+                        Not set
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="membership-note">
+                🔒 Membership information shown here is currently stored
+                locally for demonstration. Real account data will be connected
+                to the secure backend later.
+            </div>
+
+        </div>
+
+
+        <!-- BENEFITS -->
+        <div class="membership-card">
+
+            <div class="benefits-title">
+                💎 Member Benefits
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">✓</span>
+                <span>Access to your personal member dashboard.</span>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">✓</span>
+                <span>View income and transaction information.</span>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">✓</span>
+                <span>Secure member profile management.</span>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">✓</span>
+                <span>Membership activity tracking.</span>
+            </div>
+
+            <div class="benefit">
+                <span class="benefit-icon">✓</span>
+                <span>Member support access.</span>
+            </div>
+
+
+            <div class="upgrade-box">
+
+                <h3>💳 Upgrade Membership</h3>
+
+                <p>
+                    Choose an eligible membership plan to continue.
+                </p>
+
+                <button
+                    class="upgrade-btn"
+                    onclick="membershipUpgrade()">
+                    View Membership Plans
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+(function () {
+
+    const member =
+        localStorage.getItem("novaMember") || "Member";
+
+    const memberElement =
+        document.getElementById("membershipMemberId");
+
+    if (memberElement) {
+        memberElement.textContent = member;
+    }
+
+    const joinElement =
+        document.getElementById("membershipJoinDate");
+
+    let joinDate =
+        localStorage.getItem("novaJoinDate");
+
+    if (!joinDate) {
+        joinDate =
+            new Date().toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
+        localStorage.setItem(
+            "novaJoinDate",
+            joinDate
+        );
+    }
+
+    if (joinElement) {
+        joinElement.textContent = joinDate;
+    }
+
+})();
+
+
+function membershipUpgrade() {
+
+    alert(
+        "Membership plans will be available here after the payment system is connected."
+    );
+
+}
+</script>
+
+<!-- ================= END MEMBERSHIP SECTION ================= -->  
 </body>
 </html>
 
