@@ -1380,6 +1380,291 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <!-- ================= END INCOME CENTER ================= -->
+    <!-- ================= MY PROFILE PROFESSIONAL SECTION ================= -->
+
+<style>
+.profile-section {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px 40px;
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #5b3df5, #8b5cf6);
+  color: white;
+  padding: 30px;
+  border-radius: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 12px 30px rgba(91,61,245,.18);
+}
+
+.profile-header h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.profile-header p {
+  margin: 0;
+  opacity: .9;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+  border: 1px solid #eee;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 25px;
+}
+
+.profile-avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#6d4aff,#a855f7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.profile-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #e9f9ef;
+  color: #16843b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 18px;
+}
+
+.profile-item {
+  background: #f8f8fc;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.profile-label {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.profile-value {
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.profile-note {
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f4f1ff;
+  color: #5536c8;
+  font-size: 14px;
+}
+
+@media(max-width:700px) {
+  .profile-section {
+    padding: 0 12px 30px;
+  }
+
+  .profile-header {
+    padding: 22px;
+  }
+
+  .profile-header h2 {
+    font-size: 23px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-top {
+    align-items: flex-start;
+  }
+}
+</style>
+
+<section id="profile" class="profile-section">
+
+  <div class="profile-header">
+    <h2>My Profile 👤</h2>
+    <p>Manage and view your NovaRise Academy member information.</p>
+  </div>
+
+  <div class="profile-card">
+
+    <div class="profile-top">
+      <div class="profile-avatar" id="profileAvatar">M</div>
+
+      <div>
+        <div class="profile-name" id="profileName">
+          Member
+        </div>
+
+        <span class="profile-status">
+          ● Active Member
+        </span>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+
+      <div class="profile-item">
+        <div class="profile-label">Member ID</div>
+        <div class="profile-value" id="profileMemberId">
+          Member
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="profile-label">Email</div>
+        <div class="profile-value" id="profileEmail">
+          Not added
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="profile-label">Mobile Number</div>
+        <div class="profile-value" id="profileMobile">
+          Not added
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="profile-label">Membership</div>
+        <div class="profile-value">
+          Active
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="profile-label">Joining Date</div>
+        <div class="profile-value" id="profileJoinDate">
+          Not available
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="profile-label">Account Status</div>
+        <div class="profile-value">
+          Verified Member
+        </div>
+      </div>
+
+    </div>
+
+    <div class="profile-note">
+      🔒 Your member information is displayed securely inside your
+      NovaRise Academy Member Portal.
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+(function () {
+
+  const savedMember =
+    localStorage.getItem("novaMember") || "Member";
+
+  const memberName =
+    savedMember.includes("@")
+      ? savedMember.split("@")[0]
+      : savedMember;
+
+  const nameElement =
+    document.getElementById("profileName");
+
+  const idElement =
+    document.getElementById("profileMemberId");
+
+  const avatarElement =
+    document.getElementById("profileAvatar");
+
+  const emailElement =
+    document.getElementById("profileEmail");
+
+  if (nameElement) {
+    nameElement.textContent =
+      memberName.charAt(0).toUpperCase() +
+      memberName.slice(1);
+  }
+
+  if (idElement) {
+    idElement.textContent = savedMember;
+  }
+
+  if (avatarElement) {
+    avatarElement.textContent =
+      memberName.charAt(0).toUpperCase();
+  }
+
+  if (emailElement && savedMember.includes("@")) {
+    emailElement.textContent = savedMember;
+  }
+
+  const dateElement =
+    document.getElementById("profileJoinDate");
+
+  if (dateElement) {
+    let joinDate =
+      localStorage.getItem("novaJoinDate");
+
+    if (!joinDate) {
+      joinDate =
+        new Date().toLocaleDateString("en-IN", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+
+      localStorage.setItem(
+        "novaJoinDate",
+        joinDate
+      );
+    }
+
+    dateElement.textContent = joinDate;
+  }
+
+})();
+</script>
+
+<!-- ================= END MY PROFILE ================= -->
 </body>
 </html>
 
