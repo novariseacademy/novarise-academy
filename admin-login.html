@@ -199,29 +199,22 @@ if (!email || !password) {
 }
 
 if (email === "admin@novariseacademy.com" && password === "NovaRise@2026") {
+   
+}document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const adminEmail = document.getElementById("adminEmail").value.trim();
+    const adminPassword = document.getElementById("adminPassword").value;
+
+    if (!adminEmail || !adminPassword) {
+        alert("Please enter Admin Email and Password.");
+        return;
+    }
+
     localStorage.setItem("novaAdminLoggedIn", "true");
+
     window.location.href = "admin-dashboard.html";
-} else {
-    alert("Invalid Admin Email or Password.");
-}
-
-
-       Do NOT use real passwords here.
-       This frontend login is only for testing the page.
-    */
-
-   // Demo admin login
-const adminEmail = document.getElementById("adminEmail").value.trim();
-const adminPassword = document.getElementById("adminPassword").value;
-
-if (adminEmail && adminPassword) {
-    localStorage.setItem("novaAdminLoggedIn", "true");
-    window.location.href = "admin-dashboard.html";
-} else {
-    alert("Please enter Admin Email and Password.");
-}
-
-}
+});
 
 </script>
 
