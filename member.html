@@ -2026,7 +2026,299 @@ function membershipUpgrade() {
 }
 </script>
 
-<!-- ================= END MEMBERSHIP SECTION ================= -->  
+<!-- ================= END MEMBERSHIP SECTION ================= -->
+    <!-- ================= MEMBERSHIP PLANS & PAYMENT ================= -->
+
+<style>
+.plans-section{
+    max-width:1150px;
+    margin:30px auto;
+    padding:0 18px 45px;
+    font-family:Arial,sans-serif;
+}
+
+.plans-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:30px;
+    border-radius:24px;
+    margin-bottom:25px;
+}
+
+.plans-header h2{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.plans-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.plans-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.plan-card{
+    position:relative;
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:22px;
+    padding:26px;
+    box-shadow:0 8px 28px rgba(0,0,0,.07);
+}
+
+.plan-card.recommended{
+    border:2px solid #6d4aff;
+    transform:translateY(-4px);
+}
+
+.recommended-label{
+    position:absolute;
+    top:-13px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#6d4aff;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.plan-icon{
+    font-size:32px;
+    margin-bottom:14px;
+}
+
+.plan-card h3{
+    margin:0 0 8px;
+    font-size:22px;
+    color:#222;
+}
+
+.plan-description{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.plan-price{
+    margin:20px 0;
+    font-size:28px;
+    font-weight:800;
+    color:#28204d;
+}
+
+.plan-price span{
+    font-size:12px;
+    color:#888;
+    font-weight:normal;
+}
+
+.plan-features{
+    list-style:none;
+    padding:0;
+    margin:0 0 22px;
+}
+
+.plan-features li{
+    padding:9px 0;
+    color:#555;
+    font-size:13px;
+    border-bottom:1px solid #f0f0f4;
+}
+
+.plan-features li:last-child{
+    border-bottom:0;
+}
+
+.plan-button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.plan-button:hover{
+    opacity:.9;
+}
+
+.payment-info{
+    margin-top:22px;
+    background:#f6f4ff;
+    border:1px solid #e4ddff;
+    padding:17px;
+    border-radius:15px;
+    color:#5b45b5;
+    font-size:13px;
+    line-height:1.5;
+}
+
+@media(max-width:850px){
+    .plans-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+    .plans-grid{
+        grid-template-columns:1fr;
+    }
+
+    .plan-card.recommended{
+        transform:none;
+    }
+
+    .plans-header h2{
+        font-size:23px;
+    }
+}
+</style>
+
+<section id="plans" class="plans-section">
+
+    <div class="plans-header">
+        <h2>💎 Membership Plans</h2>
+        <p>
+            Choose the membership plan that is right for you.
+        </p>
+    </div>
+
+    <div class="plans-grid">
+
+        <!-- BASIC -->
+        <div class="plan-card">
+
+            <div class="plan-icon">🌱</div>
+
+            <h3>Basic</h3>
+
+            <div class="plan-description">
+                A simple starting membership option.
+            </div>
+
+            <div class="plan-price">
+                Contact Us
+            </div>
+
+            <ul class="plan-features">
+                <li>✓ Member Dashboard</li>
+                <li>✓ Member Profile</li>
+                <li>✓ Account Support</li>
+                <li>✓ Activity Access</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Basic')">
+                Select Plan
+            </button>
+
+        </div>
+
+
+        <!-- STANDARD -->
+        <div class="plan-card recommended">
+
+            <div class="recommended-label">
+                ⭐ RECOMMENDED
+            </div>
+
+            <div class="plan-icon">🚀</div>
+
+            <h3>Standard</h3>
+
+            <div class="plan-description">
+                A balanced membership option with additional benefits.
+            </div>
+
+            <div class="plan-price">
+                Contact Us
+            </div>
+
+            <ul class="plan-features">
+                <li>✓ Everything in Basic</li>
+                <li>✓ Income Dashboard</li>
+                <li>✓ Transaction History</li>
+                <li>✓ Priority Support</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Standard')">
+                Select Plan
+            </button>
+
+        </div>
+
+
+        <!-- PREMIUM -->
+        <div class="plan-card">
+
+            <div class="plan-icon">💎</div>
+
+            <h3>Premium</h3>
+
+            <div class="plan-description">
+                Advanced membership features and priority access.
+            </div>
+
+            <div class="plan-price">
+                Contact Us
+            </div>
+
+            <ul class="plan-features">
+                <li>✓ Everything in Standard</li>
+                <li>✓ Advanced Dashboard</li>
+                <li>✓ Premium Support</li>
+                <li>✓ Additional Member Benefits</li>
+            </ul>
+
+            <button
+                class="plan-button"
+                onclick="selectPlan('Premium')">
+                Select Plan
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="payment-info">
+        🔒 <strong>Secure Payment:</strong>
+        Online payment will be processed through the official payment
+        gateway after the payment system is connected.
+    </div>
+
+</section>
+
+
+<script>
+function selectPlan(planName){
+
+    localStorage.setItem(
+        "selectedMembershipPlan",
+        planName
+    );
+
+    alert(
+        planName +
+        " plan selected. Payment setup will be connected next."
+    );
+}
+</script>
+
+<!-- ================= END MEMBERSHIP PLANS ================= -->
 </body>
 </html>
 
