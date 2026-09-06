@@ -210,10 +210,16 @@ if (email === "admin@novariseacademy.com" && password === "NovaRise@2026") {
        This frontend login is only for testing the page.
     */
 
-    alert(
-        "Admin authentication is not connected yet. " +
-        "The secure backend login will be added next."
-    );
+   // Demo admin login
+const adminEmail = document.getElementById("adminEmail").value.trim();
+const adminPassword = document.getElementById("adminPassword").value;
+
+if (adminEmail && adminPassword) {
+    localStorage.setItem("novaAdminLoggedIn", "true");
+    window.location.href = "admin-dashboard.html";
+} else {
+    alert("Please enter Admin Email and Password.");
+}
 
 }
 
