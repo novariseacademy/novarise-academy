@@ -1154,6 +1154,232 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+    <!-- ================= PROFESSIONAL INCOME CENTER ================= -->
+
+<style>
+.income-center {
+    margin: 35px auto;
+    max-width: 1150px;
+    padding: 0 18px 40px;
+    font-family: Arial, sans-serif;
+}
+
+.income-title {
+    margin-bottom: 22px;
+}
+
+.income-title h2 {
+    margin: 0;
+    font-size: 28px;
+    color: #202040;
+}
+
+.income-title p {
+    margin-top: 7px;
+    color: #777;
+}
+
+.income-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.income-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    border: 1px solid #eee;
+}
+
+.income-card .icon {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.income-card .label {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.income-card .amount {
+    font-size: 26px;
+    font-weight: 800;
+    color: #25254a;
+}
+
+.income-card .period {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #16a36a;
+}
+
+.income-panel {
+    margin-top: 25px;
+    background: white;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.income-panel h3 {
+    margin: 0 0 18px;
+    color: #25254a;
+}
+
+.income-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.income-table th,
+.income-table td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.income-table th {
+    color: #777;
+    font-size: 13px;
+}
+
+.status-success {
+    color: #159765;
+    font-weight: 700;
+}
+
+.empty-income {
+    text-align: center;
+    padding: 35px 10px;
+    color: #888;
+}
+
+@media (max-width: 800px) {
+    .income-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .income-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .income-title h2 {
+        font-size: 23px;
+    }
+
+    .income-panel {
+        padding: 17px;
+        overflow-x: auto;
+    }
+
+    .income-table {
+        min-width: 600px;
+    }
+}
+</style>
+
+<section class="income-center" id="income">
+    
+    <div class="income-title">
+        <h2>💰 Income Center</h2>
+        <p>Track your earnings, payments and income activity.</p>
+    </div>
+
+    <div class="income-summary">
+
+        <div class="income-card">
+            <div class="icon">💵</div>
+            <div class="label">Today's Income</div>
+            <div class="amount" id="todayIncome">₹0</div>
+            <div class="period">Current day</div>
+        </div>
+
+        <div class="income-card">
+            <div class="icon">📈</div>
+            <div class="label">7 Days Income</div>
+            <div class="amount" id="sevenDayIncome">₹0</div>
+            <div class="period">Last 7 days</div>
+        </div>
+
+        <div class="income-card">
+            <div class="icon">📊</div>
+            <div class="label">30 Days Income</div>
+            <div class="amount" id="thirtyDayIncome">₹0</div>
+            <div class="period">Last 30 days</div>
+        </div>
+
+        <div class="income-card">
+            <div class="icon">💎</div>
+            <div class="label">All-Time Income</div>
+            <div class="amount" id="allTimeIncome">₹0</div>
+            <div class="period">Lifetime earnings</div>
+        </div>
+
+    </div>
+
+    <div class="income-panel">
+        <h3>📋 Recent Income Activity</h3>
+
+        <table class="income-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="incomeHistory">
+                <tr>
+                    <td colspan="4">
+                        <div class="empty-income">
+                            No income transactions yet.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+       Demo income values.
+       Real income will be connected to the payment/backend system later.
+    */
+
+    const incomeData = {
+        today: 0,
+        sevenDays: 0,
+        thirtyDays: 0,
+        allTime: 0
+    };
+
+    document.getElementById("todayIncome").textContent =
+        "₹" + incomeData.today;
+
+    document.getElementById("sevenDayIncome").textContent =
+        "₹" + incomeData.sevenDays;
+
+    document.getElementById("thirtyDayIncome").textContent =
+        "₹" + incomeData.thirtyDays;
+
+    document.getElementById("allTimeIncome").textContent =
+        "₹" + incomeData.allTime;
+
+});
+</script>
+
+<!-- ================= END INCOME CENTER ================= -->
 </body>
 </html>
 
