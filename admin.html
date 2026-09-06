@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NovaRise Academy | Admin Dashboard</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#f5f6fb;
+  color:#222;
+}
+
+.header{
+  background:linear-gradient(135deg,#5b35f5,#7b5cff);
+  color:white;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.header h1{
+  font-size:21px;
+}
+
+.logout{
+  border:0;
+  background:white;
+  color:#5b35f5;
+  padding:10px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1150px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.welcome{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  margin-bottom:25px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.welcome h2{
+  margin-bottom:7px;
+}
+
+.welcome p{
+  color:#777;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  padding:24px;
+  border-radius:15px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.card-icon{
+  font-size:27px;
+  margin-bottom:12px;
+}
+
+.card-title{
+  color:#777;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.card-value{
+  font-size:28px;
+  font-weight:bold;
+  color:#5b35f5;
+}
+
+.section{
+  margin-top:25px;
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.section h2{
+  margin-bottom:18px;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+}
+
+.menu-btn{
+  padding:18px;
+  border:1px solid #e5e5e5;
+  background:#fafaff;
+  border-radius:12px;
+  cursor:pointer;
+  text-align:left;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.menu-btn:hover{
+  background:#f0edff;
+  border-color:#765cff;
+}
+
+.status{
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  background:#eefbf2;
+  color:#16803a;
+  font-size:14px;
+}
+
+.footer{
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  padding:30px 15px;
+}
+
+@media(max-width:600px){
+  .header{
+    gap:15px;
+    align-items:flex-start;
+  }
+
+  .header h1{
+    font-size:17px;
+  }
+
+  .container{
+    margin-top:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <h1>🔐 NovaRise Academy — Admin</h1>
+
+  <button class="logout" onclick="logout()">
+    Logout
+  </button>
+
+</header>
+
+
+<main class="container">
+
+  <section class="welcome">
+
+    <h2>Welcome, Admin 👋</h2>
+
+    <p>
+      Manage NovaRise Academy members, income and account activity
+      from this dashboard.
+    </p>
+
+  </section>
+
+
+  <section class="cards">
+
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <div class="card-title">Total Members</div>
+      <div class="card-value" id="totalMembers">0</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <div class="card-title">Total Income</div>
+      <div class="card-value">₹0</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💳</div>
+      <div class="card-title">Payments</div>
+      <div class="card-value">0</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔔</div>
+      <div class="card-title">Notifications</div>
+      <div class="card-value">0</div>
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <h2>⚙️ Admin Controls</h2>
+
+    <div class="menu-grid">
+
+      <button class="menu-btn" onclick="openMember()">
+        👥 Member Management
+      </button>
+
+      <button class="menu-btn" onclick="openIncome()">
+        💰 Income Management
+      </button>
+
+      <button class="menu-btn" onclick="openPayments()">
+        💳 Payments
+      </button>
+
+      <button class="menu-btn" onclick="openNotifications()">
+        🔔 Notifications
+      </button>
+
+    </div>
+
+    <div class="status">
+      ✅ Admin Dashboard is working successfully.
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  NovaRise Academy Admin Panel © 2026
+</footer>
+
+
+<script>
+
+function logout(){
+
+  localStorage.removeItem("novaAdminLoggedIn");
+
+  window.location.href = "admin-login.html";
+
+}
+
+
+function openMember(){
+
+  alert("Member Management module will be added next.");
+
+}
+
+
+function openIncome(){
+
+  alert("Income Management module will be added next.");
+
+}
+
+
+function openPayments(){
+
+  alert("Payments module will be added next.");
+
+}
+
+
+function openNotifications(){
+
+  alert("Notifications module will be added next.");
+
+}
+
+</script>
+
+</body>
+</html>
