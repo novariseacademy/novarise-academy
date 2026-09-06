@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+F<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1062,7 +1062,98 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+<!-- FUNCTION MENU -->
+<style>
+.function-menu {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 99999;
+}
 
+.function-menu-button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6d5dfc, #8f5cff);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(80, 60, 180, 0.3);
+}
+
+.function-menu-panel {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    width: 230px;
+    padding: 12px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+}
+
+.function-menu-panel.active {
+    display: block;
+}
+
+.function-menu-panel a {
+    display: block;
+    padding: 13px 15px;
+    margin: 4px 0;
+    border-radius: 12px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+}
+
+.function-menu-panel a:hover {
+    background: #f0edff;
+    color: #6d5dfc;
+}
+</style>
+
+<div class="function-menu">
+    <button class="function-menu-button" id="functionMenuButton">
+        ☰
+    </button>
+
+    <div class="function-menu-panel" id="functionMenuPanel">
+        <a href="#dashboard">🏠 Dashboard</a>
+        <a href="#profile">👤 My Profile</a>
+        <a href="#income">💰 Income</a>
+        <a href="#activity">📊 Recent Activity</a>
+        <a href="#membership">⭐ Membership</a>
+        <a href="#support">💬 Support</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuButton = document.getElementById("functionMenuButton");
+    const menuPanel = document.getElementById("functionMenuPanel");
+
+    if (menuButton && menuPanel) {
+
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+            menuPanel.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!menuPanel.contains(event.target) &&
+                !menuButton.contains(event.target)) {
+                menuPanel.classList.remove("active");
+            }
+        });
+    }
+
+});
+</script>
 </body>
 </html>
 
