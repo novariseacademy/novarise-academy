@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NovaRise Academy | Member Dashboard</title>
+<title>NovaRise Academy | Member Portal</title>
 
 <style>
 *{
@@ -15,63 +15,90 @@
 }
 
 body{
+    min-height:100vh;
     background:#f4f7fb;
-    color:#172033;
+    color:#182033;
 }
 
 /* LOGIN */
-#loginPage{
+.login-page{
     min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:linear-gradient(135deg,#071a36,#123d78,#0b78a5);
+    background:linear-gradient(135deg,#101a3a,#4f46e5,#7c3aed);
 }
 
 .login-box{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:white;
-    padding:35px 25px;
-    border-radius:22px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    border-radius:24px;
+    padding:35px 28px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
 }
 
 .logo{
     text-align:center;
-    font-size:30px;
-    font-weight:800;
-    color:#0b4f91;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#777;
     margin-bottom:28px;
 }
 
-.input{
-    width:100%;
-    padding:14px;
-    margin-bottom:15px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:15px;
-    outline:none;
+.logo-circle{
+    width:65px;
+    height:65px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:20px;
+    background:linear-gradient(135deg,#4f46e5,#9333ea);
+    color:white;
+    font-size:28px;
+    font-weight:bold;
 }
 
-.input:focus{
-    border-color:#1677d2;
+.logo h1{
+    margin-top:12px;
+    font-size:25px;
+}
+
+.logo p{
+    color:#777;
+    margin-top:5px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px 15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+.input-group input:focus{
+    border-color:#5b4ee8;
+    box-shadow:0 0 0 3px rgba(91,78,232,.1);
 }
 
 .login-btn{
     width:100%;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#1268c4;
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
     color:white;
     font-size:16px;
     font-weight:bold;
@@ -79,114 +106,163 @@ body{
 }
 
 .login-btn:hover{
-    background:#0b55a4;
+    opacity:.92;
 }
 
-.demo-note{
-    margin-top:15px;
+.login-note{
     text-align:center;
-    font-size:12px;
     color:#888;
+    font-size:12px;
+    margin-top:18px;
 }
 
 /* DASHBOARD */
-#dashboard{
+.dashboard{
     display:none;
     min-height:100vh;
 }
 
-.header{
-    background:linear-gradient(135deg,#082957,#0b67ad);
-    color:white;
-    padding:18px 20px;
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #e8eaf0;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
-.header-logo{
-    font-size:21px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+    font-size:19px;
+}
+
+.brand-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#4f46e5,#9333ea);
+    color:white;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#e8e7ff;
+    color:#4f46e5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-weight:bold;
 }
 
 .logout{
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.4);
-    color:white;
-    padding:9px 15px;
-    border-radius:8px;
+    border:none;
+    background:#fff0f0;
+    color:#d33;
+    padding:9px 14px;
+    border-radius:9px;
     cursor:pointer;
+    font-weight:bold;
 }
 
 .container{
-    max-width:1100px;
-    margin:auto;
-    padding:25px 18px;
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
 }
 
 .welcome{
-    margin-bottom:22px;
+    background:linear-gradient(135deg,#171f49,#5146e5);
+    color:white;
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
 }
 
-.welcome h1{
-    font-size:27px;
-    margin-bottom:5px;
+.welcome h2{
+    font-size:28px;
+    margin-bottom:8px;
 }
 
 .welcome p{
-    color:#777;
+    opacity:.85;
 }
 
-/* CARDS */
+.member-badge{
+    display:inline-block;
+    margin-top:18px;
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    font-size:13px;
+}
+
+/* STATS */
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
+    gap:18px;
     margin-bottom:25px;
 }
 
 .card{
     background:white;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-    border:1px solid #edf0f5;
+    border-radius:18px;
+    padding:22px;
+    border:1px solid #e8eaf0;
+    box-shadow:0 8px 25px rgba(20,30,60,.05);
 }
 
-.card-title{
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eeedff;
+    color:#5146e5;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.stat-title{
     color:#777;
     font-size:13px;
-    margin-bottom:10px;
-}
-
-.amount{
+    margin-bottom:7px;
+}.stat-value{
     font-size:25px;
-    font-weight:800;
-    color:#123f70;
+    font-weight:bold;
 }
 
-.icon{
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-/* CONTENT */
-.grid{
+.content-grid{
     display:grid;
     grid-template-columns:2fr 1fr;
     gap:20px;
 }
 
-.section{
-    background:white;
-    padding:22px;
-    border-radius:16px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
-}
-
-.section h2{
-    font-size:19px;
+.card h3{
     margin-bottom:18px;
+    font-size:18px;
 }
 
 .transaction{
@@ -198,112 +274,124 @@ body{
 }
 
 .transaction:last-child{
-    border-bottom:0;
+    border-bottom:none;
 }
 
-.transaction-left strong{
+.transaction-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.transaction-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:#eafaf0;
+    color:#16934c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.transaction small{
     display:block;
-    margin-bottom:4px;
-}
-
-.transaction-left small{
     color:#888;
+    margin-top:4px;
 }
 
-.success{
+.amount{
     color:#159447;
     font-weight:bold;
 }
 
-.profile{
-    text-align:center;
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
 }
 
-.avatar{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#1268c4,#00a6a6);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 15px;
-    font-size:28px;
+.profile-row:last-child{
+    border:none;
+}
+
+.profile-row span:first-child{
+    color:#777;
+}
+
+.quick-actions{
+    display:grid;
+    gap:10px;
+    margin-top:15px;
+}
+
+.action-btn{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+    background:#f0efff;
+    color:#5146e5;
     font-weight:bold;
 }
 
-.profile h3{
-    margin-bottom:5px;
+.footer{
+    text-align:center;
+    color:#999;
+    padding:30px 10px;
+    font-size:13px;
 }
 
-.profile p{
-    color:#777;
-    font-size:14px;
-    margin-bottom:20px;
-}
-
-.menu-btn{
-    width:100%;
-    padding:12px;
-    margin-top:8px;
-    border:1px solid #ddd;
-    background:white;
-    border-radius:9px;
-    cursor:pointer;
-    text-align:left;
-}
-
-.menu-btn:hover{
-    background:#f3f7fc;
-}
-
-/* RESPONSIVE */
+/* MOBILE */
 @media(max-width:850px){
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .grid{
+    .content-grid{
         grid-template-columns:1fr;
     }
-}@media(max-width:500px){
-    .header{
-        padding:15px;
+}
+
+@media(max-width:550px){
+    .topbar{
+        padding:0 15px;
     }
 
-    .header-logo{
-        font-size:17px;
-    }
-
-    .logout{
-        padding:8px 11px;
-        font-size:12px;
+    .brand span{
+        display:none;
     }
 
     .container{
-        padding:20px 12px;
+        width:94%;
+        margin:20px auto;
     }
 
-    .welcome h1{
+    .welcome{
+        padding:23px;
+    }
+
+    .welcome h2{
         font-size:23px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
-        gap:10px;
+        gap:12px;
     }
 
     .card{
-        padding:15px;
+        padding:17px;
     }
 
-    .amount{
+    .stat-value{
         font-size:20px;
     }
 
-    .section{
-        padding:17px;
+    .logout{
+        padding:8px 10px;
     }
 }
 </style>
@@ -312,202 +400,281 @@ body{
 <body>
 
 <!-- LOGIN PAGE -->
-<div id="loginPage">
+<section class="login-page" id="loginPage">
 
     <div class="login-box">
 
-        <div class="logo">NovaRise Academy</div>
-
-        <div class="subtitle">
-            Member Login
+        <div class="logo">
+            <div class="logo-circle">N</div>
+            <h1>NovaRise Academy</h1>
+            <p>Member Portal</p>
         </div>
 
-        <input
-            id="email"
-            class="input"
-            type="email"
-            placeholder="Enter your email"
-        >
+        <form id="loginForm">
 
-        <input
-            id="password"
-            class="input"
-            type="password"
-            placeholder="Enter your password"
-        >
+            <div class="input-group">
+                <label>Email / Member ID</label>
+                <input
+                    type="text"
+                    id="memberId"
+                    placeholder="Enter your email or member ID"
+                    required>
+            </div>
 
-        <button class="login-btn" onclick="login()">
-            Login to Dashboard
-        </button>
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+            </div>
 
-        <div class="demo-note">
-            Member account access
+            <button class="login-btn" type="submit">
+                🔐 Login to Dashboard
+            </button>
+
+        </form>
+
+        <div class="login-note">
+            © 2026 NovaRise Academy
         </div>
 
     </div>
 
-</div>
+</section>
 
 
-<!-- MEMBER DASHBOARD -->
-<div id="dashboard">
+<!-- DASHBOARD -->
+<section class="dashboard" id="dashboard">
 
-    <header class="header">
+    <header class="topbar">
 
-        <div class="header-logo">
-            NovaRise Academy
+        <div class="brand">
+            <div class="brand-icon">N</div>
+            <span>NovaRise Academy</span>
         </div>
 
-        <button class="logout" onclick="logout()">
-            Logout
-        </button>
+        <div class="user-area">
+            <div class="avatar" id="avatar">M</div>
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+        </div>
 
     </header>
 
 
     <main class="container">
 
+        <!-- WELCOME -->
         <div class="welcome">
-            <h1>Welcome, Member 👋</h1>
-            <p>Here is your account overview.</p>
+
+            <h2>Welcome back, Member 👋</h2>
+
+            <p>
+                Track your income, activity and membership from your personal dashboard.
+            </p>
+
+            <div class="member-badge">
+                ⭐ Active Member
+            </div>
+
         </div>
 
 
         <!-- INCOME CARDS -->
-        <div class="stats">
-
-            <div class="card">
-                <div class="icon">💰</div>
-                <div class="card-title">Today Income</div>
-                <div class="amount">₹1,250</div>
+        <div class="stats"><div class="card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-title">Today's Income</div>
+                <div class="stat-value">₹0</div>
             </div>
 
             <div class="card">
-                <div class="icon">📈</div>
-                <div class="card-title">Last 17 Income</div>
-                <div class="amount">₹8,450</div>
+                <div class="stat-icon">📈</div>
+                <div class="stat-title">17 Days Income</div>
+                <div class="stat-value">₹0</div>
             </div>
 
             <div class="card">
-                <div class="icon">📊</div>
-                <div class="card-title">30 Days Income</div>
-                <div class="amount">₹24,800</div>
+                <div class="stat-icon">📊</div>
+                <div class="stat-title">30 Days Income</div>
+                <div class="stat-value">₹0</div>
             </div>
 
             <div class="card">
-                <div class="icon">🏆</div>
-                <div class="card-title">All Time Income</div>
-                <div class="amount">₹52,350</div>
+                <div class="stat-icon">💎</div>
+                <div class="stat-title">All-Time Income</div>
+                <div class="stat-value">₹0</div>
             </div>
 
         </div>
 
 
-        <div class="grid">
+        <!-- CONTENT -->
+        <div class="content-grid">
 
             <!-- TRANSACTIONS -->
-            <section class="section">
+            <div class="card">
 
-                <h2>Recent Transactions</h2>
-
-                <div class="transaction">
-                    <div class="transaction-left">
-                        <strong>Referral Income</strong>
-                        <small>Today • 10:45 AM</small>
-                    </div>
-                    <div class="success">+₹500</div>
-                </div>
+                <h3>📋 Recent Activity</h3>
 
                 <div class="transaction">
+
                     <div class="transaction-left">
-                        <strong>Member Bonus</strong>
-                        <small>Yesterday • 06:20 PM</small>
+                        <div class="transaction-icon">✓</div>
+
+                        <div>
+                            <strong>Account Created</strong>
+                            <small>NovaRise Member Account</small>
+                        </div>
                     </div>
-                    <div class="success">+₹750</div>
+
+                    <div class="amount">Active</div>
+
                 </div>
+
 
                 <div class="transaction">
+
                     <div class="transaction-left">
-                        <strong>Referral Income</strong>
-                        <small>02 Sep 2026</small>
+                        <div class="transaction-icon">₹</div>
+
+                        <div>
+                            <strong>Income</strong>
+                            <small>Waiting for transaction</small>
+                        </div>
                     </div>
-                    <div class="success">+₹300</div>
+
+                    <div class="amount">₹0</div>
+
                 </div>
+
 
                 <div class="transaction">
+
                     <div class="transaction-left">
-                        <strong>Performance Bonus</strong>
-                        <small>01 Sep 2026</small>
+                        <div class="transaction-icon">⭐</div>
+
+                        <div>
+                            <strong>Membership</strong>
+                            <small>Member status</small>
+                        </div>
                     </div>
-                    <div class="success">+₹1,200</div>
+
+                    <div class="amount">Active</div>
+
                 </div>
 
-            </section>
+            </div>
 
 
             <!-- PROFILE -->
-            <section class="section profile">
+            <div class="card">
 
-                <div class="avatar">
-                    M
-                </div><h3>Member Account</h3>
+                <h3>👤 My Profile</h3>
 
-                <p>
-                    Active Member
-                </p>
+                <div class="profile-row">
+                    <span>Status</span>
+                    <strong>Active</strong>
+                </div>
 
-                <button class="menu-btn">
-                    👤 My Profile
-                </button>
+                <div class="profile-row">
+                    <span>Member ID</span>
+                    <strong id="displayMember">Member</strong>
+                </div>
 
-                <button class="menu-btn">
-                    💳 Payment History
-                </button>
+                <div class="profile-row">
+                    <span>Plan</span>
+                    <strong>NovaRise Member</strong>
+                </div>
 
-                <button class="menu-btn">
-                    📋 My Referrals
-                </button>
+                <div class="quick-actions">
 
-                <button class="menu-btn">
-                    ⚙️ Account Settings
-                </button>
+                    <a href="#" class="action-btn">
+                        📊 Income Details
+                    </a>
 
-            </section>
+                    <a href="#" class="action-btn">
+                        💳 Payments
+                    </a>
+
+                    <a href="#" class="action-btn">
+                        📞 Support
+                    </a>
+
+                </div>
+
+            </div>
 
         </div>
 
     </main>
 
-</div>
+
+    <div class="footer">
+        © 2026 NovaRise Academy · Member Portal
+    </div>
+
+</section>
 
 
 <script>
 
-function login(){
+const loginForm = document.getElementById("loginForm");
+const loginPage = document.getElementById("loginPage");
+const dashboard = document.getElementById("dashboard");
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+loginForm.addEventListener("submit", function(event){
 
-    if(email === "" || password === ""){
-        alert("Please enter email and password.");
+    event.preventDefault();
+
+    const memberId = document.getElementById("memberId").value.trim();
+
+    if(memberId === ""){
+        alert("Please enter your Member ID or Email.");
         return;
     }
 
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
+    localStorage.setItem("novaMember", memberId);
 
+    showDashboard(memberId);
+});
+
+
+function showDashboard(memberId){loginPage.style.display = "none";
+    dashboard.style.display = "block";
+
+    document.getElementById("displayMember").textContent = memberId;
+
+    const firstLetter = memberId.charAt(0).toUpperCase();
+
+    document.getElementById("avatar").textContent = firstLetter;
 }
 
 
 function logout(){
 
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("loginPage").style.display = "flex";
+    localStorage.removeItem("novaMember");
 
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
+    dashboard.style.display = "none";
+    loginPage.style.display = "flex";
 
+    document.getElementById("loginForm").reset();
 }
+
+
+window.addEventListener("load", function(){
+
+    const savedMember = localStorage.getItem("novaMember");
+
+    if(savedMember){
+
+        showDashboard(savedMember);
+
+    }
+
+});
 
 </script>
 
