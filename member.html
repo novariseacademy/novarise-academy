@@ -2539,6 +2539,217 @@ function startPayment(){
 </script>
 
 <!-- ================= END PAYMENT PAGE ================= -->
+  <!-- ================= PAYMENT HISTORY ================= -->
+
+<style>
+.payment-history-section{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 18px 45px;
+    font-family:Arial,sans-serif;
+}
+
+.ph-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:30px;
+    border-radius:24px;
+    margin-bottom:22px;
+}
+
+.ph-header h2{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.ph-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.ph-card{
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 8px 28px rgba(0,0,0,.07);
+}
+
+.ph-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.ph-table th,
+.ph-table td{
+    padding:16px 12px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+    white-space:nowrap;
+}
+
+.ph-table th{
+    color:#777;
+    font-size:13px;
+}
+
+.ph-table td{
+    font-size:14px;
+    color:#333;
+}
+
+.ph-status{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.ph-success{
+    background:#e9f9ef;
+    color:#16843b;
+}
+
+.ph-pending{
+    background:#fff7df;
+    color:#936d00;
+}
+
+.ph-failed{
+    background:#ffecec;
+    color:#c53030;
+}
+
+.ph-empty{
+    text-align:center;
+    padding:40px 10px;
+    color:#888;
+}
+
+.ph-info{
+    margin-top:18px;
+    background:#f5f3ff;
+    border:1px solid #e3ddff;
+    padding:15px;
+    border-radius:14px;
+    color:#5945ae;
+    font-size:12px;
+    line-height:1.5;
+}
+
+@media(max-width:650px){
+    .ph-header h2{
+        font-size:23px;
+    }
+
+    .ph-card{
+        overflow-x:auto;
+    }
+
+    .ph-table{
+        min-width:720px;
+    }
+}
+</style>
+
+<section id="transactions" class="payment-history-section">
+
+    <div class="ph-header">
+        <h2>📋 Payment History</h2>
+        <p>View your membership payments and transaction records.</p>
+    </div>
+
+    <div class="ph-card">
+
+        <table class="ph-table">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Order ID</th>
+                    <th>Plan</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="paymentHistoryBody">
+
+                <tr>
+                    <td colspan="5">
+                        <div class="ph-empty">
+                            🧾<br><br>
+                            No payment transactions yet.
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="ph-info">
+            🔒 Payment records will automatically appear here after
+            the secure payment gateway and backend database are connected.
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+(function(){
+
+    const history =
+        JSON.parse(
+            localStorage.getItem("novaPaymentHistory") || "[]"
+        );
+
+    const body =
+        document.getElementById("paymentHistoryBody");
+
+    if(!body || history.length === 0){
+        return;
+    }
+
+    body.innerHTML = "";
+
+    history.forEach(function(payment){
+
+        const row =
+            document.createElement("tr");
+
+        let statusClass = "ph-pending";
+
+        if(payment.status === "SUCCESS"){
+            statusClass = "ph-success";
+        }
+
+        if(payment.status === "FAILED"){
+            statusClass = "ph-failed";
+        }
+
+        row.innerHTML = `
+            <td>${payment.date || "-"}</td>
+            <td>${payment.orderId || "-"}</td>
+            <td>${payment.plan || "-"}</td>
+            <td>₹${payment.amount || "0"}</td>
+            <td>
+                <span class="ph-status ${statusClass}">
+                    ${payment.status || "PENDING"}
+                </span>
+            </td>
+        `;
+
+        body.appendChild(row);
+
+    });
+
+})();
+</script>
+
+<!-- ================= END PAYMENT HISTORY ================= -->  
 </body>
 </html>
 
