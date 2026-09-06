@@ -3045,6 +3045,417 @@ function requestWithdrawal(){
 </script>
 
 <!-- ================= END WALLET & WITHDRAW ================= -->
+    <!-- ================= NOTIFICATIONS + SUPPORT CENTER ================= -->
+
+<style>
+.ns-section{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 18px 45px;
+    font-family:Arial,sans-serif;
+}
+
+.ns-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:30px;
+    border-radius:24px;
+    margin-bottom:22px;
+}
+
+.ns-header h2{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.ns-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.ns-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.ns-card{
+    background:white;
+    border:1px solid #e7e7ef;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.ns-card h3{
+    margin:0 0 18px;
+    color:#27204b;
+}
+
+.notification{
+    display:flex;
+    gap:13px;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.notification:last-child{
+    border-bottom:0;
+}
+
+.notification-icon{
+    width:40px;
+    height:40px;
+    min-width:40px;
+    border-radius:12px;
+    background:#f0edff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.notification-title{
+    font-size:14px;
+    font-weight:700;
+    color:#333;
+    margin-bottom:5px;
+}
+
+.notification-text{
+    font-size:12px;
+    color:#777;
+    line-height:1.5;
+}
+
+.notification-time{
+    font-size:10px;
+    color:#999;
+    margin-top:5px;
+}
+
+.support-input,
+.support-textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-bottom:13px;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    outline:none;
+}
+
+.support-textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.support-input:focus,
+.support-textarea:focus{
+    border-color:#6548ee;
+}
+
+.support-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.support-btn:hover{
+    opacity:.9;
+}
+
+.support-history{
+    margin-top:20px;
+}
+
+.ticket{
+    padding:14px;
+    background:#f8f7fc;
+    border-radius:13px;
+    margin-bottom:10px;
+}
+
+.ticket-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#333;
+}
+
+.ticket-status{
+    display:inline-block;
+    margin-top:6px;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#fff7df;
+    color:#936d00;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.ns-note{
+    margin-top:18px;
+    padding:13px;
+    border-radius:12px;
+    background:#f5f3ff;
+    color:#5945ae;
+    font-size:12px;
+    line-height:1.5;
+}
+
+@media(max-width:750px){
+    .ns-grid{
+        grid-template-columns:1fr;
+    }
+
+    .ns-header h2{
+        font-size:23px;
+    }
+}
+</style>
+
+
+<section id="support" class="ns-section">
+
+    <div class="ns-header">
+        <h2>🔔 Notifications & Support</h2>
+        <p>Stay updated and contact the member support team.</p>
+    </div>
+
+
+    <div class="ns-grid">
+
+        <!-- NOTIFICATIONS -->
+        <div class="ns-card">
+
+            <h3>🔔 Notifications</h3>
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    👋
+                </div>
+
+                <div>
+                    <div class="notification-title">
+                        Welcome to Member Portal
+                    </div>
+
+                    <div class="notification-text">
+                        Your member dashboard has been successfully created.
+                    </div>
+
+                    <div class="notification-time">
+                        Just now
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    💳
+                </div>
+
+                <div>
+                    <div class="notification-title">
+                        Payment Updates
+                    </div>
+
+                    <div class="notification-text">
+                        Your payment notifications will appear here.
+                    </div>
+
+                    <div class="notification-time">
+                        System
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <div class="notification-icon">
+                    📢
+                </div>
+
+                <div>
+                    <div class="notification-title">
+                        Important Announcements
+                    </div>
+
+                    <div class="notification-text">
+                        Important member announcements will be displayed here.
+                    </div>
+
+                    <div class="notification-time">
+                        System
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUPPORT -->
+        <div class="ns-card">
+
+            <h3>💬 Contact Support</h3>
+
+            <input
+                type="text"
+                id="supportSubject"
+                class="support-input"
+                placeholder="Subject">
+
+            <textarea
+                id="supportMessage"
+                class="support-textarea"
+                placeholder="Describe your issue or question..."></textarea>
+
+            <button
+                class="support-btn"
+                onclick="submitSupportRequest()">
+                Send Support Request
+            </button>
+
+            <div class="ns-note">
+                🛡️ Please do not share passwords, OTPs, PINs or
+                other confidential payment information in support messages.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUPPORT HISTORY -->
+    <div class="ns-card support-history">
+
+        <h3>📋 My Support Requests</h3>
+
+        <div id="supportHistory">
+
+            <div style="text-align:center;color:#888;padding:25px;">
+                No support requests yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+function submitSupportRequest(){
+
+    const subject =
+        document.getElementById("supportSubject").value.trim();
+
+    const message =
+        document.getElementById("supportMessage").value.trim();
+
+    if(!subject){
+        alert("Please enter a subject.");
+        return;
+    }
+
+    if(!message){
+        alert("Please describe your issue.");
+        return;
+    }
+
+    const requests =
+        JSON.parse(
+            localStorage.getItem("novaSupportRequests") || "[]"
+        );
+
+    requests.push({
+        subject: subject,
+        message: message,
+        status: "PENDING",
+        date: new Date().toLocaleDateString("en-IN")
+    });
+
+    localStorage.setItem(
+        "novaSupportRequests",
+        JSON.stringify(requests)
+    );
+
+    alert(
+        "Your support request has been submitted successfully."
+    );
+
+    document.getElementById("supportSubject").value = "";
+    document.getElementById("supportMessage").value = "";
+
+    loadSupportRequests();
+}
+
+
+function loadSupportRequests(){
+
+    const requests =
+        JSON.parse(
+            localStorage.getItem("novaSupportRequests") || "[]"
+        );
+
+    const container =
+        document.getElementById("supportHistory");
+
+    if(!container){
+        return;
+    }
+
+    if(requests.length === 0){
+        container.innerHTML =
+            '<div style="text-align:center;color:#888;padding:25px;">No support requests yet.</div>';
+        return;
+    }
+
+    container.innerHTML = "";
+
+    requests.slice().reverse().forEach(function(ticket){
+
+        const div =
+            document.createElement("div");
+
+        div.className = "ticket";
+
+        div.innerHTML =
+            "<div class='ticket-title'>" +
+            ticket.subject +
+            "</div>" +
+            "<div class='ticket-status'>" +
+            ticket.status +
+            "</div>";
+
+        container.appendChild(div);
+
+    });
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadSupportRequests
+);
+</script>
+
+<!-- ================= END NOTIFICATIONS + SUPPORT ================= -->
 </body>
 </html>
 
