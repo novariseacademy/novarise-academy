@@ -1019,31 +1019,50 @@ body{
     </div>
 
 </section>
-
-
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-const loginForm = document.getElementById("loginForm");
-const loginPage = document.getElementById("loginPage");
-const dashboard = document.getElementById("dashboard");
+    const loginForm = document.getElementById("loginForm");
+    const loginPage = document.getElementById("loginPage");
+    const dashboard = document.getElementById("dashboard");
+    const memberIdInput = document.getElementById("memberId");
 
-loginForm.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const memberId =
-        document.getElementById("memberId").value.trim();
-
-    if(!memberId){
-        alert("Please enter your Member ID or Email.");
+    if (!loginForm) {
+        console.error("Login form not found");
         return;
     }
 
-    localStorage.setItem("novaMember", memberId);
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    showDashbo
+        const memberId = memberIdInput
+            ? memberIdInput.value.trim()
+            : "";
+
+        if (!memberId) {
+            alert("Please enter your Member ID or Email.");
+            return;
+        }
+
+        localStorage.setItem("novaMember", memberId);
+
+        if (loginPage) {
+            loginPage.style.display = "none";
+        }
+
+        if (dashboard) {
+            dashboard.style.display = "block";
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
 });
 </script>
 
 </body>
 </html>
+
