@@ -190,9 +190,21 @@ label{
 function adminLogin(event){
 
     event.preventDefault();
+const email = document.querySelector('input[type="email"]').value.trim();
+const password = document.querySelector('input[type="password"]').value;
 
-    /*
-       DEMO ONLY
+if (!email || !password) {
+    alert("Please enter Admin Email and Password.");
+    return;
+}
+
+if (email === "admin@novariseacademy.com" && password === "NovaRise@2026") {
+    localStorage.setItem("novaAdminLoggedIn", "true");
+    window.location.href = "admin-dashboard.html";
+} else {
+    alert("Invalid Admin Email or Password.");
+}
+
 
        Do NOT use real passwords here.
        This frontend login is only for testing the page.
