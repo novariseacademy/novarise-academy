@@ -2134,5 +2134,17 @@ renderWithdrawals();
 </script>
 
 <!-- ================= END WITHDRAWAL MANAGEMENT ================= -->
+    <script>
+(function () {
+
+    const isLoggedIn =
+        localStorage.getItem("novaAdminLoggedIn");
+
+    if (isLoggedIn !== "true") {
+        window.location.replace("admin-login.html");
+    }
+
+})();
+</script>
 </body>
 </html>
