@@ -714,6 +714,570 @@ function logout(){
 renderMembers();
 
 </script>
+<!-- ================= INCOME & PAYMENTS ================= -->
 
+<style>
+.finance-section{
+    max-width:1200px;
+    margin:25px auto;
+    padding:0 18px 40px;
+}
+
+.finance-title{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:25px;
+    border-radius:22px;
+    margin-bottom:20px;
+}
+
+.finance-title h2{
+    margin:0 0 7px;
+}
+
+.finance-title p{
+    margin:0;
+    opacity:.9;
+    font-size:13px;
+}
+
+.finance-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.finance-card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid #e8e8ef;
+    box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+
+.finance-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.finance-label{
+    color:#777;
+    font-size:12px;
+}
+
+.finance-value{
+    margin-top:6px;
+    font-size:24px;
+    font-weight:800;
+    color:#5036d9;
+}
+
+.finance-panel{
+    background:white;
+    margin-top:20px;
+    padding:22px;
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+
+.finance-panel h3{
+    margin:0 0 18px;
+}
+
+.finance-search{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:11px;
+    outline:none;
+    margin-bottom:18px;
+}
+
+.finance-table-wrap{
+    overflow-x:auto;
+}
+
+.finance-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.finance-table th,
+.finance-table td{
+    padding:14px 10px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+    white-space:nowrap;
+    font-size:13px;
+}
+
+.finance-table th{
+    color:#777;
+    font-size:11px;
+}
+
+.payment-success{
+    background:#e8f8ee;
+    color:#16803a;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.payment-pending{
+    background:#fff7df;
+    color:#936d00;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.finance-note{
+    margin-top:18px;
+    padding:14px;
+    background:#fff8e7;
+    color:#806000;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+@media(max-width:900px){
+    .finance-cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px){
+    .finance-cards{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+
+<section class="finance-section">
+
+    <div class="finance-title">
+        <h2>💰 Income & Payments</h2>
+        <p>
+            Monitor income, payment status and transaction activity.
+        </p>
+    </div>
+
+
+    <!-- INCOME CARDS -->
+
+    <div class="finance-cards">
+
+        <div class="finance-card">
+            <div class="finance-icon">📅</div>
+            <div class="finance-label">
+                Today's Income
+            </div>
+            <div class="finance-value"
+                 id="todayIncome">
+                ₹0
+            </div>
+        </div>
+
+
+        <div class="finance-card">
+            <div class="finance-icon">📊</div>
+            <div class="finance-label">
+                17 Days Income
+            </div>
+            <div class="finance-value"
+                 id="seventeenIncome">
+                ₹0
+            </div>
+        </div>
+
+
+        <div class="finance-card">
+            <div class="finance-icon">📆</div>
+            <div class="finance-label">
+                30 Days Income
+            </div>
+            <div class="finance-value"
+                 id="thirtyIncome">
+                ₹0
+            </div>
+        </div>
+
+
+        <div class="finance-card">
+            <div class="finance-icon">🏆</div>
+            <div class="finance-label">
+                All-Time Income
+            </div>
+            <div class="finance-value"
+                 id="allTimeIncome">
+                ₹0
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT SUMMARY -->
+
+    <div class="finance-panel">
+
+        <h3>💳 Payment Summary</h3>
+
+        <div class="finance-cards">
+
+            <div class="finance-card">
+                <div class="finance-icon">💳</div>
+                <div class="finance-label">
+                    Total Payments
+                </div>
+                <div class="finance-value"
+                     id="totalPayments">
+                    0
+                </div>
+            </div>
+
+
+            <div class="finance-card">
+                <div class="finance-icon">✅</div>
+                <div class="finance-label">
+                    Successful
+                </div>
+                <div class="finance-value"
+                     id="successfulPayments">
+                    0
+                </div>
+            </div>
+
+
+            <div class="finance-card">
+                <div class="finance-icon">⏳</div>
+                <div class="finance-label">
+                    Pending
+                </div>
+                <div class="finance-value"
+                     id="pendingPayments">
+                    0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+
+    <div class="finance-panel">
+
+        <h3>📋 Transaction History</h3>
+
+        <input
+            type="search"
+            id="transactionSearch"
+            class="finance-search"
+            placeholder="🔎 Search Order ID or Member..."
+            oninput="renderTransactions()"
+        >
+
+
+        <div class="finance-table-wrap">
+
+            <table class="finance-table">
+
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Member</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="transactionTable">
+
+                    <tr>
+                        <td colspan="5"
+                            style="text-align:center;padding:30px;color:#888;">
+                            No transactions yet.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="finance-note">
+            🔒 Payment figures are currently demo values.
+            Real payment records will be populated after the secure
+            database and Cashfree payment integration are connected.
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function getTransactions(){
+
+    return JSON.parse(
+        localStorage.getItem("novaTransactions") || "[]"
+    );
+
+}
+
+
+function saveTransactions(transactions){
+
+    localStorage.setItem(
+        "novaTransactions",
+        JSON.stringify(transactions)
+    );
+
+}
+
+
+function renderTransactions(){
+
+    const transactions = getTransactions();
+
+    const search =
+        document.getElementById("transactionSearch")
+        .value
+        .toLowerCase();
+
+    const table =
+        document.getElementById("transactionTable");
+
+
+    const filtered =
+        transactions.filter(function(tx){
+
+            return (
+                String(tx.orderId)
+                .toLowerCase()
+                .includes(search)
+                ||
+                String(tx.member)
+                .toLowerCase()
+                .includes(search)
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        table.innerHTML =
+            '<tr>' +
+            '<td colspan="5" ' +
+            'style="text-align:center;padding:30px;color:#888;">' +
+            'No transactions found.' +
+            '</td>' +
+            '</tr>';
+
+        updateFinanceStats();
+
+        return;
+    }
+
+
+    table.innerHTML = "";
+
+
+    filtered.slice().reverse().forEach(function(tx){
+
+        const row =
+            document.createElement("tr");
+
+
+        const statusClass =
+            tx.status === "SUCCESS"
+            ? "payment-success"
+            : "payment-pending";
+
+
+        row.innerHTML =
+
+            "<td>" +
+            tx.orderId +
+            "</td>" +
+
+            "<td>" +
+            tx.member +
+            "</td>" +
+
+            "<td>₹" +
+            Number(tx.amount)
+            .toLocaleString("en-IN") +
+            "</td>" +
+
+            "<td>" +
+            tx.date +
+            "</td>" +
+
+            "<td><span class='" +
+            statusClass +
+            "'>" +
+            tx.status +
+            "</span></td>";
+
+
+        table.appendChild(row);
+
+    });
+
+
+    updateFinanceStats();
+
+}
+
+
+function updateFinanceStats(){
+
+    const transactions = getTransactions();
+
+    const successful =
+        transactions.filter(function(tx){
+            return tx.status === "SUCCESS";
+        });
+
+
+    const pending =
+        transactions.filter(function(tx){
+            return tx.status === "PENDING";
+        });
+
+
+    const totalIncome =
+        successful.reduce(function(total,tx){
+            return total + Number(tx.amount || 0);
+        },0);
+
+
+    const now = new Date();
+
+
+    const todayIncome =
+        successful.reduce(function(total,tx){
+
+            const date =
+                new Date(tx.timestamp);
+
+            if(
+                date.toDateString() ===
+                now.toDateString()
+            ){
+                return total + Number(tx.amount || 0);
+            }
+
+            return total;
+
+        },0);
+
+
+    const seventeenDate =
+        new Date();
+
+    seventeenDate.setDate(
+        seventeenDate.getDate() - 17
+    );
+
+
+    const seventeenIncome =
+        successful.reduce(function(total,tx){
+
+            const date =
+                new Date(tx.timestamp);
+
+            if(date >= seventeenDate){
+                return total + Number(tx.amount || 0);
+            }
+
+            return total;
+
+        },0);
+
+
+    const thirtyDate =
+        new Date();
+
+    thirtyDate.setDate(
+        thirtyDate.getDate() - 30
+    );
+
+
+    const thirtyIncome =
+        successful.reduce(function(total,tx){
+
+            const date =
+                new Date(tx.timestamp);
+
+            if(date >= thirtyDate){
+                return total + Number(tx.amount || 0);
+            }
+
+            return total;
+
+        },0);
+
+
+    document.getElementById("todayIncome")
+    .textContent =
+        "₹" +
+        todayIncome.toLocaleString("en-IN");
+
+
+    document.getElementById("seventeenIncome")
+    .textContent =
+        "₹" +
+        seventeenIncome.toLocaleString("en-IN");
+
+
+    document.getElementById("thirtyIncome")
+    .textContent =
+        "₹" +
+        thirtyIncome.toLocaleString("en-IN");
+
+
+    document.getElementById("allTimeIncome")
+    .textContent =
+        "₹" +
+        totalIncome.toLocaleString("en-IN");
+
+
+    document.getElementById("totalPayments")
+    .textContent =
+        transactions.length;
+
+
+    document.getElementById("successfulPayments")
+    .textContent =
+        successful.length;
+
+
+    document.getElementById("pendingPayments")
+    .textContent =
+        pending.length;
+
+}
+
+
+renderTransactions();
+updateFinanceStats();
+
+</script>
+
+<!-- ================= END INCOME & PAYMENTS ================= -->
 </body>
 </html>
