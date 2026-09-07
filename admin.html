@@ -1279,5 +1279,437 @@ updateFinanceStats();
 </script>
 
 <!-- ================= END INCOME & PAYMENTS ================= -->
+    <!-- ================= NOTIFICATIONS ================= -->
+
+<style>
+.notification-section{
+    max-width:1200px;
+    margin:25px auto;
+    padding:0 18px 40px;
+}
+
+.notification-header{
+    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
+    color:white;
+    padding:24px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.notification-header h2{
+    margin:0 0 7px;
+}
+
+.notification-header p{
+    margin:0;
+    font-size:13px;
+    opacity:.9;
+}
+
+.notification-panel{
+    background:white;
+    padding:22px;
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+
+.notification-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.notification-top h3{
+    margin:0;
+}
+
+.notification-btn{
+    border:0;
+    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
+    color:white;
+    padding:11px 16px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.notification-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.notification-item{
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:16px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.notification-item h4{
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.notification-item p{
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.notification-time{
+    color:#999;
+    font-size:10px;
+    white-space:nowrap;
+}
+
+.notification-empty{
+    text-align:center;
+    color:#888;
+    padding:30px;
+    font-size:13px;
+}
+
+.notification-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:9999;
+}
+
+.notification-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+}
+
+.notification-box h3{
+    margin-bottom:18px;
+}
+
+.notification-input,
+.notification-textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:13px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+.notification-textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.notification-actions{
+    display:flex;
+    gap:10px;
+}
+
+.notification-save,
+.notification-close{
+    flex:1;
+    border:0;
+    padding:12px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.notification-save{
+    background:#5b3df5;
+    color:white;
+}
+
+.notification-close{
+    background:#eee;
+}
+
+@media(max-width:600px){
+    .notification-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .notification-item{
+        flex-direction:column;
+    }
+}
+</style>
+
+
+<section class="notification-section">
+
+    <div class="notification-header">
+        <h2>🔔 Notifications & Alerts</h2>
+        <p>
+            Create and manage important admin announcements.
+        </p>
+    </div>
+
+
+    <div class="notification-panel">
+
+        <div class="notification-top">
+
+            <h3>📢 Admin Notifications</h3>
+
+            <button
+                class="notification-btn"
+                onclick="openNotificationModal()">
+                + New Notification
+            </button>
+
+        </div>
+
+
+        <div
+            id="notificationList"
+            class="notification-list">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTIFICATION MODAL -->
+
+<div
+    id="notificationModal"
+    class="notification-modal">
+
+    <div class="notification-box">
+
+        <h3>📢 Create Notification</h3>
+
+        <input
+            type="text"
+            id="notificationTitle"
+            class="notification-input"
+            placeholder="Notification title">
+
+        <textarea
+            id="notificationMessage"
+            class="notification-textarea"
+            placeholder="Write notification message..."></textarea>
+
+        <div class="notification-actions">
+
+            <button
+                class="notification-save"
+                onclick="saveNotification()">
+                Publish
+            </button>
+
+            <button
+                class="notification-close"
+                onclick="closeNotificationModal()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function getNotifications(){
+
+    return JSON.parse(
+        localStorage.getItem("novaNotifications") || "[]"
+    );
+
+}
+
+
+function saveNotifications(notifications){
+
+    localStorage.setItem(
+        "novaNotifications",
+        JSON.stringify(notifications)
+    );
+
+}
+
+
+function openNotificationModal(){
+
+    document.getElementById(
+        "notificationModal"
+    ).style.display = "flex";
+
+}
+
+
+function closeNotificationModal(){
+
+    document.getElementById(
+        "notificationModal"
+    ).style.display = "none";
+
+}
+
+
+function saveNotification(){
+
+    const title =
+        document.getElementById(
+            "notificationTitle"
+        ).value.trim();
+
+
+    const message =
+        document.getElementById(
+            "notificationMessage"
+        ).value.trim();
+
+
+    if(!title || !message){
+
+        alert(
+            "Please enter notification title and message."
+        );
+
+        return;
+
+    }
+
+
+    const notifications =
+        getNotifications();
+
+
+    notifications.push({
+
+        id:
+            "NT" +
+            Date.now()
+            .toString()
+            .slice(-6),
+
+        title:title,
+
+        message:message,
+
+        time:new Date()
+            .toLocaleString("en-IN")
+
+    });
+
+
+    saveNotifications(
+        notifications
+    );
+
+
+    document.getElementById(
+        "notificationTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "notificationMessage"
+    ).value = "";
+
+
+    closeNotificationModal();
+
+    renderNotifications();
+
+
+    alert(
+        "Notification published successfully."
+    );
+
+}
+
+
+function renderNotifications(){
+
+    const list =
+        document.getElementById(
+            "notificationList"
+        );
+
+
+    const notifications =
+        getNotifications();
+
+
+    if(notifications.length === 0){
+
+        list.innerHTML =
+            '<div class="notification-empty">' +
+            'No notifications yet.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    notifications
+    .slice()
+    .reverse()
+    .forEach(function(notification){
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "notification-item";
+
+
+        item.innerHTML =
+
+            "<div>" +
+
+            "<h4>🔔 " +
+            notification.title +
+            "</h4>" +
+
+            "<p>" +
+            notification.message +
+            "</p>" +
+
+            "</div>" +
+
+            "<div class='notification-time'>" +
+            notification.time +
+            "</div>";
+
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+renderNotifications();
+
+</script>
+
+<!-- ================= END NOTIFICATIONS ================= -->
 </body>
 </html>
