@@ -881,7 +881,355 @@
     <div class="copyright">
       © 2026 NovaRise Academy. All rights reserved.
     </div>
-  </footer>
+  </footer><!-- ================= NOVARISE MEMBERSHIP & LEADS ================= -->
+
+<section id="membership" class="nr-membership">
+  <div class="nr-container">
+
+    <div class="nr-heading">
+      <span>NovaRise Academy</span>
+      <h2>Choose Your Membership</h2>
+      <p>Join the membership that fits your learning and growth journey.</p>
+    </div>
+
+    <div class="nr-plans">
+
+      <!-- STANDARD -->
+      <div class="nr-plan">
+        <h3>Standard</h3>
+        <div class="nr-price">₹299</div>
+        <p>Freelancing Membership</p>
+
+        <ul>
+          <li>✓ Membership Access</li>
+          <li>✓ Freelancing Guidance</li>
+          <li>✓ Support & Updates</li>
+          <li>✓ Learning Resources</li>
+        </ul>
+
+        <button onclick="selectMembership('Standard',299)">
+          Join Standard
+        </button>
+      </div>
+
+      <!-- SPECIAL -->
+      <div class="nr-plan nr-featured">
+        <div class="nr-badge">POPULAR</div>
+        <h3>Special</h3>
+        <div class="nr-price">₹499</div>
+        <p>Freelancing Membership</p>
+
+        <ul>
+          <li>✓ Membership Access</li>
+          <li>✓ Freelancing Guidance</li>
+          <li>✓ Priority Support</li>
+          <li>✓ Learning Resources</li>
+        </ul>
+
+        <button onclick="selectMembership('Special',499)">
+          Join Special
+        </button>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="nr-plan">
+        <h3>Premium</h3>
+        <div class="nr-price">₹999</div>
+        <p>Freelancing Membership</p>
+
+        <ul>
+          <li>✓ Premium Membership</li>
+          <li>✓ Freelancing Guidance</li>
+          <li>✓ Priority Support</li>
+          <li>✓ Advanced Resources</li>
+        </ul>
+
+        <button onclick="selectMembership('Premium',999)">
+          Join Premium
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= LEAD SECTION ================= -->
+
+<section id="leads" class="nr-leads">
+  <div class="nr-container">
+
+    <div class="nr-heading">
+      <span>Member Area</span>
+      <h2>Lead Management</h2>
+      <p>Access your daily leads and submit your work report.</p>
+    </div>
+
+    <div class="nr-lead-box">
+
+      <div class="nr-lead-info">
+        <h3>Daily Lead Access</h3>
+        <p>
+          Members can receive their assigned leads from this section.
+        </p>
+
+        <div class="nr-lead-count">
+          <strong id="leadCount">0</strong>
+          <span>/ 15 Leads Used Today</span>
+        </div>
+
+        <button onclick="requestLead()">
+          Get My Lead
+        </button>
+      </div>
+
+      <div class="nr-report">
+        <h3>Submit Daily Report</h3>
+
+        <input
+          type="text"
+          id="reportName"
+          placeholder="Your Name"
+        >
+
+        <input
+          type="number"
+          id="reportLeads"
+          placeholder="Leads Contacted"
+        >
+
+        <textarea
+          id="reportMessage"
+          placeholder="Enter today's work report..."
+        ></textarea>
+
+        <button onclick="submitReport()">
+          Submit Report
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+.nr-membership,
+.nr-leads {
+  padding: 70px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.nr-container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.nr-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.nr-heading span {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nr-heading h2 {
+  font-size: 38px;
+  margin: 10px 0;
+}
+
+.nr-heading p {
+  font-size: 16px;
+  opacity: .75;
+}
+
+.nr-plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.nr-plan {
+  position: relative;
+  padding: 35px 28px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.nr-plan h3 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.nr-price {
+  font-size: 42px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.nr-plan ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  line-height: 2;
+  margin: 25px 0;
+}
+
+.nr-plan button,
+.nr-lead-info button,
+.nr-report button {
+  border: 0;
+  padding: 14px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.nr-featured {
+  transform: translateY(-10px);
+  border: 2px solid #1d63d8;
+}
+
+.nr-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.nr-leads {
+  background: #f6f8fc;
+}
+
+.nr-lead-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.nr-lead-info,
+.nr-report {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.07);
+}
+
+.nr-lead-count {
+  margin: 25px 0;
+  font-size: 18px;
+}
+
+.nr-lead-count strong {
+  font-size: 45px;
+}
+
+.nr-report input,
+.nr-report textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  font-size: 15px;
+}
+
+.nr-report textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+@media (max-width: 800px) {
+  .nr-plans,
+  .nr-lead-box {
+    grid-template-columns: 1fr;
+  }
+
+  .nr-featured {
+    transform: none;
+  }
+
+  .nr-heading h2 {
+    font-size: 30px;
+  }
+}
+</style>
+
+
+<script>
+function selectMembership(plan, amount) {
+  alert(
+    "Selected Membership: " +
+    plan +
+    "\\nAmount: ₹" +
+    amount +
+    "\\n\\nPayment gateway will be connected here."
+  );
+}
+
+let today = new Date().toDateString();
+let savedDate = localStorage.getItem("novaLeadDate");
+
+if (savedDate !== today) {
+  localStorage.setItem("novaLeadDate", today);
+  localStorage.setItem("novaLeadCount", "0");
+}
+
+function updateLeadCount() {
+  let count = Number(localStorage.getItem("novaLeadCount") || 0);
+  document.getElementById("leadCount").innerText = count;
+}
+
+function requestLead() {
+  let count = Number(localStorage.getItem("novaLeadCount") || 0);
+
+  if (count >= 15) {
+    alert("Today's 15 lead limit has been reached.");
+    return;
+  }
+
+  count++;
+  localStorage.setItem("novaLeadCount", count);
+
+  alert(
+    "Lead request recorded.\\n\\n" +
+    "Lead " + count + " requested successfully."
+  );
+
+  updateLeadCount();
+}
+
+function submitReport() {
+  let name = document.getElementById("reportName").value.trim();
+  let leads = document.getElementById("reportLeads").value.trim();
+  let message = document.getElementById("reportMessage").value.trim();
+
+  if (!name || !leads || !message) {
+    alert("Please fill all report details.");
+    return;
+  }
+
+  alert("Daily report submitted successfully.");
+
+  document.getElementById("reportName").value = "";
+  document.getElementById("reportLeads").value = "";
+  document.getElementById("reportMessage").value = "";
+}
+
+updateLeadCount();
+</script>
 <!-- Member Login -->
 <div style="text-align:center; padding:25px;">
     <a href="member.html"
@@ -889,5 +1237,6 @@
        🔐 Member Login
     </a>
 </div>
+  
 </body>
 </html> 
