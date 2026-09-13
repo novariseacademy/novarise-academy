@@ -528,6 +528,71 @@
         grid-template-columns: 1fr;
       }
     }
+    /* MOBILE FRIENDLY FIX */
+@media (max-width: 600px) {
+
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  header,
+  nav,
+  .header,
+  .navbar {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .container,
+  .hero,
+  .section,
+  main {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button,
+  a {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .cards,
+  .plans,
+  .features,
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+}
   </style>
 </head>
 
