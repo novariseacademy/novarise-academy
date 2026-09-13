@@ -3459,6 +3459,98 @@ document.addEventListener(
 </script>
 
 <!-- ================= END NOTIFICATIONS + SUPPORT ================= -->
+        <style>
+/* Mobile Friendly Member Dashboard */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container,
+.dashboard,
+.main-content,
+.content {
+  max-width: 100%;
+  width: 100%;
+}
+
+button,
+a {
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  header,
+  nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px;
+  }
+
+  .container,
+  .dashboard,
+  .main-content,
+  .content {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin: 0;
+  }
+
+  .cards,
+  .stats,
+  .dashboard-cards,
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  button {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+}
+</style>
+</body>
+</html>
 </body>
 </html>
 
