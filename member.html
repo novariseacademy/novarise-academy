@@ -3,589 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NovaRise Academy | Member Dashboard</title>
-
+<title>Nova Rise Academy | Member Dashboard</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,Helvetica,sans-serif;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#172033}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.topbar{background:#111827;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand img{width:42px;height:42px;object-fit:contain;background:#fff;border-radius:9px;padding:3px}
+.brand span{font-size:18px}
+.logout{border:1px solid #ffffff55;background:#ffffff12;color:#fff;border-radius:8px;padding:9px 13px}
+.layout{display:flex;min-height:calc(100vh - 70px)}
+.sidebar{width:235px;background:#fff;border-right:1px solid #e5e7eb;padding:18px;flex-shrink:0}
+.navbtn{width:100%;text-align:left;border:0;background:transparent;padding:12px 13px;border-radius:9px;margin-bottom:6px;color:#374151;font-weight:600}
+.navbtn:hover,.navbtn.active{background:#eef2ff;color:#4338ca}
+.content{flex:1;padding:22px;max-width:1250px;margin:auto;width:100%}
+.page{display:none}.page.active{display:block}
+.welcome{background:linear-gradient(135deg,#4338ca,#7c3aed);color:#fff;border-radius:16px;padding:22px;margin-bottom:18px}
+.welcome h1{margin:0 0 7px;font-size:25px}.welcome p{margin:0;opacity:.9}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 3px 12px #00000008}
+.card small{color:#6b7280}.value{font-size:24px;font-weight:800;margin-top:8px}
+.section-title{margin:22px 0 12px;font-size:20px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.plan{background:#fff;border:2px solid #e5e7eb;border-radius:14px;padding:20px}
+.plan.selected{border-color:#4f46e5;box-shadow:0 0 0 3px #4f46e51a}
+.plan h3{margin:0 0 8px}.price{font-size:30px;font-weight:800;margin:8px 0 14px}.plan button,.primary{border:0;background:#4f46e5;color:#fff;border-radius:9px;padding:11px 15px;font-weight:700}
+.plan button:disabled{opacity:.7}
+.info{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;padding:13px;margin-top:12px}
+.table-wrap{overflow:auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:13px;border-bottom:1px solid #eee;text-align:left}th{background:#f9fafb}
+.form{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;max-width:700px}
+.form label{display:block;font-weight:700;margin:12px 0 6px}
+.form input,.form textarea{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px}
+.form textarea{min-height:120px;resize:vertical}
+.notice{padding:12px;border-radius:9px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;margin-bottom:15px}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#eef2ff,#f8fafc)}
+.login-box{width:100%;max-width:420px;background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 35px #00000012}
+.login-box .brand{color:#111827;margin-bottom:22px}.login-box label{display:block;font-weight:700;margin:12px 0 6px}.login-box input{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px}.login-box button{width:100%;margin-top:16px}
+.muted{color:#6b7280;font-size:13px;line-height:1.5}
+@media(max-width:900px){
+ .cards{grid-template-columns:repeat(2,1fr)}
+ .plans{grid-template-columns:1fr}
 }
-
-body{
-  background:#f4f6fb;
-  color:#17203a;
+@media(max-width:650px){
+ .topbar{padding:10px 12px}.brand span{font-size:15px}.brand img{width:36px;height:36px}
+ .layout{display:block}.sidebar{width:100%;display:flex;overflow-x:auto;padding:8px;border-right:0;border-bottom:1px solid #e5e7eb;gap:6px}
+ .navbtn{width:auto;white-space:nowrap;margin:0;padding:10px 12px}
+ .content{padding:14px}.cards{grid-template-columns:1fr 1fr;gap:9px}.card{padding:14px}.value{font-size:20px}
+ .welcome{padding:18px}.welcome h1{font-size:21px}
 }
-
-.header{
-  background:#111a46;
-  color:white;
-  padding:16px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.logo-area{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-  border-radius:10px;
-  background:white;
-}
-
-.brand{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.logout{
-  background:#ff4757;
-  color:white;
-  border:0;
-  padding:10px 15px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-
-.welcome{
-  background:linear-gradient(135deg,#171f58,#5935c9);
-  color:white;
-  padding:25px;
-  border-radius:18px;
-  margin-bottom:20px;
-}
-
-.welcome h1{
-  font-size:27px;
-  margin-bottom:8px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.card{
-  background:white;
-  padding:22px;
-  border-radius:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.07);
-}
-
-.card h3{
-  font-size:15px;
-  color:#777;
-  margin-bottom:10px;
-}
-
-.amount{
-  font-size:25px;
-  font-weight:bold;
-  color:#1b9b70;
-}
-
-.section{
-  background:white;
-  padding:22px;
-  border-radius:16px;
-  margin-bottom:20px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-.section h2{
-  margin-bottom:18px;
-}
-
-.plans{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.plan{
-  border:2px solid #e5e7ef;
-  border-radius:16px;
-  padding:22px;
-  text-align:center;
-}
-
-.plan h3{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.price{
-  font-size:30px;
-  font-weight:bold;
-  color:#5634c9;
-  margin:10px 0;
-}
-
-.plan ul{
-  list-style:none;
-  text-align:left;
-  margin:18px 0;
-}
-
-.plan li{
-  padding:7px 0;
-}
-
-.select{
-  width:100%;
-  border:0;
-  padding:12px;
-  border-radius:9px;
-  background:#5634c9;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.selected{
-  border-color:#5634c9;
-  background:#f6f2ff;
-}
-
-.table-wrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:600px;
-}
-
-th,td{
-  padding:14px;
-  border-bottom:1px solid #eee;
-  text-align:left;
-}
-
-th{
-  color:#555;
-}
-
-.badge{
-  background:#e6fff4;
-  color:#15956b;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-.note{
-  background:#fff8df;
-  border-left:4px solid #f0b400;
-  padding:14px;
-  border-radius:8px;
-  margin-top:15px;
-  line-height:1.5;
-}
-
-@media(max-width:800px){
-
-  .header{
-    padding:12px;
-  }
-
-  .brand{
-    font-size:16px;
-  }
-
-  .container{
-    padding:12px;
-  }
-
-  .welcome{
-    padding:18px;
-  }
-
-  .welcome h1{
-    font-size:22px;
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .card{
-    padding:15px;
-  }
-
-  .amount{
-    font-size:21px;
-  }
-
-  .plans{
-    grid-template-columns:1fr;
-  }
-
-  .section{
-    padding:16px;
-  }
-
-  .logout{
-    padding:8px 10px;
-  }
-}
-
-@media(max-width:420px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .logo{
-    width:36px;
-    height:36px;
-  }
-
-  .brand{
-    font-size:14px;
-  }
-}
+@media(max-width:420px){.cards{grid-template-columns:1fr}.content{padding:11px}}
 </style>
 </head>
-
 <body>
 
-<header class="header">
-
-  <div class="logo-area">
-
-    <!-- Agar logo.png repository mein hai to ye automatically try karega -->
-    <img src="logo.png" class="logo" alt="NovaRise Academy">
-
-    <div class="brand">NovaRise Academy</div>
-
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div class="brand">
+      <img src="logo.png" alt="Nova Rise Academy logo">
+      <span>Nova Rise Academy</span>
+    </div>
+    <h2>Member Login</h2>
+    <p class="muted">Enter your registered email to continue.</p>
+    <label for="loginEmail">Gmail / Email</label>
+    <input id="loginEmail" type="email" placeholder="you@gmail.com" autocomplete="email">
+    <button class="primary" onclick="login()">Login</button>
+    <p id="loginMsg" class="muted"></p>
   </div>
+</div>
 
-  <button class="logout" onclick="logout()">Logout</button>
-
-</header>
-
-
-<main class="container">
-
-  <section class="welcome">
-    <h1>Welcome, Member 👋</h1>
-    <p>Your NovaRise Academy member dashboard</p>
-  </section>
-
-
-  <!-- INCOME CARDS -->
-
-  <section class="grid">
-
-    <div class="card">
-      <h3>Today's Income</h3>
-      <div class="amount">₹0</div>
+<div id="app" style="display:none">
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo.png" alt="Nova Rise Academy logo">
+      <span>Nova Rise Academy</span>
     </div>
-
-    <div class="card">
-      <h3>Last 30 Days</h3>
-      <div class="amount">₹0</div>
+    <div>
+      <span id="topEmail" style="margin-right:10px;font-size:13px"></span>
+      <button class="logout" onclick="logout()">Logout</button>
     </div>
-
-    <div class="card">
-      <h3>All Time Income</h3>
-      <div class="amount">₹0</div>
-    </div>
-
-    <div class="card">
-      <h3>Commission</h3>
-      <div class="amount">60%</div>
-    </div>
-
-  </section>
-
-
-  <!-- MEMBERSHIP -->
-
-  <section class="section">
-
-    <h2>Choose Your Membership</h2>
-
-    <div class="plans">
-
-      <div class="plan" id="plan299">
-
-        <h3>Standard</h3>
-
-        <div class="price">₹299</div>
-
-        <ul>
-          <li>✓ Member Access</li>
-          <li>✓ Training Support</li>
-          <li>✓ Work Updates</li>
-          <li>✓ Partner Commission</li>
-        </ul>
-
-        <button class="select" onclick="selectPlan('Standard','299')">
-          Select Plan
-        </button>
-
-      </div>
-
-
-      <div class="plan" id="plan499">
-
-        <h3>Special</h3>
-
-        <div class="price">₹499</div>
-
-        <ul>
-          <li>✓ Member Access</li>
-          <li>✓ Advanced Support</li>
-          <li>✓ Work Updates</li>
-          <li>✓ Partner Commission</li>
-        </ul>
-
-        <button class="select" onclick="selectPlan('Special','499')">
-          Select Plan
-        </button>
-
-      </div>
-
-
-      <div class="plan" id="plan999">
-
-        <h3>Premium</h3>
-
-        <div class="price">₹999</div>
-
-        <ul>
-          <li>✓ Premium Member Access</li>
-          <li>✓ Priority Support</li>
-          <li>✓ Work Updates</li>
-          <li>✓ Partner Commission</li>
-        </ul>
-
-        <button class="select" onclick="selectPlan('Premium','999')">
-          Select Plan
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="note">
-      Payment gateway is currently being prepared.
-      Plan selection will be connected to online payment after the payment gateway is approved and integrated.
-    </div>
-
-  </section>
-
-
-  <!-- MEMBER INFORMATION -->
-
-  <section class="section">
-
-    <h2>My Membership</h2>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <tr>
-          <th>Member Email</th>
-          <td id="memberEmail">Not available</td>
-        </tr>
-
-        <tr>
-          <th>Selected Plan</th>
-          <td id="selectedPlan">No plan selected</td>
-        </tr>
-
-        <tr>
-          <th>Commission</th>
-          <td>60% per package</td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td><span class="badge">Active Dashboard</span></td>
-        </tr>
-
-      </table>
-
-    </div>
-
-  </section>
-
-
-  <!-- INCOME ACTIVITY -->
-
-  <section class="section">
-
-    <h2>Recent Income Activity</h2>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Transaction</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>No transactions yet</td>
-            <td>₹0</td>
-            <td>—</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </section>
-
-
-  <!-- LEADS -->
-
-  <section class="section">
-
-    <h2>My Leads</h2>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Lead</th>
-            <th>Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>No leads assigned yet</td>
-            <td>—</td>
-            <td>Pending</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </section>
-
-
-  <!-- REPORT -->
-
-  <section class="section">
-
-    <h2>Submit Work Report</h2>
-
-    <p style="margin-bottom:15px;">
-      Work report / lead report submission will be connected here.
-    </p>
-
-    <button class="select" onclick="alert('Report submission will be activated soon.')">
-      Submit Report
-    </button>
-
-  </section>
-
-</main>
-
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <button class="navbtn active" onclick="showPage('home',this)">🏠 Home</button>
+      <button class="navbtn" onclick="showPage('income',this)">💰 Income</button>
+      <button class="navbtn" onclick="showPage('membership',this)">⭐ Membership</button>
+      <button class="navbtn" onclick="showPage('referrals',this)">👥 Referrals</button>
+      <button class="navbtn" onclick="showPage('leads',this)">📋 Leads</button>
+      <button class="navbtn" onclick="showPage('report',this)">📝 Report</button>
+      <button class="navbtn" onclick="showPage('withdraw',this)">🏦 Withdrawal</button>
+    </aside>
+
+    <main class="content">
+
+      <section id="home" class="page active">
+        <div class="welcome">
+          <h1>Welcome, <span id="welcomeEmail">Member</span> 👋</h1>
+          <p>Your Nova Rise Academy member dashboard.</p>
+        </div>
+        <div class="cards">
+          <div class="card"><small>Today Income</small><div class="value">₹0</div></div>
+          <div class="card"><small>Last 17 Days</small><div class="value">₹0</div></div>
+          <div class="card"><small>30 Days Income</small><div class="value">₹0</div></div>
+          <div class="card"><small>All Time Income</small><div class="value">₹0</div></div>
+        </div>
+        <div class="card">
+          <h3>My Referral Link</h3>
+          <p class="muted">Your referral link will be connected to the member system.</p>
+          <input id="refLink" style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px" readonly>
+        </div>
+        <h2 class="section-title">Membership</h2>
+        <div id="homePlan" class="info">No membership plan selected yet.</div>
+      </section>
+
+      <section id="income" class="page">
+        <h2>Income</h2>
+        <div class="cards">
+          <div class="card"><small>Earned</small><div class="value">₹0</div></div>
+          <div class="card"><small>Pending</small><div class="value">₹0</div></div>
+          <div class="card"><small>Paid</small><div class="value">₹0</div></div>
+          <div class="card"><small>Commission Rate</small><div class="value">60%</div></div>
+        </div>
+        <div class="info">Commission structure: 60% of the selected membership package, subject to your company's final terms and payment confirmation.</div>
+      </section>
+
+      <section id="membership" class="page">
+        <h2>Membership Plans</h2>
+        <div class="notice">Select a plan. Payment gateway will be connected separately after merchant approval.</div>
+        <div class="plans">
+          <div class="plan" id="plan299"><h3>Standard</h3><div class="price">₹299</div><p>Standard membership</p><button onclick="selectPlan('Standard',299)">Select Plan</button></div>
+          <div class="plan" id="plan499"><h3>Special</h3><div class="price">₹499</div><p>Special membership</p><button onclick="selectPlan('Special',499)">Select Plan</button></div>
+          <div class="plan" id="plan999"><h3>Premium</h3><div class="price">₹999</div><p>Premium membership</p><button onclick="selectPlan('Premium',999)">Select Plan</button></div>
+        </div>
+        <div id="selectedPlan" class="info">No plan selected.</div>
+      </section>
+
+      <section id="referrals" class="page">
+        <h2>My Referrals</h2>
+        <div class="cards">
+          <div class="card"><small>Total Referrals</small><div class="value">0</div></div>
+          <div class="card"><small>Active</small><div class="value">0</div></div>
+          <div class="card"><small>Commission</small><div class="value">₹0</div></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Date</th><th>Plan</th><th>Status</th></tr></thead><tbody><tr><td>No referrals yet</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div>
+      </section>
+
+      <section id="leads" class="page">
+        <h2>My Leads</h2>
+        <div class="notice">Lead allocation will appear here when the lead system is connected.</div>
+        <div class="table-wrap"><table><thead><tr><th>Lead</th><th>Contact</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td>No leads assigned</td><td>—</td><td>Pending</td><td>—</td></tr></tbody></table></div>
+      </section>
+
+      <section id="report" class="page">
+        <h2>Submit Report</h2>
+        <div class="form">
+          <label>Report / Work Update</label>
+          <textarea id="reportText" placeholder="Write your daily work report..."></textarea>
+          <button class="primary" onclick="submitReport()">Submit Report</button>
+          <p id="reportMsg" class="muted"></p>
+        </div>
+      </section>
+
+      <section id="withdraw" class="page">
+        <h2>Withdrawal</h2>
+        <div class="notice">Withdrawal will be activated after the commission/payment backend is connected.</div>
+        <div class="form">
+          <label>Amount</label>
+          <input type="number" id="withdrawAmount" placeholder="Enter amount">
+          <button class="primary" onclick="requestWithdraw()">Request Withdrawal</button>
+          <p id="withdrawMsg" class="muted"></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
 
 <script>
+const KEY_EMAIL='nova_member_email';
+const KEY_PLAN='nova_member_plan';
 
-function selectPlan(name,price){
-
-  document.querySelectorAll('.plan').forEach(function(plan){
-    plan.classList.remove('selected');
-  });
-
-  if(price === '299'){
-    document.getElementById('plan299').classList.add('selected');
+function login(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const msg=document.getElementById('loginMsg');
+  if(!email || !email.includes('@')){
+    msg.textContent='Please enter a valid email address.';
+    return;
   }
-
-  if(price === '499'){
-    document.getElementById('plan499').classList.add('selected');
-  }
-
-  if(price === '999'){
-    document.getElementById('plan999').classList.add('selected');
-  }
-
-  document.getElementById('selectedPlan').innerText =
-    name + " Membership - ₹" + price;
-
-  localStorage.setItem(
-    'selectedPlan',
-    name + " Membership - ₹" + price
-  );
-
-  alert(
-    name + " Membership selected.\n\nPayment gateway will be connected after approval."
-  );
+  localStorage.setItem(KEY_EMAIL,email);
+  openApp();
 }
 
+function openApp(){
+  const email=localStorage.getItem(KEY_EMAIL);
+  if(!email)return;
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('topEmail').textContent=email;
+  document.getElementById('welcomeEmail').textContent=email.split('@')[0];
+  document.getElementById('refLink').value=location.origin+location.pathname+'?ref='+encodeURIComponent(email);
+  loadPlan();
+}
 
 function logout(){
-
-  localStorage.removeItem('memberLoggedIn');
-
-  window.location.href = 'index.html';
-
+  localStorage.removeItem(KEY_EMAIL);
+  location.reload();
 }
 
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-window.onload = function(){
+function selectPlan(name,price){
+  const commission=(price*0.60).toFixed(2);
+  const data={name,price,commission};
+  localStorage.setItem(KEY_PLAN,JSON.stringify(data));
+  loadPlan();
+}
 
-  const email = localStorage.getItem('memberEmail');
-
-  const plan = localStorage.getItem('selectedPlan');
-
-  if(email){
-    document.getElementById('memberEmail').innerText = email;
+function loadPlan(){
+  const raw=localStorage.getItem(KEY_PLAN);
+  const box=document.getElementById('selectedPlan');
+  const home=document.getElementById('homePlan');
+  document.querySelectorAll('.plan').forEach(x=>x.classList.remove('selected'));
+  if(!raw){
+    box.textContent='No plan selected.';
+    home.textContent='No membership plan selected yet.';
+    return;
   }
+  const p=JSON.parse(raw);
+  box.innerHTML='<b>Selected:</b> '+p.name+' — ₹'+p.price+'<br><b>60% commission:</b> ₹'+p.commission;
+  home.innerHTML='<b>Current plan:</b> '+p.name+' — ₹'+p.price;
+  if(p.price===299)document.getElementById('plan299').classList.add('selected');
+  if(p.price===499)document.getElementById('plan499').classList.add('selected');
+  if(p.price===999)document.getElementById('plan999').classList.add('selected');
+}
 
-  if(plan){
-    document.getElementById('selectedPlan').innerText = plan;
-  }
+function submitReport(){
+  const t=document.getElementById('reportText').value.trim();
+  document.getElementById('reportMsg').textContent=t ? 'Report saved on this device. Backend submission will be connected later.' : 'Please write a report first.';
+}
 
-};
+function requestWithdraw(){
+  const amount=document.getElementById('withdrawAmount').value;
+  document.getElementById('withdrawMsg').textContent=amount && Number(amount)>0 ? 'Withdrawal request recorded locally. Backend will be connected later.' : 'Enter a valid amount.';
+}
 
+openApp();
 </script>
-
 </body>
 </html>
