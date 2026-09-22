@@ -1,395 +1,1223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
- 
+<head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova Rise Academy | Member Dashboard</title>
+
+<title>Nova Rise Academy - Member Dashboard</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#172033}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-.topbar{background:#111827;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:10}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800}
-.brand img{width:42px;height:42px;object-fit:contain;background:#fff;border-radius:9px;padding:3px}
-.brand span{font-size:18px}
-.logout{border:1px solid #ffffff55;background:#ffffff12;color:#fff;border-radius:8px;padding:9px 13px}
-.layout{display:flex;min-height:calc(100vh - 70px)}
-.sidebar{width:235px;background:#fff;border-right:1px solid #e5e7eb;padding:18px;flex-shrink:0}
-.navbtn{width:100%;text-align:left;border:0;background:transparent;padding:12px 13px;border-radius:9px;margin-bottom:6px;color:#374151;font-weight:600}
-.navbtn:hover,.navbtn.active{background:#eef2ff;color:#4338ca}
-.content{flex:1;padding:22px;max-width:1250px;margin:auto;width:100%}
- @media (max-width:700px){
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+/* ================= LOGIN ================= */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#101828,#244b8f);
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
+}
+
+.login-logo{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 15px;
+}
+
+.login-box h1{
+  text-align:center;
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.login-box p{
+  text-align:center;
+  color:#667085;
+  margin-bottom:25px;
+}
+
+.login-box input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  margin-bottom:14px;
+  font-size:15px;
+  outline:none;
+}
+
+.login-box input:focus{
+  border-color:#2563eb;
+}
+
+.login-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:#2563eb;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.login-btn:hover{
+  background:#1d4ed8;
+}
+
+.login-message{
+  margin-top:14px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* ================= APP ================= */
+
+#app{
+  display:none;
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  background:#101828;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 22px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.brand img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  border-radius:8px;
+}
+
+.logout-btn{
+  border:0;
+  background:#ef4444;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 70px);
+}
+
+.sidebar{
+  width:235px;
+  min-width:235px;
+  background:#fff;
+  border-right:1px solid #e4e7ec;
+  padding:15px;
+}
+
+.navbtn{
+  display:block;
+  width:100%;
+  border:0;
+  background:transparent;
+  padding:13px 12px;
+  text-align:left;
+  border-radius:9px;
+  margin-bottom:7px;
+  cursor:pointer;
+  font-size:14px;
+  color:#344054;
+}
+
+.navbtn:hover,
+.navbtn.active{
+  background:#eaf1ff;
+  color:#2563eb;
+  font-weight:bold;
+}
+
+.content{
+  flex:1;
+  width:100%;
+  max-width:1250px;
+  margin:0 auto;
+  padding:25px;
+}
+
+/* ================= PAGES ================= */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+.page-subtitle{
+  color:#667085;
+  margin-bottom:22px;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #eaecf0;
+  border-radius:15px;
+  padding:20px;
+  box-shadow:0 3px 12px rgba(16,24,40,.05);
+}
+
+.card small{
+  color:#667085;
+  display:block;
+  margin-bottom:10px;
+}
+
+.card strong{
+  font-size:25px;
+}
+
+/* ================= GENERAL BOX ================= */
+
+.box{
+  background:#fff;
+  border:1px solid #eaecf0;
+  border-radius:15px;
+  padding:22px;
+  margin-bottom:20px;
+}
+
+.box h3{
+  margin-bottom:15px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #d0d5dd;
+  border-radius:9px;
+  outline:none;
+  font-size:14px;
+}
+
+.form-group textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.primary-btn{
+  background:#2563eb;
+  color:#fff;
+  border:0;
+  padding:12px 18px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.success-btn{
+  background:#16a34a;
+}
+
+.danger-btn{
+  background:#dc2626;
+}
+
+/* ================= PLANS ================= */
+
+.plans{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.plan{
+  background:#fff;
+  border:1px solid #e4e7ec;
+  border-radius:15px;
+  padding:22px;
+  text-align:center;
+}
+
+.plan h3{
+  margin-bottom:10px;
+}
+
+.plan-price{
+  font-size:30px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.plan p{
+  color:#667085;
+  margin-bottom:15px;
+}
+
+.plan button{
+  width:100%;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:550px;
+}
+
+th,td{
+  padding:13px;
+  border-bottom:1px solid #eaecf0;
+  text-align:left;
+}
+
+th{
+  background:#f9fafb;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+  .topbar{
+    height:auto;
+    min-height:65px;
+    padding:10px 14px;
+  }
+
+  .brand{
+    font-size:15px;
+  }
+
+  .brand img{
+    width:36px;
+    height:36px;
+  }
+
   .layout{
-    display:block !important;
-    width:100% !important;
+    display:block;
+    min-height:0;
   }
 
   .sidebar{
-    width:100% !important;
-    min-width:0 !important;
-    flex-shrink:1 !important;
-    display:flex !important;
-    flex-direction:row !important;
-    overflow-x:auto !important;
-    padding:8px !important;
-    box-sizing:border-box !important;
+    width:100%;
+    min-width:0;
+    border-right:0;
+    border-bottom:1px solid #e4e7ec;
+    padding:8px;
+    display:flex;
+    overflow-x:auto;
+    gap:6px;
+    white-space:nowrap;
+    position:sticky;
+    top:65px;
+    z-index:90;
   }
 
   .navbtn{
-    flex:0 0 auto !important;
-    width:auto !important;
-    white-space:nowrap !important;
+    width:auto;
+    flex:0 0 auto;
+    margin:0;
+    padding:10px 13px;
+    white-space:nowrap;
+    font-size:13px;
   }
 
   .content{
-    width:100% !important;
-    max-width:100% !important;
-    padding:12px !important;
-    margin:0 !important;
-    box-sizing:border-box !important;
+    width:100%;
+    max-width:none;
+    padding:15px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  .card strong{
+    font-size:20px;
+  }
+
+  .plans{
+    grid-template-columns:1fr;
+  }
+
+  .box{
+    padding:16px;
   }
 }
-.page{display:none}.page.active{display:block}
-.welcome{background:linear-gradient(135deg,#4338ca,#7c3aed);color:#fff;border-radius:16px;padding:22px;margin-bottom:18px}
-.welcome h1{margin:0 0 7px;font-size:25px}.welcome p{margin:0;opacity:.9}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 3px 12px #00000008}
-.card small{color:#6b7280}.value{font-size:24px;font-weight:800;margin-top:8px}
-.section-title{margin:22px 0 12px;font-size:20px}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.plan{background:#fff;border:2px solid #e5e7eb;border-radius:14px;padding:20px}
-.plan.selected{border-color:#4f46e5;box-shadow:0 0 0 3px #4f46e51a}
-.plan h3{margin:0 0 8px}.price{font-size:30px;font-weight:800;margin:8px 0 14px}.plan button,.primary{border:0;background:#4f46e5;color:#fff;border-radius:9px;padding:11px 15px;font-weight:700}
-.plan button:disabled{opacity:.7}
-.info{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;padding:13px;margin-top:12px}
-.table-wrap{overflow:auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px}
-table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:13px;border-bottom:1px solid #eee;text-align:left}th{background:#f9fafb}
-.form{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;max-width:700px}
-.form label{display:block;font-weight:700;margin:12px 0 6px}
-.form input,.form textarea{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px}
-.form textarea{min-height:120px;resize:vertical}
-.notice{padding:12px;border-radius:9px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;margin-bottom:15px}
-.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#eef2ff,#f8fafc)}
-.login-box{width:100%;max-width:420px;background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 35px #00000012}
-.login-box .brand{color:#111827;margin-bottom:22px}.login-box label{display:block;font-weight:700;margin:12px 0 6px}.login-box input{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px}.login-box button{width:100%;margin-top:16px}
-.muted{color:#6b7280;font-size:13px;line-height:1.5}
-@media(max-width:900px){
- .cards{grid-template-columns:repeat(2,1fr)}
- .plans{grid-template-columns:1fr}
-}
-@media(max-width:650px){
- .topbar{padding:10px 12px}.brand span{font-size:15px}.brand img{width:36px;height:36px}
- .layout{display:block}.sidebar{width:100%;display:flex;overflow-x:auto;padding:8px;border-right:0;border-bottom:1px solid #e5e7eb;gap:6px}
- .navbtn{width:auto;white-space:nowrap;margin:0;padding:10px 12px}
- .content{padding:14px}.cards{grid-template-columns:1fr 1fr;gap:9px}.card{padding:14px}.value{font-size:20px}
- .welcome{padding:18px}.welcome h1{font-size:21px}
-}
-@media(max-width:420px){.cards{grid-template-columns:1fr}.content{padding:11px}}/* ===== MOBILE FRIENDLY DASHBOARD ===== */
 
-@media (max-width: 700px) {
+@media(max-width:430px){
 
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+  .cards{
+    grid-template-columns:1fr 1fr;
   }
 
-  .layout {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
+  .logout-btn{
+    padding:8px 10px;
+    font-size:12px;
   }
 
-  .sidebar {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding: 8px !important;
-    box-sizing: border-box !important;
-    gap: 6px !important;
-  }
-
-  .sidebar .navbtn {
-    flex: 0 0 auto !important;
-    width: auto !important;
-    white-space: nowrap !important;
-    padding: 10px 12px !important;
-    margin: 0 !important;
-  }
-
-  main,
-  .main,
-  .content {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    padding: 12px !important;
-    box-sizing: border-box !important;
-  }
-
-  .topbar,
-  header {
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  .cards,
-  .income-cards,
-  .stats {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-
-  .card,
-  .income-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  .welcome,
-  .referral,
-  .membership,
-  .page,
-  section {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  input,
-  select,
-  textarea,
-  button {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+  .page-title{
+    font-size:20px;
   }
 }
- 
 </style>
 </head>
+
 <body>
 
-<div id="loginScreen" class="login-screen">
-  <div class="login-box">
-    <div class="brand">
-      <img src="logo.png" alt="Nova Rise Academy logo">
-      <span>Nova Rise Academy</span>
-    </div>
-    <h2>Member Login</h2>
-    <p class="muted">Enter your registered email to continue.</p>
-    <label for="loginEmail">Gmail / Email</label>
-    <input id="loginEmail" type="email"
-<input type="email" placeholder="you@gmail.com" autocomplete="email">
-   <input type="password" id="loginPassword" placeholder="Enter Password" required>
-   
-   
-   
+<!-- ================= LOGIN ================= -->
 
-<input type="password" id="loginPassword" placeholder="Enter Password" required>
-    <button class="primary" onclick="login()">Login</button>
-    <p id="loginMsg" class="muted"></p>
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <img src="logo.png" class="login-logo"
+         onerror="this.style.display='none'">
+
+    <h1>Nova Rise Academy</h1>
+
+    <p>Member Login</p>
+
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="Enter registered Gmail"
+      autocomplete="email">
+
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Enter Password"
+      autocomplete="current-password">
+
+    <button class="login-btn" onclick="loginMember()">
+      Login
+    </button>
+
+    <div class="login-message" id="loginMessage"></div>
+
   </div>
+
 </div>
 
-<div id="app" style="display:none">
+
+<!-- ================= APP ================= -->
+
+<div id="app">
+
   <header class="topbar">
+
     <div class="brand">
-      <img src="logo.png" alt="Nova Rise Academy logo">
+      <img src="logo.png"
+           onerror="this.style.display='none'">
       <span>Nova Rise Academy</span>
     </div>
-    <div>
-      <span id="topEmail" style="margin-right:10px;font-size:13px"></span>
-      <button class="logout" onclick="logout()">Logout</button>
-    </div>
+
+    <button class="logout-btn" onclick="logoutMember()">
+      Logout
+    </button>
+
   </header>
 
+
   <div class="layout">
+
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
-      <button class="navbtn active" onclick="showPage('home',this)">🏠 Home</button>
-      <button class="navbtn" onclick="showPage('income',this)">💰 Income</button>
-      <button class="navbtn" onclick="showPage('membership',this)">⭐ Membership</button>
-      <button class="navbtn" onclick="showPage('referrals',this)">👥 Referrals</button>
-      <button class="navbtn" onclick="showPage('leads',this)">📋 Leads</button>
-      <button class="navbtn" onclick="showPage('report',this)">📝 Report</button>
-      <button class="navbtn" onclick="showPage('withdraw',this)">🏦 Withdrawal</button>
-     <\aside>
+
+      <button class="navbtn active"
+              onclick="showPage('home',this)">
+        🏠 Home
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('income',this)">
+        💰 Income
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('referrals',this)">
+        👥 Referrals
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('leads',this)">
+        🎯 Leads
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('report',this)">
+        📝 Report
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('membership',this)">
+        💎 Membership
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('withdraw',this)">
+        💳 Withdrawal
+      </button>
+
+      <button class="navbtn"
+              onclick="showPage('kyc',this)">
+        🪪 KYC
+      </button>
+
+    </aside>
+
+
+    <!-- CONTENT -->
 
     <main class="content">
 
+
+      <!-- HOME -->
+
       <section id="home" class="page active">
-        <div class="welcome">
-          <h1>Welcome, <span id="welcomeEmail">Member</span> 👋</h1>
-          <p>Your Nova Rise Academy member dashboard.</p>
-        </div>
+
+        <h1 class="page-title">
+          Welcome, <span id="memberName">Member</span> 👋
+        </h1>
+
+        <p class="page-subtitle">
+          Welcome to your Nova Rise Academy member dashboard.
+        </p>
+
         <div class="cards">
-          <div class="card"><small>Today Income</small><div class="value">₹0</div></div>
-          <div class="card"><small>Last 17 Days</small><div class="value">₹0</div></div>
-          <div class="card"><small>30 Days Income</small><div class="value">₹0</div></div>
-          <div class="card"><small>All Time Income</small><div class="value">₹0</div></div>
+
+          <div class="card">
+            <small>Today Income</small>
+            <strong>₹<span id="todayIncome">0</span></strong>
+          </div>
+
+          <div class="card">
+            <small>30 Days Income</small>
+            <strong>₹<span id="monthIncome">0</span></strong>
+          </div>
+
+          <div class="card">
+            <small>All Time Income</small>
+            <strong>₹<span id="allIncome">0</span></strong>
+          </div>
+
+          <div class="card">
+            <small>Total Referrals</small>
+            <strong id="totalReferrals">0</strong>
+          </div>
+
         </div>
-        <div class="card">
-          <h3>My Referral Link</h3>
-          <p class="muted">Your referral link will be connected to the member system.</p>
-          <input id="refLink" style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px" readonly>
+
+
+        <div class="box">
+
+          <h3>🔗 Your Referral Link</h3>
+
+          <input
+            id="referralLink"
+            readonly
+            style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px">
+
+          <button class="primary-btn"
+                  onclick="copyReferral()">
+            Copy Referral Link
+          </button>
+
         </div>
-        <h2 class="section-title">Membership</h2>
-        <div id="homePlan" class="info">No membership plan selected yet.</div>
+
+
+        <div class="box">
+
+          <h3>📢 Important</h3>
+
+          <p style="color:#667085;line-height:1.7">
+            Your membership, leads, reports and commission information
+            will be managed through your member dashboard.
+          </p>
+
+        </div>
+
       </section>
+
+
+      <!-- INCOME -->
 
       <section id="income" class="page">
-        <h2>Income</h2>
+
+        <h1 class="page-title">💰 Income</h1>
+
+        <p class="page-subtitle">
+          Your commission overview.
+        </p>
+
         <div class="cards">
-          <div class="card"><small>Earned</small><div class="value">₹0</div></div>
-          <div class="card"><small>Pending</small><div class="value">₹0</div></div>
-          <div class="card"><small>Paid</small><div class="value">₹0</div></div>
-          <div class="card"><small>Commission Rate</small><div class="value">60%</div></div>
+
+          <div class="card">
+            <small>Today Income</small>
+            <strong>₹0</strong>
+          </div>
+
+          <div class="card">
+            <small>Pending</small>
+            <strong>₹0</strong>
+          </div>
+
+          <div class="card">
+            <small>Paid</small>
+            <strong>₹0</strong>
+          </div>
+
+          <div class="card">
+            <small>All Time</small>
+            <strong>₹0</strong>
+          </div>
+
         </div>
-        <div class="info">Commission structure: 60% of the selected membership package, subject to your company's final terms and payment confirmation.</div>
+
       </section>
 
-      <section id="membership" class="page">
-        <h2>Membership Plans</h2>
-        <div class="notice">Select a plan. Payment gateway will be connected separately after merchant approval.</div>
-        <div class="plans">
-          <div class="plan" id="plan299"><h3>Standard</h3><div class="price">₹299</div><p>Standard membership</p><button onclick="selectPlan('Standard',299)">Select Plan</button></div>
-          <div class="plan" id="plan499"><h3>Special</h3><div class="price">₹499</div><p>Special membership</p><button onclick="selectPlan('Special',499)">Select Plan</button></div>
-          <div class="plan" id="plan999"><h3>Premium</h3><div class="price">₹999</div><p>Premium membership</p><button onclick="selectPlan('Premium',999)">Select Plan</button></div>
-        </div>
-        <div id="selectedPlan" class="info">No plan selected.</div>
-      </section>
+
+      <!-- REFERRALS -->
 
       <section id="referrals" class="page">
-        <h2>My Referrals</h2>
-        <div class="cards">
-          <div class="card"><small>Total Referrals</small><div class="value">0</div></div>
-          <div class="card"><small>Active</small><div class="value">0</div></div>
-          <div class="card"><small>Commission</small><div class="value">₹0</div></div>
+
+        <h1 class="page-title">👥 Referrals</h1>
+
+        <p class="page-subtitle">
+          Your referral activity.
+        </p>
+
+        <div class="box">
+
+          <h3>Referral Code</h3>
+
+          <p id="referralCode"
+             style="font-size:22px;font-weight:bold;margin-top:10px">
+          </p>
+
         </div>
-        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Date</th><th>Plan</th><th>Status</th></tr></thead><tbody><tr><td>No referrals yet</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div>
+
+        <div class="box table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Plan</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>No referrals yet</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
       </section>
+
+
+      <!-- LEADS -->
 
       <section id="leads" class="page">
-        <h2>My Leads</h2>
-        <div class="notice">Lead allocation will appear here when the lead system is connected.</div>
-        <div class="table-wrap"><table><thead><tr><th>Lead</th><th>Contact</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td>No leads assigned</td><td>—</td><td>Pending</td><td>—</td></tr></tbody></table></div>
+
+        <h1 class="page-title">🎯 Leads</h1>
+
+        <p class="page-subtitle">
+          Leads assigned to you.
+        </p>
+
+        <div class="box">
+
+          <h3>Today's Leads</h3>
+
+          <p style="margin-top:10px;color:#667085">
+            No leads assigned yet.
+          </p>
+
+        </div>
+
       </section>
+
+
+      <!-- REPORT -->
 
       <section id="report" class="page">
-        <h2>Submit Report</h2>
-        <div class="form">
-          <label>Report / Work Update</label>
-          <textarea id="reportText" placeholder="Write your daily work report..."></textarea>
-          <button class="primary" onclick="submitReport()">Submit Report</button>
-          <p id="reportMsg" class="muted"></p>
+
+        <h1 class="page-title">📝 Report</h1>
+
+        <p class="page-subtitle">
+          Submit your daily work report.
+        </p>
+
+        <div class="box">
+
+          <div class="form-group">
+
+            <label>Report</label>
+
+            <textarea
+              id="reportText"
+              placeholder="Write your work report..."></textarea>
+
+          </div>
+
+          <button class="primary-btn"
+                  onclick="submitReport()">
+            Submit Report
+          </button>
+
+          <p id="reportMessage"
+             style="margin-top:12px">
+          </p>
+
         </div>
+
       </section>
+
+
+      <!-- MEMBERSHIP -->
+
+      <section id="membership" class="page">
+
+        <h1 class="page-title">💎 Membership Plans</h1>
+
+        <p class="page-subtitle">
+          Choose your membership plan.
+        </p>
+
+        <div class="plans">
+
+          <div class="plan">
+
+            <h3>Standard</h3>
+
+            <div class="plan-price">₹299</div>
+
+            <p>60% Commission</p>
+
+            <button class="primary-btn"
+                    onclick="selectPlan('Standard',299)">
+              Select Plan
+            </button>
+
+          </div>
+
+
+          <div class="plan">
+
+            <h3>Special</h3>
+
+            <div class="plan-price">₹499</div>
+
+            <p>60% Commission</p>
+
+            <button class="primary-btn"
+                    onclick="selectPlan('Special',499)">
+              Select Plan
+            </button>
+
+          </div>
+
+
+          <div class="plan">
+
+            <h3>Premium</h3>
+
+            <div class="plan-price">₹999</div>
+
+            <p>60% Commission</p>
+
+            <button class="primary-btn"
+                    onclick="selectPlan('Premium',999)">
+              Select Plan
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="box" style="margin-top:20px">
+
+          <h3>Selected Plan</h3>
+
+          <p id="selectedPlan">
+            No plan selected
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- WITHDRAWAL -->
 
       <section id="withdraw" class="page">
-        <h2>Withdrawal</h2>
-        <div class="notice">Withdrawal will be activated after the commission/payment backend is connected.</div>
-        <div class="form">
-          <label>Amount</label>
-          <input type="number" id="withdrawAmount" placeholder="Enter amount">
-          <button class="primary" onclick="requestWithdraw()">Request Withdrawal</button>
-          <p id="withdrawMsg" class="muted"></p>
+
+        <h1 class="page-title">💳 Withdrawal</h1>
+
+        <p class="page-subtitle">
+          Request your available commission withdrawal.
+        </p>
+
+        <div class="box">
+
+          <div class="form-group">
+
+            <label>Withdrawal Amount</label>
+
+            <input
+              type="number"
+              id="withdrawAmount"
+              placeholder="Enter amount">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>UPI ID</label>
+
+            <input
+              type="text"
+              id="withdrawUPI"
+              placeholder="example@upi">
+
+          </div>
+
+          <button class="primary-btn"
+                  onclick="requestWithdrawal()">
+            Request Withdrawal
+          </button>
+
+          <p id="withdrawMessage"
+             style="margin-top:12px">
+          </p>
+
         </div>
+
       </section>
 
+
+      <!-- KYC -->
+
+      <section id="kyc" class="page">
+
+        <h1 class="page-title">🪪 KYC</h1>
+
+        <p class="page-subtitle">
+          Submit your basic KYC/payment details.
+        </p>
+
+        <div class="box">
+
+          <div class="form-group">
+
+            <label>Folder Name</label>
+
+            <input
+              type="text"
+              id="kycFolder"
+              placeholder="Enter folder name">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Bank Account Number</label>
+
+            <input
+              type="text"
+              id="kycAccount"
+              placeholder="Enter bank account number">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Bank Name</label>
+
+            <input
+              type="text"
+              id="kycBank"
+              placeholder="Enter bank name">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>IFSC Code</label>
+
+            <input
+              type="text"
+              id="kycIFSC"
+              placeholder="Enter IFSC code">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>UPI ID</label>
+
+            <input
+              type="text"
+              id="kycUPI"
+              placeholder="example@upi">
+
+          </div>
+
+          <button class="primary-btn"
+                  onclick="saveKYC()">
+            Submit KYC
+          </button>
+
+          <p id="kycMessage"
+             style="margin-top:12px">
+          </p>
+
+        </div>
+
+      </section>
+
+
     </main>
+
   </div>
+
 </div>
 
-<script>
-const KEY_EMAIL='nova_member_email';
-const KEY_PLAN='nova_member_plan';
 
-function login(){
-  const email=document.getElementById('loginEmail').value.trim();
-  const msg=document.getElementById('loginMsg');
-  if(!email || !email.includes('@')){
-    msg.textContent='Please enter a valid email address.';
+<script>
+
+/* ================= LOGIN ================= */
+
+/*
+  DEMO LOGIN:
+  Account is stored only in this browser.
+  Production security requires Firebase/backend.
+*/
+
+function loginMember(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const message =
+    document.getElementById("loginMessage");
+
+  if(!email || !password){
+
+    message.style.color = "#dc2626";
+    message.innerText =
+      "Please enter Gmail and password.";
+
     return;
   }
-  localStorage.setItem(KEY_EMAIL,email);
-  openApp();
+
+  const savedEmail =
+    localStorage.getItem("novaMemberEmail");
+
+  const savedPassword =
+    localStorage.getItem("novaMemberPassword");
+
+  /*
+    First login creates the demo account.
+    This is NOT production authentication.
+  */
+
+  if(!savedEmail){
+
+    localStorage.setItem(
+      "novaMemberEmail",
+      email
+    );
+
+    localStorage.setItem(
+      "novaMemberPassword",
+      password
+    );
+
+    localStorage.setItem(
+      "novaMemberLoggedIn",
+      "true"
+    );
+
+    openDashboard(email);
+
+    return;
+  }
+
+  if(
+    email === savedEmail &&
+    password === savedPassword
+  ){
+
+    localStorage.setItem(
+      "novaMemberLoggedIn",
+      "true"
+    );
+
+    openDashboard(email);
+
+  }else{
+
+    message.style.color = "#dc2626";
+
+    message.innerText =
+      "Invalid Gmail or password.";
+
+  }
+
 }
 
-function openApp(){
-  const email=localStorage.getItem(KEY_EMAIL);
-  if(!email)return;
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('app').style.display='block';
-  document.getElementById('topEmail').textContent=email;
-  document.getElementById('welcomeEmail').textContent=email.split('@')[0];
-  document.getElementById('refLink').value=location.origin+location.pathname+'?ref='+encodeURIComponent(email);
-  loadPlan();
+
+function openDashboard(email){
+
+  document.getElementById("loginScreen").style.display =
+    "none";
+
+  document.getElementById("app").style.display =
+    "block";
+
+  document.getElementById("memberName").innerText =
+    email.split("@")[0];
+
+  createReferral(email);
+
+  loadSavedPlan();
+
 }
 
-function logout(){
-  localStorage.removeItem(KEY_EMAIL);
-  location.reload();
+
+/* ================= AUTO LOGIN ================= */
+
+window.addEventListener("load",function(){
+
+  const loggedIn =
+    localStorage.getItem("novaMemberLoggedIn");
+
+  const email =
+    localStorage.getItem("novaMemberEmail");
+
+  if(loggedIn === "true" && email){
+
+    openDashboard(email);
+
+  }
+
+});
+
+
+/* ================= LOGOUT ================= */
+
+function logoutMember(){
+
+  localStorage.removeItem(
+    "novaMemberLoggedIn"
+  );
+
+  document.getElementById("app").style.display =
+    "none";
+
+  document.getElementById("loginScreen").style.display =
+    "flex";
+
 }
 
-function showPage(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+
+/* ================= PAGE SWITCH ================= */
+
+function showPage(pageId,button){
+
+  document.querySelectorAll(".page")
+    .forEach(function(page){
+
+      page.classList.remove("active");
+
+    });
+
+  document.querySelectorAll(".navbtn")
+    .forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+  const page =
+    document.getElementById(pageId);
+
+  if(page){
+
+    page.classList.add("active");
+
+  }
+
+  if(button){
+
+    button.classList.add("active");
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
+
+
+/* ================= REFERRAL ================= */
+
+function createReferral(email){
+
+  const username =
+    email.split("@")[0]
+    .replace(/[^a-zA-Z0-9]/g,"");
+
+  const code =
+    "NOVA-" +
+    username.toUpperCase();
+
+  document.getElementById("referralCode")
+    .innerText = code;
+
+  const link =
+    window.location.origin +
+    window.location.pathname +
+    "?ref=" +
+    encodeURIComponent(code);
+
+  document.getElementById("referralLink")
+    .value = link;
+
+}
+
+
+function copyReferral(){
+
+  const input =
+    document.getElementById("referralLink");
+
+  input.select();
+
+  navigator.clipboard.writeText(input.value)
+    .then(function(){
+
+      alert("Referral link copied!");
+
+    })
+    .catch(function(){
+
+      alert("Please copy the link manually.");
+
+    });
+
+}
+
+
+/* ================= PLAN ================= */
 
 function selectPlan(name,price){
-  const commission=(price*0.60).toFixed(2);
-  const data={name,price,commission};
-  localStorage.setItem(KEY_PLAN,JSON.stringify(data));
-  loadPlan();
-}
 
-function loadPlan(){
-  const raw=localStorage.getItem(KEY_PLAN);
-  const box=document.getElementById('selectedPlan');
-  const home=document.getElementById('homePlan');
-  document.querySelectorAll('.plan').forEach(x=>x.classList.remove('selected'));
-  if(!raw){
-    box.textContent='No plan selected.';
-    home.textContent='No membership plan selected yet.';
-    return;
-  }
-  const p=JSON.parse(raw);
-  box.innerHTML='<b>Selected:</b> '+p.name+' — ₹'+p.price+'<br><b>60% commission:</b> ₹'+p.commission;
-  home.innerHTML='<b>Current plan:</b> '+p.name+' — ₹'+p.price;
-  if(p.price===299)document.getElementById('plan299').classList.add('selected');
-  if(p.price===499)document.getElementById('plan499').classList.add('selected');
-  if(p.price===999)document.getElementById('plan999').classList.add('selected');
-}
+  localStorage.setItem(
+    "novaSelectedPlan",
+    name
+  );
 
-function submitReport(){
-  const t=document.getElementById('reportText').value.trim();
-  document.getElementById('reportMsg').textContent=t ? 'Report saved on this device. Backend submission will be connected later.' : 'Please write a report first.';
-}
-
-function requestWithdraw(){
-  const amount=document.getElementById('withdrawAmount').value;
-  document.getElementById('withdrawMsg').textContent=amount && Number(amount)>0 ? 'Withdrawal request recorded locally. Backend will be connected later.' : 'Enter a valid amount.';
-}
-
-openApp();
-</script>
-</body>
-</html>
+  localStorage.setItem(
+    "novaSelectedPlanP
