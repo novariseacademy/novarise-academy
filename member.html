@@ -1,5 +1,4 @@
-F<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,3613 +8,584 @@ F<!DOCTYPE html>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f5f7fb;
-    color:#172033;
+  background:#f4f6fb;
+  color:#17203a;
 }
 
-/* LOGIN */
-.login-page{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:linear-gradient(135deg,#111936,#4f46e5,#7c3aed);
+.header{
+  background:#111a46;
+  color:white;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.login-box{
-    width:100%;
-    max-width:420px;
-    background:#fff;
-    padding:35px 28px;
-    border-radius:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,.28);
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .logo{
-    text-align:center;
-    margin-bottom:30px;
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  border-radius:10px;
+  background:white;
 }
 
-.logo-icon{
-    width:70px;
-    height:70px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:20px;
-    background:linear-gradient(135deg,#4f46e5,#9333ea);
-    color:#fff;
-    font-size:30px;
-    font-weight:bold;
-}
-
-.logo h1{
-    margin-top:14px;
-    font-size:25px;
-}
-
-.logo p{
-    color:#777;
-    margin-top:6px;
-}
-
-.form-group{
-    margin-bottom:18px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.form-group input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    outline:none;
-    font-size:15px;
-}
-
-.form-group input:focus{
-    border-color:#5b50e8;
-}
-
-.login-btn{
-    width:100%;
-    padding:15px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.login-note{
-    text-align:center;
-    margin-top:18px;
-    color:#999;
-    font-size:12px;
-}
-
-
-/* DASHBOARD */
-.dashboard{
-    display:none;
-    min-height:100vh;
-}
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:245px;
-    height:100vh;
-    background:#111936;
-    color:white;
-    padding:25px 16px;
-    z-index:20;
-}
-
-.side-logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:19px;
-    font-weight:bold;
-    margin-bottom:35px;
-    padding:0 10px;
-}
-
-.side-logo-icon{
-    width:38px;
-    height:38px;
-    border-radius:11px;
-    background:linear-gradient(135deg,#6366f1,#a855f7);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.menu-title{
-    color:#8e96b4;
-    font-size:11px;
-    text-transform:uppercase;
-    margin:20px 10px 10px;
-}
-
-.nav-item{
-    display:block;
-    padding:13px 14px;
-    margin:5px 0;
-    border-radius:11px;
-    color:#cdd2e5;
-    text-decoration:none;
-    font-size:14px;
-}
-
-.nav-item:hover,
-.nav-item.active{
-    background:rgba(255,255,255,.12);
-    color:white;
-}
-
-.main{
-    margin-left:245px;
-    min-height:100vh;
-}
-
-.topbar{
-    height:72px;
-    background:white;
-    border-bottom:1px solid #e7e9ef;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 35px;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-.top-title{
-    font-size:20px;
-    font-weight:bold;
-}
-
-.user{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.avatar{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#e9e7ff;
-    color:#5046e5;
-    font-weight:bold;
+.brand{
+  font-size:20px;
+  font-weight:bold;
 }
 
 .logout{
-    border:0;
-    padding:9px 14px;
-    border-radius:9px;
-    background:#fff0f0;
-    color:#d33;
-    font-weight:bold;
-    cursor:pointer;
+  background:#ff4757;
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-.content{
-    width:92%;
-    max-width:1250px;
-    margin:28px auto;
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
 }
 
-/* WELCOME */
 .welcome{
-    background:linear-gradient(120deg,#171d43,#5146e5,#7c3aed);
-    color:white;
-    border-radius:22px;
-    padding:30px;
-    margin-bottom:24px;
+  background:linear-gradient(135deg,#171f58,#5935c9);
+  color:white;
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:20px;
 }
 
-.welcome h2{
-    font-size:29px;
-    margin-bottom:8px;
+.welcome h1{
+  font-size:27px;
+  margin-bottom:8px;
 }
 
-.welcome p{
-    opacity:.85;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:white;
+  padding:22px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.card h3{
+  font-size:15px;
+  color:#777;
+  margin-bottom:10px;
+}
+
+.amount{
+  font-size:25px;
+  font-weight:bold;
+  color:#1b9b70;
+}
+
+.section{
+  background:white;
+  padding:22px;
+  border-radius:16px;
+  margin-bottom:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.section h2{
+  margin-bottom:18px;
+}
+
+.plans{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.plan{
+  border:2px solid #e5e7ef;
+  border-radius:16px;
+  padding:22px;
+  text-align:center;
+}
+
+.plan h3{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.price{
+  font-size:30px;
+  font-weight:bold;
+  color:#5634c9;
+  margin:10px 0;
+}
+
+.plan ul{
+  list-style:none;
+  text-align:left;
+  margin:18px 0;
+}
+
+.plan li{
+  padding:7px 0;
+}
+
+.select{
+  width:100%;
+  border:0;
+  padding:12px;
+  border-radius:9px;
+  background:#5634c9;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.selected{
+  border-color:#5634c9;
+  background:#f6f2ff;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+th,td{
+  padding:14px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+
+th{
+  color:#555;
 }
 
 .badge{
-    display:inline-block;
-    margin-top:18px;
-    padding:8px 14px;
-    background:rgba(255,255,255,.16);
-    border-radius:30px;
-    font-size:13px;
-}/* STATS */
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin-bottom:22px;
+  background:#e6fff4;
+  color:#15956b;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
 }
 
-.stat{
-    background:white;
-    border:1px solid #e7e9ef;
-    border-radius:18px;
-    padding:21px;
-    box-shadow:0 7px 25px rgba(30,40,80,.05);
+.note{
+  background:#fff8df;
+  border-left:4px solid #f0b400;
+  padding:14px;
+  border-radius:8px;
+  margin-top:15px;
+  line-height:1.5;
 }
 
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:17px;
-}
+@media(max-width:800px){
 
-.stat-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    background:#efedff;
-    font-size:20px;
-}
+  .header{
+    padding:12px;
+  }
 
-.stat-label{
-    color:#7c8291;
-    font-size:13px;
-}
+  .brand{
+    font-size:16px;
+  }
 
-.stat-value{
-    font-size:25px;
-    font-weight:bold;
-    margin-top:6px;
-}
+  .container{
+    padding:12px;
+  }
 
-.stat-change{
-    color:#159447;
-    font-size:11px;
-    margin-top:8px;
-}
+  .welcome{
+    padding:18px;
+  }
 
+  .welcome h1{
+    font-size:22px;
+  }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:20px;
-}
-
-.panel{
-    background:white;
-    border:1px solid #e7e9ef;
-    border-radius:18px;
-    padding:22px;
-    box-shadow:0 7px 25px rgba(30,40,80,.04);
-}
-
-.panel-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.panel-header h3{
-    font-size:18px;
-}
-
-.view{
-    color:#554be7;
-    font-size:13px;
-    font-weight:bold;
-}
-
-
-/* CHART */
-.chart{
-    height:210px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-around;
+  .grid{
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
-    padding:15px 5px 5px;
-    border-bottom:1px solid #eee;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  .amount{
+    font-size:21px;
+  }
+
+  .plans{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:16px;
+  }
+
+  .logout{
+    padding:8px 10px;
+  }
 }
 
-.bar{
-    width:9%;
-    max-width:42px;
-    border-radius:8px 8px 0 0;
-    background:linear-gradient(to top,#4f46e5,#a855f7);
-}
+@media(max-width:420px){
 
-.bar:nth-child(1){height:25%;}
-.bar:nth-child(2){height:42%;}
-.bar:nth-child(3){height:32%;}
-.bar:nth-child(4){height:60%;}
-.bar:nth-child(5){height:48%;}
-.bar:nth-child(6){height:76%;}
-.bar:nth-child(7){height:90%;}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.days{
-    display:flex;
-    justify-content:space-around;
-    color:#999;
-    font-size:11px;
-    padding-top:9px;
-}
+  .logo{
+    width:36px;
+    height:36px;
+  }
 
-
-/* TRANSACTIONS */
-.transaction{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 0;
-    border-bottom:1px solid #eee;
-}
-
-.transaction:last-child{
-    border-bottom:0;
-}
-
-.t-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.t-icon{
-    width:39px;
-    height:39px;
-    border-radius:11px;
-    background:#eefaf2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#168b49;
-}
-
-.t-left small{
-    display:block;
-    color:#999;
-    margin-top:4px;
-}
-
-.green{
-    color:#159447;
-    font-weight:bold;
-}
-
-
-/* PROFILE */
-.profile-line{
-    display:flex;
-    justify-content:space-between;
-    padding:13px 0;
-    border-bottom:1px solid #eee;
+  .brand{
     font-size:14px;
-}
-
-.profile-line:last-child{
-    border-bottom:0;
-}
-
-.profile-line span{
-    color:#888;
-}
-
-
-/* MEMBERSHIP */
-.membership{
-    margin-top:20px;
-}
-
-.progress{
-    height:9px;
-    background:#eee;
-    border-radius:20px;
-    overflow:hidden;
-    margin:13px 0 8px;
-}
-
-.progress-fill{
-    width:68%;
-    height:100%;
-    background:linear-gradient(90deg,#4f46e5,#a855f7);
-    border-radius:20px;
-}
-
-.progress-text{
-    display:flex;
-    justify-content:space-between;
-    color:#888;
-    font-size:12px;
-}
-
-
-/* QUICK ACTIONS */
-.actions{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    margin-top:20px;
-}
-
-.action{
-    background:white;
-    border:1px solid #e7e9ef;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    text-decoration:none;
-    color:#222;
-    transition:.2s;
-}
-
-.action:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-.action-icon{
-    font-size:25px;
-    margin-bottom:9px;
-}
-
-.action strong{
-    display:block;
-    font-size:14px;
-}
-
-.action small{
-    color:#888;
-}
-
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    color:#999;
-    font-size:12px;
-    padding:30px 10px;
-}
-
-
-/* MOBILE */
-@media(max-width:950px){
-
-    .sidebar{
-        width:75px;
-        padding:20px 10px;
-    }
-
-    .side-logo span,
-    .nav-item span,
-    .menu-title{
-        display:none;
-    }.side-logo{
-        justify-content:center;
-        padding:0;
-    }
-
-    .nav-item{
-        text-align:center;
-        font-size:20px;
-    }
-
-    .main{
-        margin-left:75px;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:600px){
-
-    .topbar{
-        padding:0 15px;
-    }
-
-    .top-title{
-        font-size:16px;
-    }
-
-    .user .avatar{
-        width:36px;
-        height:36px;
-    }
-
-    .logout{
-        padding:8px 9px;
-        font-size:12px;
-    }
-
-    .content{
-        width:94%;
-        margin:18px auto;
-    }
-
-    .welcome{
-        padding:23px;
-    }
-
-    .welcome h2{
-        font-size:23px;
-    }
-
-    .stats{
-        gap:10px;
-    }
-
-    .stat{
-        padding:16px;
-    }
-
-    .stat-value{
-        font-size:20px;
-    }
-
-    .actions{
-        grid-template-columns:1fr;
-    }
-}
-    /* MOBILE DASHBOARD FIX */
-
-@media (max-width: 600px) {
-
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
   }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-size: 14px;
-  }
-
-  .sidebar {
-    width: 70px !important;
-    min-width: 70px !important;
-  }
-
-  .main,
-  .main-content,
-  .content {
-    width: calc(100% - 70px) !important;
-    max-width: calc(100% - 70px) !important;
-    margin-left: 70px !important;
-    padding: 12px !important;
-  }
-
-  .card,
-  .stat-card,
-  .income-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 10px 0 !important;
-  }
-
-  .dashboard-grid,
-  .stats-grid,
-  .cards-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  table {
-    width: 100%;
-    max-width: 100%;
-    font-size: 12px;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  h1, h2, h3 {
-    overflow-wrap: anywhere;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
+<header class="header">
 
-<!-- LOGIN -->
-<section class="login-page" id="loginPage">
+  <div class="logo-area">
 
-    <div class="login-box">
+    <!-- Agar logo.png repository mein hai to ye automatically try karega -->
+    <img src="logo.png" class="logo" alt="NovaRise Academy">
 
-        <div class="logo">
-            <div class="logo-icon">N</div>
-            <h1>NovaRise Academy</h1>
-            <p>Secure Member Portal</p>
-        </div>
-
-        <form id="loginForm">
-
-            <div class="form-group">
-                <label>Member ID / Email</label>
-                <input
-                    id="memberId"
-                    type="text"
-                    placeholder="Enter Member ID or Email"
-                    required>
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Enter Password"
-                    required>
-            </div>
-
-            <button class="login-btn" type="submit">
-                🔐 Login to Member Portal
-            </button>
-
-        </form>
-
-        <div class="login-note">
-            © 2026 NovaRise Academy
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- DASHBOARD -->
-<section class="dashboard" id="dashboard">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-
-        <div class="side-logo">
-            <div class="side-logo-icon">N</div>
-            <span>NovaRise</span>
-        </div>
-
-        <div class="menu-title">Main Menu</div>
-
-        <a href="#" class="nav-item active">
-            🏠 <span>Dashboard</span>
-        </a>
-
-        <a href="#" class="nav-item">
-            💰 <span>My Income</span>
-        </a>
-
-        <a href="#" class="nav-item">
-            📋 <span>Transactions</span>
-        </a>
-
-        <a href="#" class="nav-item">
-            💳 <span>Payments</span>
-        </a>
-
-        <div class="menu-title">Account</div>
-
-        <a href="#" class="nav-item">
-            👤 <span>My Profile</span>
-        </a>
-        <a href="admin-login.html" class="nav-item">
-    🛡️ <span>Admin Login</span>
-</a>
-
-        <a href="#" class="nav-item">
-            🔔 <span>Notifications</span>
-        </a>
-
-        <a href="#" class="nav-item">
-            📞 <span>Support</span>
-        </a>
-
-    </aside>
-
-
-    <!-- MAIN -->
-    <div class="main">
-
-        <header class="topbar">
-
-            <div class="top-title">
-                Member Dashboard
-            </div>
-
-            <div class="user">
-
-                <div class="avatar" id="avatar">
-                    M
-                </div>
-
-                <button class="logout" onclick="logout()">
-                    Logout
-                </button>
-
-            </div>
-
-        </header>
-
-
-        <div class="content">
-
-
-            <!-- WELCOME -->
-            <div class="welcome">
-
-                <h2>Welcome back, Member 👋</h2>
-
-                <p>
-                    Here's your NovaRise Academy account overview.
-                </p>
-
-                <div class="badge">
-                    ⭐ Active Member
-                </div>
-
-            </div>
-
-
-            <!-- INCOME -->
-            <div class="stats">
-
-                <div class="stat">
-                    <div class="stat-top">
-                        <div>
-                            <div class="stat-label">Today's Income</div>
-                            <div class="stat-value">₹0</div>
-                        </div>
-
-                        <div class="stat-icon">💰</div>
-                    </div>
-
-                    <div class="stat-change">
-                        ● Updated today
-                    </div>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <div class="stat-top">
-                        <div>
-                            <div class="stat-label">17 Days Income</div>
-                            <div class="stat-value">₹0</div>
-                        </div>
-
-                        <div class="stat-icon">📈</div>
-                    </div>
-
-                    <div class="stat-change">
-                        ● Current period
-                    </div>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <div class="stat-top">
-                        <div>
-                            <div class="stat-label">30 Days Income</div>
-                            <div class="stat-value">₹0</div>
-                        </div>
-
-                        <div class="stat-icon">📊</div>
-                    </div>
-
-                    <div class="stat-change">
-                        ● Monthly overview
-                    </div>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <div class="stat-top">
-                        <div>
-                            <div class="stat-label">All-Time Income</div>
-                            <div class="stat-value">₹0</div>
-                        </div>
-
-                        <div class="stat-icon">💎</div>
-                    </div>
-
-                    <div class="stat-change">
-                        ● Lifetime total
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MAIN GRID -->
-            <div class="grid">
-
-
-                <!-- INCOME GRAPH -->
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>📈 Income Overview</h3>
-
-                        <span class="view">
-                            Last 7 Days
-                        </span>
-
-                    </div>
-
-                    <div class="chart">
-
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-
-                    </div>
-
-                    <div class="days">
-                        <span>Mon</span>
-                        <span>Tue</span>
-                        <span>Wed</span>
-                        <span>Thu</span>
-                        <span>Fri</span>
-                        <span>Sat</span>
-                        <span>Sun</span>
-                    </div>
-
-                </div>
-
-
-                <!-- PROFILE -->
-                <div class="panel">
-
-                    <div class="panel-header">
-                        <h3>👤 My Profile</h3>
-                    </div>
-
-                    <div class="profile-line">
-                        <span>Member ID</span>
-                        <strong id="displayMember">Member</strong>
-                    </div>
-
-                    <div class="profile-line">
-                        <span>Status</span>
-                        <strong class="green">Active</strong>
-                    </div>
-
-                    <div class="profile-line">
-                        <span>Plan</span>
-                        <strong>NovaRise Member</strong>
-                    </div>
-
-                    <div class="profile-line">
-                        <span>Account</span>
-                        <strong>Verified</strong>
-                    </div>
-
-                </div></div>
-
-
-            <!-- TRANSACTIONS -->
-            <div class="panel" style="margin-top:20px;">
-
-                <div class="panel-header">
-
-                    <h3>📋 Recent Transactions</h3>
-
-                    <span class="view">
-                        View All
-                    </span>
-
-                </div>
-
-
-                <div class="transaction">
-
-                    <div class="t-left">
-
-                        <div class="t-icon">✓</div>
-
-                        <div>
-                            <strong>Member Account</strong>
-                            <small>Account successfully activated</small>
-                        </div>
-
-                    </div>
-
-                    <div class="green">
-                        Active
-                    </div>
-
-                </div>
-
-
-                <div class="transaction">
-
-                    <div class="t-left">
-
-                        <div class="t-icon">₹</div>
-
-                        <div>
-                            <strong>Income Transaction</strong>
-                            <small>No income transaction yet</small>
-                        </div>
-
-                    </div>
-
-                    <div class="green">
-                        ₹0
-                    </div>
-
-                </div>
-
-
-                <div class="transaction">
-
-                    <div class="t-left">
-
-                        <div class="t-icon">💳</div>
-
-                        <div>
-                            <strong>Payment Activity</strong>
-                            <small>Payment gateway will appear here</small>
-                        </div>
-
-                    </div>
-
-                    <div class="green">
-                        Ready
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMBERSHIP -->
-            <div class="panel membership">
-
-                <div class="panel-header">
-
-                    <h3>🏆 Membership Progress</h3>
-
-                    <strong>68%</strong>
-
-                </div>
-
-                <p style="color:#777;font-size:13px;">
-                    Keep growing your activity to unlock higher member benefits.
-                </p>
-
-                <div class="progress">
-                    <div class="progress-fill"></div>
-                </div>
-
-                <div class="progress-text">
-                    <span>Current Level</span>
-                    <span>Next Level</span>
-                </div>
-
-            </div>
-
-
-            <!-- QUICK ACTIONS -->
-            <div class="actions">
-
-                <a href="#" class="action">
-                    <div class="action-icon">💰</div>
-                    <strong>Income Details</strong>
-                    <small>View your earnings</small>
-                </a>
-
-                <a href="#" class="action">
-                    <div class="action-icon">💳</div>
-                    <strong>Payments</strong>
-                    <small>Payment history</small>
-                </a>
-
-                <a href="#" class="action">
-                    <div class="action-icon">📞</div>
-                    <strong>Support</strong>
-                    <small>Get assistance</small>
-                </a>
-
-            </div>
-
-
-            <div class="footer">
-                © 2026 NovaRise Academy · Secure Member Portal
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const loginForm = document.getElementById("loginForm");
-    const loginPage = document.getElementById("loginPage");
-    const dashboard = document.getElementById("dashboard");
-    const memberIdInput = document.getElementById("memberId");
-
-    if (!loginForm) {
-        console.error("Login form not found");
-        return;
-    }
-
-    loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const memberId = memberIdInput
-            ? memberIdInput.value.trim()
-            : "";
-
-        if (!memberId) {
-            alert("Please enter your Member ID or Email.");
-            return;
-        }
-
-        localStorage.setItem("novaMember", memberId);
-
-        if (loginPage) {
-            loginPage.style.display = "none";
-        }
-
-        if (dashboard) {
-            dashboard.style.display = "block";
-        }
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-
-});
-</script>
-<!-- FUNCTION MENU -->
-<style>
-.function-menu {
-    position: fixed;
-    top: 18px;
-    left: 18px;
-    z-index: 99999;
-}
-
-.function-menu-button {
-    width: 48px;
-    height: 48px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #6d5dfc, #8f5cff);
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(80, 60, 180, 0.3);
-}
-
-.function-menu-panel {
-    display: none;
-    position: absolute;
-    top: 58px;
-    left: 0;
-    width: 230px;
-    padding: 12px;
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
-}
-
-.function-menu-panel.active {
-    display: block;
-}
-
-.function-menu-panel a {
-    display: block;
-    padding: 13px 15px;
-    margin: 4px 0;
-    border-radius: 12px;
-    color: #333;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: Arial, sans-serif;
-}
-
-.function-menu-panel a:hover {
-    background: #f0edff;
-    color: #6d5dfc;
-}
-</style>
-
-<div class="function-menu">
-    <button class="function-menu-button" id="functionMenuButton">
-        ☰
-    </button>
-
-    <div class="function-menu-panel" id="functionMenuPanel">
-        <a href="#dashboard">🏠 Dashboard</a>
-        <a href="#profile">👤 My Profile</a>
-        <a href="#income">💰 Income</a>
-        <a href="#activity">📊 Recent Activity</a>
-        <a href="#membership">⭐ Membership</a>
-        <a href="#support">💬 Support</a>
-    </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const menuButton = document.getElementById("functionMenuButton");
-    const menuPanel = document.getElementById("functionMenuPanel");
-
-    if (menuButton && menuPanel) {
-
-        menuButton.addEventListener("click", function (event) {
-            event.stopPropagation();
-            menuPanel.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function (event) {
-            if (!menuPanel.contains(event.target) &&
-                !menuButton.contains(event.target)) {
-                menuPanel.classList.remove("active");
-            }
-        });
-    }
-
-});
-</script>
-    <!-- ================= PROFESSIONAL INCOME CENTER ================= -->
-
-<style>
-.income-center {
-    margin: 35px auto;
-    max-width: 1150px;
-    padding: 0 18px 40px;
-    font-family: Arial, sans-serif;
-}
-
-.income-title {
-    margin-bottom: 22px;
-}
-
-.income-title h2 {
-    margin: 0;
-    font-size: 28px;
-    color: #202040;
-}
-
-.income-title p {
-    margin-top: 7px;
-    color: #777;
-}
-
-.income-summary {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-.income-card {
-    background: white;
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.08);
-    border: 1px solid #eee;
-}
-
-.income-card .icon {
-    font-size: 27px;
-    margin-bottom: 12px;
-}
-
-.income-card .label {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.income-card .amount {
-    font-size: 26px;
-    font-weight: 800;
-    color: #25254a;
-}
-
-.income-card .period {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #16a36a;
-}
-
-.income-panel {
-    margin-top: 25px;
-    background: white;
-    border-radius: 22px;
-    padding: 24px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.08);
-}
-
-.income-panel h3 {
-    margin: 0 0 18px;
-    color: #25254a;
-}
-
-.income-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.income-table th,
-.income-table td {
-    padding: 15px 10px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.income-table th {
-    color: #777;
-    font-size: 13px;
-}
-
-.status-success {
-    color: #159765;
-    font-weight: 700;
-}
-
-.empty-income {
-    text-align: center;
-    padding: 35px 10px;
-    color: #888;
-}
-
-@media (max-width: 800px) {
-    .income-summary {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 500px) {
-    .income-summary {
-        grid-template-columns: 1fr;
-    }
-
-    .income-title h2 {
-        font-size: 23px;
-    }
-
-    .income-panel {
-        padding: 17px;
-        overflow-x: auto;
-    }
-
-    .income-table {
-        min-width: 600px;
-    }
-}
-</style>
-
-<section class="income-center" id="income">
-    
-    <div class="income-title">
-        <h2>💰 Income Center</h2>
-        <p>Track your earnings, payments and income activity.</p>
-    </div>
-
-    <div class="income-summary">
-
-        <div class="income-card">
-            <div class="icon">💵</div>
-            <div class="label">Today's Income</div>
-            <div class="amount" id="todayIncome">₹0</div>
-            <div class="period">Current day</div>
-        </div>
-
-        <div class="income-card">
-            <div class="icon">📈</div>
-            <div class="label">7 Days Income</div>
-            <div class="amount" id="sevenDayIncome">₹0</div>
-            <div class="period">Last 7 days</div>
-        </div>
-
-        <div class="income-card">
-            <div class="icon">📊</div>
-            <div class="label">30 Days Income</div>
-            <div class="amount" id="thirtyDayIncome">₹0</div>
-            <div class="period">Last 30 days</div>
-        </div>
-
-        <div class="income-card">
-            <div class="icon">💎</div>
-            <div class="label">All-Time Income</div>
-            <div class="amount" id="allTimeIncome">₹0</div>
-            <div class="period">Lifetime earnings</div>
-        </div>
-
-    </div>
-
-    <div class="income-panel">
-        <h3>📋 Recent Income Activity</h3>
-
-        <table class="income-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Transaction</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-
-            <tbody id="incomeHistory">
-                <tr>
-                    <td colspan="4">
-                        <div class="empty-income">
-                            No income transactions yet.
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    /*
-       Demo income values.
-       Real income will be connected to the payment/backend system later.
-    */
-
-    const incomeData = {
-        today: 0,
-        sevenDays: 0,
-        thirtyDays: 0,
-        allTime: 0
-    };
-
-    document.getElementById("todayIncome").textContent =
-        "₹" + incomeData.today;
-
-    document.getElementById("sevenDayIncome").textContent =
-        "₹" + incomeData.sevenDays;
-
-    document.getElementById("thirtyDayIncome").textContent =
-        "₹" + incomeData.thirtyDays;
-
-    document.getElementById("allTimeIncome").textContent =
-        "₹" + incomeData.allTime;
-
-});
-</script>
-
-<!-- ================= END INCOME CENTER ================= -->
-    <!-- ================= MY PROFILE PROFESSIONAL SECTION ================= -->
-
-<style>
-.profile-section {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0 20px 40px;
-  font-family: Arial, sans-serif;
-}
-
-.profile-header {
-  background: linear-gradient(135deg, #5b3df5, #8b5cf6);
-  color: white;
-  padding: 30px;
-  border-radius: 22px;
-  margin-bottom: 22px;
-  box-shadow: 0 12px 30px rgba(91,61,245,.18);
-}
-
-.profile-header h2 {
-  margin: 0 0 8px;
-  font-size: 28px;
-}
-
-.profile-header p {
-  margin: 0;
-  opacity: .9;
-}
-
-.profile-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.08);
-  border: 1px solid #eee;
-}
-
-.profile-top {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 25px;
-}
-
-.profile-avatar {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#6d4aff,#a855f7);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  font-weight: bold;
-}
-
-.profile-name {
-  font-size: 24px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 6px;
-}
-
-.profile-status {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: #e9f9ef;
-  color: #16843b;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 18px;
-}
-
-.profile-item {
-  background: #f8f8fc;
-  border-radius: 14px;
-  padding: 18px;
-}
-
-.profile-label {
-  color: #777;
-  font-size: 13px;
-  margin-bottom: 7px;
-}
-
-.profile-value {
-  color: #222;
-  font-size: 16px;
-  font-weight: 600;
-  word-break: break-word;
-}
-
-.profile-note {
-  margin-top: 22px;
-  padding: 16px;
-  border-radius: 14px;
-  background: #f4f1ff;
-  color: #5536c8;
-  font-size: 14px;
-}
-
-@media(max-width:700px) {
-  .profile-section {
-    padding: 0 12px 30px;
-  }
-
-  .profile-header {
-    padding: 22px;
-  }
-
-  .profile-header h2 {
-    font-size: 23px;
-  }
-
-  .profile-card {
-    padding: 20px;
-  }
-
-  .profile-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-top {
-    align-items: flex-start;
-  }
-}
-</style>
-
-<section id="profile" class="profile-section">
-
-  <div class="profile-header">
-    <h2>My Profile 👤</h2>
-    <p>Manage and view your NovaRise Academy member information.</p>
-  </div>
-
-  <div class="profile-card">
-
-    <div class="profile-top">
-      <div class="profile-avatar" id="profileAvatar">M</div>
-
-      <div>
-        <div class="profile-name" id="profileName">
-          Member
-        </div>
-
-        <span class="profile-status">
-          ● Active Member
-        </span>
-      </div>
-    </div>
-
-    <div class="profile-grid">
-
-      <div class="profile-item">
-        <div class="profile-label">Member ID</div>
-        <div class="profile-value" id="profileMemberId">
-          Member
-        </div>
-      </div>
-
-      <div class="profile-item">
-        <div class="profile-label">Email</div>
-        <div class="profile-value" id="profileEmail">
-          Not added
-        </div>
-      </div>
-
-      <div class="profile-item">
-        <div class="profile-label">Mobile Number</div>
-        <div class="profile-value" id="profileMobile">
-          Not added
-        </div>
-      </div>
-
-      <div class="profile-item">
-        <div class="profile-label">Membership</div>
-        <div class="profile-value">
-          Active
-        </div>
-      </div>
-
-      <div class="profile-item">
-        <div class="profile-label">Joining Date</div>
-        <div class="profile-value" id="profileJoinDate">
-          Not available
-        </div>
-      </div>
-
-      <div class="profile-item">
-        <div class="profile-label">Account Status</div>
-        <div class="profile-value">
-          Verified Member
-        </div>
-      </div>
-
-    </div>
-
-    <div class="profile-note">
-      🔒 Your member information is displayed securely inside your
-      NovaRise Academy Member Portal.
-    </div>
+    <div class="brand">NovaRise Academy</div>
 
   </div>
 
-</section>
+  <button class="logout" onclick="logout()">Logout</button>
 
-<script>
-(function () {
+</header>
 
-  const savedMember =
-    localStorage.getItem("novaMember") || "Member";
 
-  const memberName =
-    savedMember.includes("@")
-      ? savedMember.split("@")[0]
-      : savedMember;
+<main class="container">
 
-  const nameElement =
-    document.getElementById("profileName");
+  <section class="welcome">
+    <h1>Welcome, Member 👋</h1>
+    <p>Your NovaRise Academy member dashboard</p>
+  </section>
 
-  const idElement =
-    document.getElementById("profileMemberId");
 
-  const avatarElement =
-    document.getElementById("profileAvatar");
+  <!-- INCOME CARDS -->
 
-  const emailElement =
-    document.getElementById("profileEmail");
+  <section class="grid">
 
-  if (nameElement) {
-    nameElement.textContent =
-      memberName.charAt(0).toUpperCase() +
-      memberName.slice(1);
-  }
-
-  if (idElement) {
-    idElement.textContent = savedMember;
-  }
-
-  if (avatarElement) {
-    avatarElement.textContent =
-      memberName.charAt(0).toUpperCase();
-  }
-
-  if (emailElement && savedMember.includes("@")) {
-    emailElement.textContent = savedMember;
-  }
-
-  const dateElement =
-    document.getElementById("profileJoinDate");
-
-  if (dateElement) {
-    let joinDate =
-      localStorage.getItem("novaJoinDate");
-
-    if (!joinDate) {
-      joinDate =
-        new Date().toLocaleDateString("en-IN", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric"
-        });
-
-      localStorage.setItem(
-        "novaJoinDate",
-        joinDate
-      );
-    }
-
-    dateElement.textContent = joinDate;
-  }
-
-})();
-</script>
-
-<!-- ================= END MY PROFILE ================= -->
-  <!-- ================= MEMBERSHIP SECTION ================= -->
-
-<style>
-.membership-section {
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 0 18px 40px;
-    font-family: Arial, sans-serif;
-}
-
-.membership-header {
-    background: linear-gradient(135deg, #171d43, #5b3df5, #8b5cf6);
-    color: white;
-    padding: 30px;
-    border-radius: 24px;
-    margin-bottom: 22px;
-    box-shadow: 0 12px 30px rgba(70,50,180,.18);
-}
-
-.membership-header h2 {
-    margin: 0 0 8px;
-    font-size: 28px;
-}
-
-.membership-header p {
-    margin: 0;
-    opacity: .9;
-}
-
-.membership-grid {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 20px;
-}
-
-.membership-card {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 22px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.07);
-}
-
-.plan-badge {
-    display: inline-block;
-    padding: 7px 13px;
-    border-radius: 20px;
-    background: #eeeaff;
-    color: #5b3df5;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 14px;
-}
-
-.plan-name {
-    font-size: 28px;
-    font-weight: 800;
-    color: #222;
-    margin-bottom: 8px;
-}
-
-.plan-description {
-    color: #777;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.member-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #16843b;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-    background: #22c55e;
-    border-radius: 50%;
-}
-
-.membership-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.detail-box {
-    background: #f7f7fb;
-    padding: 15px;
-    border-radius: 14px;
-}
-
-.detail-box span {
-    display: block;
-    color: #888;
-    font-size: 12px;
-    margin-bottom: 6px;
-}
-
-.detail-box strong {
-    color: #222;
-    font-size: 14px;
-}
-
-.benefits-title {
-    font-size: 19px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #222;
-}
-
-.benefit {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    margin-bottom: 14px;
-    color: #555;
-    font-size: 14px;
-}
-
-.benefit-icon {
-    color: #5b3df5;
-    font-weight: bold;
-}
-
-.upgrade-box {
-    margin-top: 22px;
-    background: linear-gradient(135deg,#f5f1ff,#faf8ff);
-    border: 1px solid #e5ddff;
-    padding: 20px;
-    border-radius: 17px;
-}
-
-.upgrade-box h3 {
-    margin: 0 0 7px;
-    color: #332277;
-}
-
-.upgrade-box p {
-    color: #777;
-    font-size: 13px;
-    margin-bottom: 15px;
-}
-
-.upgrade-btn {
-    width: 100%;
-    border: 0;
-    padding: 14px;
-    border-radius: 12px;
-    background: linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.upgrade-btn:hover {
-    opacity: .9;
-}
-
-.membership-note {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 13px;
-    background: #fff8e7;
-    color: #806000;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-@media(max-width:750px) {
-    .membership-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .membership-header h2 {
-        font-size: 23px;
-    }
-
-    .membership-details {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
-<section id="membership" class="membership-section">
-
-    <div class="membership-header">
-        <h2>⭐ Membership Center</h2>
-        <p>View your membership plan, benefits and account status.</p>
+    <div class="card">
+      <h3>Today's Income</h3>
+      <div class="amount">₹0</div>
     </div>
 
-    <div class="membership-grid">
-
-        <!-- CURRENT PLAN -->
-        <div class="membership-card">
-
-            <span class="plan-badge">
-                CURRENT PLAN
-            </span>
-
-            <div class="plan-name">
-                NovaRise Member
-            </div>
-
-            <div class="plan-description">
-                Your current member account and available membership benefits.
-            </div>
-
-            <div class="member-status">
-                <span class="status-dot"></span>
-                Active Membership
-            </div>
-
-            <div class="membership-details">
-
-                <div class="detail-box">
-                    <span>Member ID</span>
-                    <strong id="membershipMemberId">
-                        Member
-                    </strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Membership Status</span>
-                    <strong>Active</strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Joining Date</span>
-                    <strong id="membershipJoinDate">
-                        Not available
-                    </strong>
-                </div>
-
-                <div class="detail-box">
-                    <span>Expiry</span>
-                    <strong id="membershipExpiry">
-                        Not set
-                    </strong>
-                </div>
-
-            </div>
-
-            <div class="membership-note">
-                🔒 Membership information shown here is currently stored
-                locally for demonstration. Real account data will be connected
-                to the secure backend later.
-            </div>
-
-        </div>
-
-
-        <!-- BENEFITS -->
-        <div class="membership-card">
-
-            <div class="benefits-title">
-                💎 Member Benefits
-            </div>
-
-            <div class="benefit">
-                <span class="benefit-icon">✓</span>
-                <span>Access to your personal member dashboard.</span>
-            </div>
-
-            <div class="benefit">
-                <span class="benefit-icon">✓</span>
-                <span>View income and transaction information.</span>
-            </div>
-
-            <div class="benefit">
-                <span class="benefit-icon">✓</span>
-                <span>Secure member profile management.</span>
-            </div>
-
-            <div class="benefit">
-                <span class="benefit-icon">✓</span>
-                <span>Membership activity tracking.</span>
-            </div>
-
-            <div class="benefit">
-                <span class="benefit-icon">✓</span>
-                <span>Member support access.</span>
-            </div>
-
-
-            <div class="upgrade-box">
-
-                <h3>💳 Upgrade Membership</h3>
-
-                <p>
-                    Choose an eligible membership plan to continue.
-                </p>
-
-                <button
-                    class="upgrade-btn"
-                    onclick="membershipUpgrade()">
-                    View Membership Plans
-                </button>
-
-            </div>
-
-        </div>
-
+    <div class="card">
+      <h3>Last 30 Days</h3>
+      <div class="amount">₹0</div>
     </div>
 
-</section>
-
-
-<script>
-(function () {
-
-    const member =
-        localStorage.getItem("novaMember") || "Member";
-
-    const memberElement =
-        document.getElementById("membershipMemberId");
-
-    if (memberElement) {
-        memberElement.textContent = member;
-    }
-
-    const joinElement =
-        document.getElementById("membershipJoinDate");
-
-    let joinDate =
-        localStorage.getItem("novaJoinDate");
-
-    if (!joinDate) {
-        joinDate =
-            new Date().toLocaleDateString("en-IN", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            });
-
-        localStorage.setItem(
-            "novaJoinDate",
-            joinDate
-        );
-    }
-
-    if (joinElement) {
-        joinElement.textContent = joinDate;
-    }
-
-})();
-
-
-function membershipUpgrade() {
-
-    alert(
-        "Membership plans will be available here after the payment system is connected."
-    );
-
-}
-</script>
-
-<!-- ================= END MEMBERSHIP SECTION ================= -->
-    <!-- ================= MEMBERSHIP PLANS & PAYMENT ================= -->
-
-<style>
-.plans-section{
-    max-width:1150px;
-    margin:30px auto;
-    padding:0 18px 45px;
-    font-family:Arial,sans-serif;
-}
-
-.plans-header{
-    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
-    color:white;
-    padding:30px;
-    border-radius:24px;
-    margin-bottom:25px;
-}
-
-.plans-header h2{
-    margin:0 0 8px;
-    font-size:28px;
-}
-
-.plans-header p{
-    margin:0;
-    opacity:.9;
-}
-
-.plans-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.plan-card{
-    position:relative;
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:22px;
-    padding:26px;
-    box-shadow:0 8px 28px rgba(0,0,0,.07);
-}
-
-.plan-card.recommended{
-    border:2px solid #6d4aff;
-    transform:translateY(-4px);
-}
-
-.recommended-label{
-    position:absolute;
-    top:-13px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#6d4aff;
-    color:white;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-    white-space:nowrap;
-}
-
-.plan-icon{
-    font-size:32px;
-    margin-bottom:14px;
-}
-
-.plan-card h3{
-    margin:0 0 8px;
-    font-size:22px;
-    color:#222;
-}
-
-.plan-description{
-    color:#777;
-    font-size:13px;
-    line-height:1.5;
-    min-height:40px;
-}
-
-.plan-price{
-    margin:20px 0;
-    font-size:28px;
-    font-weight:800;
-    color:#28204d;
-}
-
-.plan-price span{
-    font-size:12px;
-    color:#888;
-    font-weight:normal;
-}
-
-.plan-features{
-    list-style:none;
-    padding:0;
-    margin:0 0 22px;
-}
-
-.plan-features li{
-    padding:9px 0;
-    color:#555;
-    font-size:13px;
-    border-bottom:1px solid #f0f0f4;
-}
-
-.plan-features li:last-child{
-    border-bottom:0;
-}
-
-.plan-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:14px;
-}
-
-.plan-button:hover{
-    opacity:.9;
-}
-
-.payment-info{
-    margin-top:22px;
-    background:#f6f4ff;
-    border:1px solid #e4ddff;
-    padding:17px;
-    border-radius:15px;
-    color:#5b45b5;
-    font-size:13px;
-    line-height:1.5;
-}
-
-@media(max-width:850px){
-    .plans-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
-    .plans-grid{
-        grid-template-columns:1fr;
-    }
-
-    .plan-card.recommended{
-        transform:none;
-    }
-
-    .plans-header h2{
-        font-size:23px;
-    }
-}
-</style>
-
-<section id="plans" class="plans-section">
-
-    <div class="plans-header">
-        <h2>💎 Membership Plans</h2>
-        <p>
-            Choose the membership plan that is right for you.
-        </p>
+    <div class="card">
+      <h3>All Time Income</h3>
+      <div class="amount">₹0</div>
     </div>
 
-    <div class="plans-grid">
-
-        <!-- BASIC -->
-        <div class="plan-card">
-
-            <div class="plan-icon">🌱</div>
-
-            <h3>Basic</h3>
-
-            <div class="plan-description">
-                A simple starting membership option.
-            </div>
-
-            <div class="plan-price">
-                Contact Us
-            </div>
-
-            <ul class="plan-features">
-                <li>✓ Member Dashboard</li>
-                <li>✓ Member Profile</li>
-                <li>✓ Account Support</li>
-                <li>✓ Activity Access</li>
-            </ul>
-
-            <button
-                class="plan-button"
-                onclick="selectPlan('Basic')">
-                Select Plan
-            </button>
-
-        </div>
-
-
-        <!-- STANDARD -->
-        <div class="plan-card recommended">
-
-            <div class="recommended-label">
-                ⭐ RECOMMENDED
-            </div>
-
-            <div class="plan-icon">🚀</div>
-
-            <h3>Standard</h3>
-
-            <div class="plan-description">
-                A balanced membership option with additional benefits.
-            </div>
-
-            <div class="plan-price">
-                Contact Us
-            </div>
-
-            <ul class="plan-features">
-                <li>✓ Everything in Basic</li>
-                <li>✓ Income Dashboard</li>
-                <li>✓ Transaction History</li>
-                <li>✓ Priority Support</li>
-            </ul>
-
-            <button
-                class="plan-button"
-                onclick="selectPlan('Standard')">
-                Select Plan
-            </button>
-
-        </div>
-
-
-        <!-- PREMIUM -->
-        <div class="plan-card">
-
-            <div class="plan-icon">💎</div>
-
-            <h3>Premium</h3>
-
-            <div class="plan-description">
-                Advanced membership features and priority access.
-            </div>
-
-            <div class="plan-price">
-                Contact Us
-            </div>
-
-            <ul class="plan-features">
-                <li>✓ Everything in Standard</li>
-                <li>✓ Advanced Dashboard</li>
-                <li>✓ Premium Support</li>
-                <li>✓ Additional Member Benefits</li>
-            </ul>
-
-            <button
-                class="plan-button"
-                onclick="selectPlan('Premium')">
-                Select Plan
-            </button>
-
-        </div>
-
+    <div class="card">
+      <h3>Commission</h3>
+      <div class="amount">60%</div>
     </div>
 
-    <div class="payment-info">
-        🔒 <strong>Secure Payment:</strong>
-        Online payment will be processed through the official payment
-        gateway after the payment system is connected.
-    </div>
-
-</section>
+  </section>
 
 
-<script>
-function selectPlan(planName){
+  <!-- MEMBERSHIP -->
 
-    localStorage.setItem(
-        "selectedMembershipPlan",
-        planName
-    );
+  <section class="section">
 
-    alert(
-        planName +
-        " plan selected. Payment setup will be connected next."
-    );
-}
-</script>
+    <h2>Choose Your Membership</h2>
 
-<!-- ================= END MEMBERSHIP PLANS ================= -->
-    <!-- ================= PAYMENT PAGE ================= -->
+    <div class="plans">
 
-<style>
-.payment-section{
-    max-width:850px;
-    margin:30px auto;
-    padding:0 18px 50px;
-    font-family:Arial,sans-serif;
-}
+      <div class="plan" id="plan299">
 
-.payment-header{
-    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
-    color:white;
-    padding:30px;
-    border-radius:24px;
-    margin-bottom:22px;
-}
+        <h3>Standard</h3>
 
-.payment-header h2{
-    margin:0 0 8px;
-    font-size:28px;
-}
+        <div class="price">₹299</div>
 
-.payment-header p{
-    margin:0;
-    opacity:.9;
-}
+        <ul>
+          <li>✓ Member Access</li>
+          <li>✓ Training Support</li>
+          <li>✓ Work Updates</li>
+          <li>✓ Partner Commission</li>
+        </ul>
 
-.payment-card{
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:22px;
-    padding:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.order-title{
-    font-size:19px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-.order-row{
-    display:flex;
-    justify-content:space-between;
-    padding:15px 0;
-    border-bottom:1px solid #eee;
-    color:#555;
-}
-
-.order-row strong{
-    color:#222;
-}
-
-.total{
-    font-size:20px;
-    font-weight:800;
-    color:#29204e;
-    border-bottom:0;
-}
-
-.member-info{
-    margin-top:20px;
-    padding:18px;
-    background:#f7f6ff;
-    border-radius:15px;
-}
-
-.member-info div{
-    display:flex;
-    justify-content:space-between;
-    padding:7px 0;
-    font-size:14px;
-}
-
-.member-info span{
-    color:#777;
-}
-
-.pay-now{
-    width:100%;
-    margin-top:22px;
-    padding:16px;
-    border:0;
-    border-radius:13px;
-    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color:white;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.pay-now:hover{
-    opacity:.9;
-}
-
-.security{
-    text-align:center;
-    margin-top:17px;
-    color:#777;
-    font-size:12px;
-    line-height:1.5;
-}
-
-@media(max-width:600px){
-    .payment-header{
-        padding:22px;
-    }
-
-    .payment-header h2{
-        font-size:23px;
-    }
-
-    .payment-card{
-        padding:18px;
-    }
-}
-</style>
-
-<section id="payment" class="payment-section">
-
-    <div class="payment-header">
-        <h2>💳 Secure Payment</h2>
-        <p>Review your membership order before continuing.</p>
-    </div>
-
-    <div class="payment-card">
-
-        <div class="order-title">
-            🧾 Order Summary
-        </div>
-
-        <div class="order-row">
-            <span>Membership Plan</span>
-            <strong id="selectedPlan">
-                Not Selected
-            </strong>
-        </div>
-
-        <div class="order-row">
-            <span>Membership Status</span>
-            <strong>New Membership</strong>
-        </div>
-
-        <div class="order-row total">
-            <span>Total Amount</span>
-            <strong id="paymentAmount">
-                To Be Confirmed
-            </strong>
-        </div>
-
-        <div class="member-info">
-
-            <div>
-                <span>Member ID</span>
-                <strong id="paymentMember">
-                    Member
-                </strong>
-            </div>
-
-            <div>
-                <span>Payment Status</span>
-                <strong>Pending</strong>
-            </div>
-
-        </div>
-
-        <button
-            class="pay-now"
-            onclick="startPayment()">
-            🔒 Continue to Secure Payment
+        <button class="select" onclick="selectPlan('Standard','299')">
+          Select Plan
         </button>
 
-        <div class="security">
-            🛡️ Your payment will be processed through a secure
-            payment gateway once the payment integration is connected.
-        </div>
+      </div>
+
+
+      <div class="plan" id="plan499">
+
+        <h3>Special</h3>
+
+        <div class="price">₹499</div>
+
+        <ul>
+          <li>✓ Member Access</li>
+          <li>✓ Advanced Support</li>
+          <li>✓ Work Updates</li>
+          <li>✓ Partner Commission</li>
+        </ul>
+
+        <button class="select" onclick="selectPlan('Special','499')">
+          Select Plan
+        </button>
+
+      </div>
+
+
+      <div class="plan" id="plan999">
+
+        <h3>Premium</h3>
+
+        <div class="price">₹999</div>
+
+        <ul>
+          <li>✓ Premium Member Access</li>
+          <li>✓ Priority Support</li>
+          <li>✓ Work Updates</li>
+          <li>✓ Partner Commission</li>
+        </ul>
+
+        <button class="select" onclick="selectPlan('Premium','999')">
+          Select Plan
+        </button>
+
+      </div>
 
     </div>
 
-</section>
-
-<script>
-(function(){
-
-    const plan =
-        localStorage.getItem("selectedMembershipPlan")
-        || "Not Selected";
-
-    const member =
-        localStorage.getItem("novaMember")
-        || "Member";
-
-    const planElement =
-        document.getElementById("selectedPlan");
-
-    const memberElement =
-        document.getElementById("paymentMember");
-
-    if(planElement){
-        planElement.textContent = plan;
-    }
-
-    if(memberElement){
-        memberElement.textContent = member;
-    }
-
-})();
-
-function startPayment(){
-
-    alert(
-        "Secure payment gateway is being prepared. " +
-        "Cashfree integration will be connected after the payment backend is ready."
-    );
-
-}
-</script>
-
-<!-- ================= END PAYMENT PAGE ================= -->
-  <!-- ================= PAYMENT HISTORY ================= -->
-
-<style>
-.payment-history-section{
-    max-width:1100px;
-    margin:30px auto;
-    padding:0 18px 45px;
-    font-family:Arial,sans-serif;
-}
-
-.ph-header{
-    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
-    color:white;
-    padding:30px;
-    border-radius:24px;
-    margin-bottom:22px;
-}
-
-.ph-header h2{
-    margin:0 0 8px;
-    font-size:28px;
-}
-
-.ph-header p{
-    margin:0;
-    opacity:.9;
-}
-
-.ph-card{
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:22px;
-    padding:22px;
-    box-shadow:0 8px 28px rgba(0,0,0,.07);
-}
-
-.ph-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.ph-table th,
-.ph-table td{
-    padding:16px 12px;
-    text-align:left;
-    border-bottom:1px solid #eee;
-    white-space:nowrap;
-}
-
-.ph-table th{
-    color:#777;
-    font-size:13px;
-}
-
-.ph-table td{
-    font-size:14px;
-    color:#333;
-}
-
-.ph-status{
-    display:inline-block;
-    padding:6px 11px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.ph-success{
-    background:#e9f9ef;
-    color:#16843b;
-}
-
-.ph-pending{
-    background:#fff7df;
-    color:#936d00;
-}
-
-.ph-failed{
-    background:#ffecec;
-    color:#c53030;
-}
-
-.ph-empty{
-    text-align:center;
-    padding:40px 10px;
-    color:#888;
-}
-
-.ph-info{
-    margin-top:18px;
-    background:#f5f3ff;
-    border:1px solid #e3ddff;
-    padding:15px;
-    border-radius:14px;
-    color:#5945ae;
-    font-size:12px;
-    line-height:1.5;
-}
-
-@media(max-width:650px){
-    .ph-header h2{
-        font-size:23px;
-    }
-
-    .ph-card{
-        overflow-x:auto;
-    }
-
-    .ph-table{
-        min-width:720px;
-    }
-}
-</style>
-
-<section id="transactions" class="payment-history-section">
-
-    <div class="ph-header">
-        <h2>📋 Payment History</h2>
-        <p>View your membership payments and transaction records.</p>
+    <div class="note">
+      Payment gateway is currently being prepared.
+      Plan selection will be connected to online payment after the payment gateway is approved and integrated.
     </div>
 
-    <div class="ph-card">
+  </section>
 
-        <table class="ph-table">
 
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Order ID</th>
-                    <th>Plan</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+  <!-- MEMBER INFORMATION -->
 
-            <tbody id="paymentHistoryBody">
+  <section class="section">
 
-                <tr>
-                    <td colspan="5">
-                        <div class="ph-empty">
-                            🧾<br><br>
-                            No payment transactions yet.
-                        </div>
-                    </td>
-                </tr>
+    <h2>My Membership</h2>
 
-            </tbody>
+    <div class="table-wrap">
 
-        </table>
+      <table>
 
-        <div class="ph-info">
-            🔒 Payment records will automatically appear here after
-            the secure payment gateway and backend database are connected.
-        </div>
+        <tr>
+          <th>Member Email</th>
+          <td id="memberEmail">Not available</td>
+        </tr>
+
+        <tr>
+          <th>Selected Plan</th>
+          <td id="selectedPlan">No plan selected</td>
+        </tr>
+
+        <tr>
+          <th>Commission</th>
+          <td>60% per package</td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td><span class="badge">Active Dashboard</span></td>
+        </tr>
+
+      </table>
 
     </div>
 
-</section>
+  </section>
 
-<script>
-(function(){
 
-    const history =
-        JSON.parse(
-            localStorage.getItem("novaPaymentHistory") || "[]"
-        );
+  <!-- INCOME ACTIVITY -->
 
-    const body =
-        document.getElementById("paymentHistoryBody");
+  <section class="section">
 
-    if(!body || history.length === 0){
-        return;
-    }
+    <h2>Recent Income Activity</h2>
 
-    body.innerHTML = "";
+    <div class="table-wrap">
 
-    history.forEach(function(payment){
+      <table>
 
-        const row =
-            document.createElement("tr");
+        <thead>
+          <tr>
+            <th>Transaction</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
 
-        let statusClass = "ph-pending";
+        <tbody>
 
-        if(payment.status === "SUCCESS"){
-            statusClass = "ph-success";
-        }
+          <tr>
+            <td>No transactions yet</td>
+            <td>₹0</td>
+            <td>—</td>
+          </tr>
 
-        if(payment.status === "FAILED"){
-            statusClass = "ph-failed";
-        }
+        </tbody>
 
-        row.innerHTML = `
-            <td>${payment.date || "-"}</td>
-            <td>${payment.orderId || "-"}</td>
-            <td>${payment.plan || "-"}</td>
-            <td>₹${payment.amount || "0"}</td>
-            <td>
-                <span class="ph-status ${statusClass}">
-                    ${payment.status || "PENDING"}
-                </span>
-            </td>
-        `;
-
-        body.appendChild(row);
-
-    });
-
-})();
-</script>
-
-<!-- ================= END PAYMENT HISTORY ================= --> 
-<!-- ================= WALLET & WITHDRAW ================= -->
-
-<style>
-.wallet-section{
-    max-width:1100px;
-    margin:30px auto;
-    padding:0 18px 45px;
-    font-family:Arial,sans-serif;
-}
-
-.wallet-header{
-    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
-    color:white;
-    padding:30px;
-    border-radius:24px;
-    margin-bottom:22px;
-}
-
-.wallet-header h2{
-    margin:0 0 8px;
-    font-size:28px;
-}
-
-.wallet-header p{
-    margin:0;
-    opacity:.9;
-}
-
-.wallet-summary{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-    margin-bottom:22px;
-}
-
-.wallet-card{
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:20px;
-    padding:22px;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
-}
-
-.wallet-icon{
-    font-size:27px;
-    margin-bottom:12px;
-}
-
-.wallet-label{
-    color:#777;
-    font-size:13px;
-}
-
-.wallet-amount{
-    margin-top:7px;
-    font-size:25px;
-    font-weight:800;
-    color:#27204b;
-}
-
-.wallet-main{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.wallet-panel{
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:20px;
-    padding:24px;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
-}
-
-.wallet-panel h3{
-    margin:0 0 18px;
-    color:#27204b;
-}
-
-.withdraw-input{
-    width:100%;
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    font-size:15px;
-    outline:none;
-    margin-bottom:14px;
-}
-
-.withdraw-input:focus{
-    border-color:#6548ee;
-}
-
-.withdraw-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.withdraw-note{
-    margin-top:14px;
-    padding:13px;
-    border-radius:12px;
-    background:#fff8e7;
-    color:#806000;
-    font-size:12px;
-    line-height:1.5;
-}
-
-.withdraw-row{
-    display:flex;
-    justify-content:space-between;
-    padding:14px 0;
-    border-bottom:1px solid #eee;
-    font-size:13px;
-}
-
-.withdraw-row:last-child{
-    border-bottom:0;
-}
-
-.withdraw-status{
-    padding:5px 10px;
-    border-radius:20px;
-    background:#fff7df;
-    color:#936d00;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.withdraw-empty{
-    text-align:center;
-    padding:30px 10px;
-    color:#888;
-    font-size:13px;
-}
-
-@media(max-width:750px){
-    .wallet-summary{
-        grid-template-columns:1fr;
-    }
-
-    .wallet-main{
-        grid-template-columns:1fr;
-    }
-
-    .wallet-header h2{
-        font-size:23px;
-    }
-}
-</style>
-
-<section id="wallet" class="wallet-section">
-
-    <div class="wallet-header">
-        <h2>💰 My Wallet</h2>
-        <p>Manage your available balance and withdrawal requests.</p>
-    </div>
-
-    <div class="wallet-summary">
-
-        <div class="wallet-card">
-            <div class="wallet-icon">💵</div>
-            <div class="wallet-label">Available Balance</div>
-            <div class="wallet-amount" id="availableBalance">
-                ₹0
-            </div>
-        </div>
-
-        <div class="wallet-card">
-            <div class="wallet-icon">⏳</div>
-            <div class="wallet-label">Pending Balance</div>
-            <div class="wallet-amount">
-                ₹0
-            </div>
-        </div>
-
-        <div class="wallet-card">
-            <div class="wallet-icon">📤</div>
-            <div class="wallet-label">Total Withdrawn</div>
-            <div class="wallet-amount">
-                ₹0
-            </div>
-        </div>
+      </table>
 
     </div>
 
-
-    <div class="wallet-main">
-
-        <!-- WITHDRAW -->
-        <div class="wallet-panel">
-
-            <h3>📤 Request Withdrawal</h3>
-
-            <input
-                type="number"
-                id="withdrawAmount"
-                class="withdraw-input"
-                placeholder="Enter withdrawal amount"
-                min="1">
-
-            <button
-                class="withdraw-btn"
-                onclick="requestWithdrawal()">
-                Request Withdrawal
-            </button>
-
-            <div class="withdraw-note">
-                🔒 Withdrawal requests will be processed only after
-                the secure backend, account verification and admin
-                approval system are connected.
-            </div>
-
-        </div>
+  </section>
 
 
-        <!-- METHOD -->
-        <div class="wallet-panel">
+  <!-- LEADS -->
 
-            <h3>🏦 Withdrawal Method</h3>
+  <section class="section">
 
-            <div class="withdraw-row">
-                <span>Method</span>
-                <strong>Not Added</strong>
-            </div>
+    <h2>My Leads</h2>
 
-            <div class="withdraw-row">
-                <span>Account Status</span>
-                <strong>Pending Setup</strong>
-            </div>
+    <div class="table-wrap">
 
-            <div class="withdraw-row">
-                <span>Verification</span>
-                <strong>Required</strong>
-            </div>
+      <table>
 
-            <div class="withdraw-note">
-                Add and verify your bank/approved payout details
-                before requesting a real withdrawal.
-            </div>
+        <thead>
+          <tr>
+            <th>Lead</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
 
-        </div>
+        <tbody>
+
+          <tr>
+            <td>No leads assigned yet</td>
+            <td>—</td>
+            <td>Pending</td>
+          </tr>
+
+        </tbody>
+
+      </table>
 
     </div>
 
+  </section>
 
-    <!-- HISTORY -->
-    <div class="wallet-panel" style="margin-top:20px;">
 
-        <h3>📋 Withdrawal History</h3>
+  <!-- REPORT -->
 
-        <div id="withdrawHistory">
+  <section class="section">
 
-            <div class="withdraw-empty">
-                No withdrawal requests yet.
-            </div>
+    <h2>Submit Work Report</h2>
 
-        </div>
+    <p style="margin-bottom:15px;">
+      Work report / lead report submission will be connected here.
+    </p>
 
-    </div>
+    <button class="select" onclick="alert('Report submission will be activated soon.')">
+      Submit Report
+    </button>
 
-</section>
+  </section>
+
+</main>
 
 
 <script>
 
-function requestWithdrawal(){
+function selectPlan(name,price){
 
-    const amount =
-        document.getElementById("withdrawAmount").value;
+  document.querySelectorAll('.plan').forEach(function(plan){
+    plan.classList.remove('selected');
+  });
 
-    if(!amount || Number(amount) <= 0){
+  if(price === '299'){
+    document.getElementById('plan299').classList.add('selected');
+  }
 
-        alert("Please enter a valid withdrawal amount.");
+  if(price === '499'){
+    document.getElementById('plan499').classList.add('selected');
+  }
 
-        return;
-    }
+  if(price === '999'){
+    document.getElementById('plan999').classList.add('selected');
+  }
 
-    alert(
-        "Withdrawal request received for ₹" +
-        Number(amount).toLocaleString("en-IN") +
-        ". Real withdrawals will be enabled after the secure backend and approval system are connected."
-    );
+  document.getElementById('selectedPlan').innerText =
+    name + " Membership - ₹" + price;
+
+  localStorage.setItem(
+    'selectedPlan',
+    name + " Membership - ₹" + price
+  );
+
+  alert(
+    name + " Membership selected.\n\nPayment gateway will be connected after approval."
+  );
+}
+
+
+function logout(){
+
+  localStorage.removeItem('memberLoggedIn');
+
+  window.location.href = 'index.html';
 
 }
+
+
+window.onload = function(){
+
+  const email = localStorage.getItem('memberEmail');
+
+  const plan = localStorage.getItem('selectedPlan');
+
+  if(email){
+    document.getElementById('memberEmail').innerText = email;
+  }
+
+  if(plan){
+    document.getElementById('selectedPlan').innerText = plan;
+  }
+
+};
 
 </script>
 
-<!-- ================= END WALLET & WITHDRAW ================= -->
-    <!-- ================= NOTIFICATIONS + SUPPORT CENTER ================= -->
-
-<style>
-.ns-section{
-    max-width:1100px;
-    margin:30px auto;
-    padding:0 18px 45px;
-    font-family:Arial,sans-serif;
-}
-
-.ns-header{
-    background:linear-gradient(135deg,#171d43,#5b3df5,#8b5cf6);
-    color:white;
-    padding:30px;
-    border-radius:24px;
-    margin-bottom:22px;
-}
-
-.ns-header h2{
-    margin:0 0 8px;
-    font-size:28px;
-}
-
-.ns-header p{
-    margin:0;
-    opacity:.9;
-}
-
-.ns-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.ns-card{
-    background:white;
-    border:1px solid #e7e7ef;
-    border-radius:22px;
-    padding:24px;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
-}
-
-.ns-card h3{
-    margin:0 0 18px;
-    color:#27204b;
-}
-
-.notification{
-    display:flex;
-    gap:13px;
-    padding:15px 0;
-    border-bottom:1px solid #eee;
-}
-
-.notification:last-child{
-    border-bottom:0;
-}
-
-.notification-icon{
-    width:40px;
-    height:40px;
-    min-width:40px;
-    border-radius:12px;
-    background:#f0edff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-}
-
-.notification-title{
-    font-size:14px;
-    font-weight:700;
-    color:#333;
-    margin-bottom:5px;
-}
-
-.notification-text{
-    font-size:12px;
-    color:#777;
-    line-height:1.5;
-}
-
-.notification-time{
-    font-size:10px;
-    color:#999;
-    margin-top:5px;
-}
-
-.support-input,
-.support-textarea{
-    width:100%;
-    box-sizing:border-box;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    margin-bottom:13px;
-    font-family:Arial,sans-serif;
-    font-size:14px;
-    outline:none;
-}
-
-.support-textarea{
-    min-height:120px;
-    resize:vertical;
-}
-
-.support-input:focus,
-.support-textarea:focus{
-    border-color:#6548ee;
-}
-
-.support-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#5b3df5,#8b5cf6);
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.support-btn:hover{
-    opacity:.9;
-}
-
-.support-history{
-    margin-top:20px;
-}
-
-.ticket{
-    padding:14px;
-    background:#f8f7fc;
-    border-radius:13px;
-    margin-bottom:10px;
-}
-
-.ticket-title{
-    font-size:13px;
-    font-weight:bold;
-    color:#333;
-}
-
-.ticket-status{
-    display:inline-block;
-    margin-top:6px;
-    padding:5px 9px;
-    border-radius:20px;
-    background:#fff7df;
-    color:#936d00;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.ns-note{
-    margin-top:18px;
-    padding:13px;
-    border-radius:12px;
-    background:#f5f3ff;
-    color:#5945ae;
-    font-size:12px;
-    line-height:1.5;
-}
-
-@media(max-width:750px){
-    .ns-grid{
-        grid-template-columns:1fr;
-    }
-
-    .ns-header h2{
-        font-size:23px;
-    }
-}
-</style>
-
-
-<section id="support" class="ns-section">
-
-    <div class="ns-header">
-        <h2>🔔 Notifications & Support</h2>
-        <p>Stay updated and contact the member support team.</p>
-    </div>
-
-
-    <div class="ns-grid">
-
-        <!-- NOTIFICATIONS -->
-        <div class="ns-card">
-
-            <h3>🔔 Notifications</h3>
-
-            <div class="notification">
-
-                <div class="notification-icon">
-                    👋
-                </div>
-
-                <div>
-                    <div class="notification-title">
-                        Welcome to Member Portal
-                    </div>
-
-                    <div class="notification-text">
-                        Your member dashboard has been successfully created.
-                    </div>
-
-                    <div class="notification-time">
-                        Just now
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="notification">
-
-                <div class="notification-icon">
-                    💳
-                </div>
-
-                <div>
-                    <div class="notification-title">
-                        Payment Updates
-                    </div>
-
-                    <div class="notification-text">
-                        Your payment notifications will appear here.
-                    </div>
-
-                    <div class="notification-time">
-                        System
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="notification">
-
-                <div class="notification-icon">
-                    📢
-                </div>
-
-                <div>
-                    <div class="notification-title">
-                        Important Announcements
-                    </div>
-
-                    <div class="notification-text">
-                        Important member announcements will be displayed here.
-                    </div>
-
-                    <div class="notification-time">
-                        System
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- SUPPORT -->
-        <div class="ns-card">
-
-            <h3>💬 Contact Support</h3>
-
-            <input
-                type="text"
-                id="supportSubject"
-                class="support-input"
-                placeholder="Subject">
-
-            <textarea
-                id="supportMessage"
-                class="support-textarea"
-                placeholder="Describe your issue or question..."></textarea>
-
-            <button
-                class="support-btn"
-                onclick="submitSupportRequest()">
-                Send Support Request
-            </button>
-
-            <div class="ns-note">
-                🛡️ Please do not share passwords, OTPs, PINs or
-                other confidential payment information in support messages.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SUPPORT HISTORY -->
-    <div class="ns-card support-history">
-
-        <h3>📋 My Support Requests</h3>
-
-        <div id="supportHistory">
-
-            <div style="text-align:center;color:#888;padding:25px;">
-                No support requests yet.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<script>
-function submitSupportRequest(){
-
-    const subject =
-        document.getElementById("supportSubject").value.trim();
-
-    const message =
-        document.getElementById("supportMessage").value.trim();
-
-    if(!subject){
-        alert("Please enter a subject.");
-        return;
-    }
-
-    if(!message){
-        alert("Please describe your issue.");
-        return;
-    }
-
-    const requests =
-        JSON.parse(
-            localStorage.getItem("novaSupportRequests") || "[]"
-        );
-
-    requests.push({
-        subject: subject,
-        message: message,
-        status: "PENDING",
-        date: new Date().toLocaleDateString("en-IN")
-    });
-
-    localStorage.setItem(
-        "novaSupportRequests",
-        JSON.stringify(requests)
-    );
-
-    alert(
-        "Your support request has been submitted successfully."
-    );
-
-    document.getElementById("supportSubject").value = "";
-    document.getElementById("supportMessage").value = "";
-
-    loadSupportRequests();
-}
-
-
-function loadSupportRequests(){
-
-    const requests =
-        JSON.parse(
-            localStorage.getItem("novaSupportRequests") || "[]"
-        );
-
-    const container =
-        document.getElementById("supportHistory");
-
-    if(!container){
-        return;
-    }
-
-    if(requests.length === 0){
-        container.innerHTML =
-            '<div style="text-align:center;color:#888;padding:25px;">No support requests yet.</div>';
-        return;
-    }
-
-    container.innerHTML = "";
-
-    requests.slice().reverse().forEach(function(ticket){
-
-        const div =
-            document.createElement("div");
-
-        div.className = "ticket";
-
-        div.innerHTML =
-            "<div class='ticket-title'>" +
-            ticket.subject +
-            "</div>" +
-            "<div class='ticket-status'>" +
-            ticket.status +
-            "</div>";
-
-        container.appendChild(div);
-
-    });
-}
-
-
-document.addEventListener(
-    "DOMContentLoaded",
-    loadSupportRequests
-);
-</script>
-
-<!-- ================= END NOTIFICATIONS + SUPPORT ================= -->
-        <style>
-/* Mobile Friendly Member Dashboard */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.container,
-.dashboard,
-.main-content,
-.content {
-  max-width: 100%;
-  width: 100%;
-}
-
-button,
-a {
-  max-width: 100%;
-}
-
-table {
-  width: 100%;
-  display: block;
-  overflow-x: auto;
-}
-
-@media (max-width: 768px) {
-
-  body {
-    font-size: 14px;
-  }
-
-  header,
-  nav {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 12px;
-  }
-
-  .container,
-  .dashboard,
-  .main-content,
-  .content {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px;
-    margin: 0;
-  }
-
-  .cards,
-  .stats,
-  .dashboard-cards,
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .card {
-    width: 100%;
-    min-width: 0;
-  }
-
-  h1 {
-    font-size: 25px;
-  }
-
-  h2 {
-    font-size: 21px;
-  }
-
-  button {
-    max-width: 100%;
-    white-space: normal;
-  }
-
-}
-</style>
 </body>
 </html>
-</body>
-</html>
-
